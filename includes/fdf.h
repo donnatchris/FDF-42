@@ -6,7 +6,7 @@
 /*   By: christophedonnat <christophedonnat@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/02 19:30:16 by christophed      ###   ########.fr       */
+/*   Updated: 2025/01/03 10:10:06 by christophed      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <errno.h>
 # include <fcntl.h>
 
-// Structures
+// Structure
 typedef struct s_point
 {
 	int	x;
@@ -29,17 +29,18 @@ typedef struct s_point
 
 //SRC DIRECTORY
 // error_manager.c
-// print error messages, free allocated memory and exit the program
+// print error messages, free allocated memory, close fd and exit the program
 int		error(char *message);
 void	close_fd_and_error(int fd, char *message);
 void	free_close_fd_and_error(int fd, t_point **tab, char *message);
 // read_and_extract.c
 // read the file and create a table of points
 void	read_and_extract(char *file);
-t_point	**create_point_tab(char *file, int column_max, int line_max);
+void	create_point_tab(t_point **point_tab, char *file, int column_max, int line_max);
 void	fill_src(int fd, t_point **src, char *line, int n_line, int column_max);
 void	fill_coordonates(t_point *point, int x, int y, char *str);
 int		input_is_valid(char *str);
+t_point	**allocate_point_memory(t_point **src, int size);
 // points.c
 // creates three and two dimensional point tables
 // limits.c

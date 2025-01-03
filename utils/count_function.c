@@ -6,7 +6,7 @@
 /*   By: christophedonnat <christophedonnat@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:17:03 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/02 18:43:18 by christophed      ###   ########.fr       */
+/*   Updated: 2025/01/03 09:29:26 by christophed      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // Count the number of columns in the first line of a file
 int	count_columns(char *file)
 {
+	ft_printf("count_columns\n");
 	int		fd;
 	char	*line;
 	char 	**tab;
@@ -45,8 +46,8 @@ int	count_columns(char *file)
 // Count the number of lines in a file
 int	count_lines(char *file)
 {
+	ft_printf("count_lines\n");
 	int		fd;
-	char	*line;
 	int		n_lines;
 
 	n_lines = 0;

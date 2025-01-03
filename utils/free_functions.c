@@ -6,7 +6,7 @@
 /*   By: christophedonnat <christophedonnat@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:12:34 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/02 18:43:22 by christophed      ###   ########.fr       */
+/*   Updated: 2025/01/03 09:29:39 by christophed      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // Free the memory allocated for a table of t_points
 void	free_points_tab(t_point **tab)
 {
+	ft_printf("free_points_tab\n");
 	int	i;
 
 	if (!tab)
@@ -32,6 +33,7 @@ void	free_points_tab(t_point **tab)
 // Free the memory allocated for a table of strings
 void	free_str_tab(char **tab)
 {
+	ft_printf("free_str_tab\n");
 	int	i;
 
 	if (!tab)

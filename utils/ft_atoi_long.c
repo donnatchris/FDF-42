@@ -6,7 +6,7 @@
 /*   By: christophedonnat <christophedonnat@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:42:17 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/02 18:42:42 by christophed      ###   ########.fr       */
+/*   Updated: 2025/01/03 09:29:48 by christophed      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // Function to convert a string to a long integer
 long	ft_atoi_long(const char *nptr)
 {
+	ft_printf("ft_atoi_long\n");
 	int		i;
 	int		sign;
 	long	result;

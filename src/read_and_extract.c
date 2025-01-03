@@ -6,7 +6,7 @@
 /*   By: christophedonnat <christophedonnat@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 19:21:10 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/02 19:32:17 by christophed      ###   ########.fr       */
+/*   Updated: 2025/01/03 10:10:25 by christophed      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void	read_and_extract(char *file)
 {
+	ft_printf("read_and_extract\n");
 	t_point	**src;
 	int		n_columns;
 	int		n_lines;
@@ -23,23 +24,22 @@ void	read_and_extract(char *file)
 	n_lines = count_lines(file);
 	if (n_columns == 0 || n_lines == 0)
 		error("Invalid file");
-	src = create_point_tab(file, n_columns, n_lines);
+	src = NULL;
+	src = allocate_point_memory(src, (n_columns * n_lines));
+	create_point_tab(src, file, n_columns, n_lines);
 }
 
 // Create a table of points from a file
-t_point	**create_point_tab(char *file, int column_max, int line_max)
+void	create_point_tab(t_point **point_tab, char *file, int column_max, int line_max)
 {
-	t_point	**point_tab;
+	ft_printf("create_point_tab\n");
 	int		fd;
 	char	*line;
 	int		n_line;
 
-	point_tab = malloc(sizeof(t_point *) * (line_max * column_max));
-	if (!point_tab)
-		error("Error allocating memory");
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		error("Error opening file");
+		free_close_fd_and_error(fd, point_tab, "Error opening file");
 	n_line = 0;
 	while (n_line < line_max)
 	{
@@ -51,12 +51,12 @@ t_point	**create_point_tab(char *file, int column_max, int line_max)
 		n_line++;
 	}
 	close(fd);
-	return (point_tab);
 }
 
 // Fill a table of points with the values of a line
 void	fill_src(int fd, t_point **src, char *line, int n_line, int column_max)
 {
+	ft_printf("fill_src\n");
 	char	**tab;
 	int		n_column;
 	int 	index;
@@ -84,14 +84,25 @@ void	fill_src(int fd, t_point **src, char *line, int n_line, int column_max)
 // Fill the coordinates of a point
 void	fill_coordonates(t_point *point, int x, int y, char *str)
 {
+	ft_printf("fill_coordonates\n");
+	ft_printf("x vaut %d, y vaut %d, z vaut %s\n", x, y, str);
+	if (!point)
+    {
+        ft_printf("Point is NULL\n");
+        return;
+    }
 	point->x = x;
+	ft_printf("x = %d\n", x);
 	point->y = y;
+	ft_printf("y = %d\n", y);
 	point->z = ft_atoi(str);
+	ft_printf("z = %d\n", point->z);
 }
 
 // Check if the string is a valid z coordinate (must be an integer)
 int		input_is_valid(char *str)
 {
+	ft_printf("input_is_valid\n");
 	int		i;
 	long	nbr;
 
@@ -110,4 +121,30 @@ int		input_is_valid(char *str)
 	if (nbr > 2147483647 || nbr < -2147483648)
 		return (0);
 	return (1);
+}
+
+// Allocate memory for a table of points
+t_point	**allocate_point_memory(t_point **src, int size)
+{
+	ft_printf("allocate_point_memory\n");
+	int		i;
+	
+	src = (t_point **)malloc(sizeof(t_point *) * (size + 1));
+	if (!src)
+		error("Error allocating memory");
+	i = 0;
+	while (i < size)
+	{
+		src[i] = (t_point *)malloc(sizeof(t_point));
+		if (!src[i])
+		{
+			while (i >= 0)
+				free(src[i--]);
+			free(src);
+			error("Error allocating memory");
+		}
+		i++;
+	}
+	src[size] = NULL;
+	return (src);
 }
