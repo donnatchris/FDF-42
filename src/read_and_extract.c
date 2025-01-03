@@ -6,7 +6,7 @@
 /*   By: christophedonnat <christophedonnat@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 19:21:10 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/03 10:10:25 by christophed      ###   ########.fr       */
+/*   Updated: 2025/01/03 10:36:00 by christophed      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	read_and_extract(char *file)
 	src = NULL;
 	src = allocate_point_memory(src, (n_columns * n_lines));
 	create_point_tab(src, file, n_columns, n_lines);
+	print_point_tab(src);
 }
 
 // Create a table of points from a file
@@ -113,7 +114,7 @@ int		input_is_valid(char *str)
 		i++;
 	while (str[i])
 	{
-		if (!ft_isdigit(str[i]))
+		if (!ft_isdigit(str[i]) && (str[i] != '\n'))
 			return (0);
 		i++;
 	}

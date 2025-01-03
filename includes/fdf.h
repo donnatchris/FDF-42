@@ -6,7 +6,7 @@
 /*   By: christophedonnat <christophedonnat@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/03 10:10:06 by christophed      ###   ########.fr       */
+/*   Updated: 2025/01/03 10:35:41 by christophed      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ int	count_lines(char *file);
 // ft_atoi_long.c
 // converts a string to a long integer
 long	ft_atoi_long(const char *nptr);
+// test_functions.c
+// tests functions to be removed before the final version
+void	print_point_tab(t_point **tab);
 
 // BONUS DIRECTORY
 
