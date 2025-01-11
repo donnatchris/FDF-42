@@ -6,62 +6,186 @@
 #    By: christophedonnat <christophedonnat@stud    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 16:21:20 by christophed       #+#    #+#              #
-#    Updated: 2025/01/03 09:46:34 by christophed      ###   ########.fr        #
+#    Updated: 2025/01/11 21:04:57 by christophed      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Nom de l'exécutable
+# Name of the executable for mandatory part
 TARGET = fdf
 
-# Répertoires
-SRC_DIR = src
-UTILS_DIR = utils
-OBJ_DIR = obj
-OBJ_DIR_MAIN = $(OBJ_DIR)/main
-INC_DIR = includes
+# Name of the executable for bonus part
+BONUS = fdf_bonus
+
+# Directories for mandatory part
+SRC_DIR = mandatory/src
+UTILS_DIR = mandatory/utils
+INC_DIR = mandatory/include
+OBJ_DIR = obj/mandatory
+
+# Directories for bonus part
+BONUS_SRC_DIR = bonus/src
+BONUS_UTILS_DIR = bonus/utils
+BONUS_INC_DIR = bonus/include
+BONUS_OBJ_DIR = obj/bonus
+
+# Directories for common part
 LIBFT_DIR = libft
+# minilibx for MacOS
+MLX_DIR = mlx_mac
+# Minilibx for linux
+# MLX_DIR = mlx_linux
 
-# Fichiers source et objets
-MAIN = $(SRC_DIR)/main.c
-SRCS = $(filter-out $(MAIN), $(wildcard $(SRC_DIR)/*.c)) $(wildcard $(UTILS_DIR)/*.c)
+# Main file for mandatory part
+MAIN = $(SRC_DIR)/test.c	# ou main.c
 
-OBJS = $(patsubst %.c, $(OBJ_DIR_MAIN)/%.o, $(notdir $(SRCS)))
-MAIN_OBJ = $(patsubst %.c, $(OBJ_DIR_MAIN)/%.o, $(notdir $(MAIN)))
+# Main file for bonus part
+BONUS_MAIN = $(BONUS_SRC_DIR)/main.c
 
-# Options de compilation
-CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)/includes
+# Sources files for mandatory part
+SRC = \
+	$(SRC_DIR)/error_manager.c \
+	$(SRC_DIR)/limits.c \
+	$(SRC_DIR)/points.c \
+	$(SRC_DIR)/read_and_extract.c \
+	$(UTILS_DIR)/count_function.c \
+	$(UTILS_DIR)/free_functions.c \
+	$(UTILS_DIR)/ft_atoi_long.c \
+	$(UTILS_DIR)/test_functions.c \
+	$(MAIN)
 
-# Spécifier le compilateur
+# Sources files for bonus part
+BONUS_SRC =	\
+	$(BONUS_SRC_DIR)/bonus_error_manager.c \
+	$(BONUS_SRC_DIR)/bonus_limits.c \
+	$(BONUS_SRC_DIR)/bonus_points.c \
+	$(BONUS_SRC_DIR)/bonus_read_and_extract.c \
+	$(BONUS_UTILS_DIR)/bonus_count_function.c \
+	$(BONUS_UTILS_DIR)/bonus_free_functions.c \
+	$(BONUS_UTILS_DIR)/bonus_ft_atoi_long.c \
+	$(BONUS_UTILS_DIR)/bonus_test_functions.c \
+	$(BONUS_MAIN)
+
+# Objects files for mandatory part
+OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+
+# Objects files for bonus part
+BONUS_OBJ = $(BONUS_SRC:$(BONUS_SRC_DIR)/%.c=$(BONUS_OBJ_DIR)/%.o)
+
+# Compilation options for MacOS
+CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)/includes -I$(MLX_DIR) -I/opt/homebrew/opt/libx11/include -I/opt/homebrew/opt/libxext/include
+LDFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -L/opt/homebrew/opt/libx11/lib -L/opt/homebrew/opt/libxext/lib -lX11 -lXext -lm -framework OpenGL -framework AppKit
+
+# Compilation options for Linux
+# CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)/includes -I$(MLX_DIR) -I/usr/include/X11 -I/usr/include/X11/extensions
+# LDFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -L/usr/lib/X11 -L/usr/lib/X11/extensions -lX11 -lXext -lm -lGL -lGLU
+
+# Compiler
 CC = gcc
 
-# Options de l'éditeur de liens
-LDFLAGS = -L$(LIBFT_DIR) -lft
-
-# Règles
+# Rule to compile the mandatory part
 all: $(TARGET)
+$(TARGET): $(OBJ) $(LIBFT_DIR)/libft.a $(MLX_DIR)/libmlx.a
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ) $(LDFLAGS)
 
-$(TARGET): $(OBJS) $(MAIN_OBJ) $(LIBFT_DIR)/libft.a
-	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+# Rule to compile the bonus part
+bonus: $(BONUS)
+$(BONUS): $(BONUS_OBJ) $(LIBFT_DIR)/libft.a $(MLX_DIR)/libmlx.a
+	$(CC) $(CFLAGS) -o $(BONUS) $^ $(LDFLAGS)
 
-$(OBJ_DIR_MAIN)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR_MAIN)
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(OBJ_DIR_MAIN)/%.o: $(UTILS_DIR)/%.c
-	@mkdir -p $(OBJ_DIR_MAIN)
-	$(CC) $(CFLAGS) -c $< -o $@
-
+# Rule to compile libft
 $(LIBFT_DIR)/libft.a:
 	$(MAKE) -C $(LIBFT_DIR)
 
+# Rule to compile mlx
+$(MLX_DIR)/libmlx.a:
+	$(MAKE) -C $(MLX_DIR)
+
+# Rules to compile the objects files of the mandatory part
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+$(OBJ_DIR)/%.o: $(UTILS_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Rules to compile the objects files of the bonus part
+$(BONUS_OBJ_DIR)/%.o: $(BONUS_SRC_DIR)/%.c
+	@mkdir -p $(BONUS_OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BONUS_OBJ_DIR)/%.o: $(BONUS_UTILS_DIR)/%.c
+	@mkdir -p $(BONUS_OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Rule to clean the objects files
 clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
-	rm -rf $(OBJ_DIR)
+	$(MAKE) -C $(MLX_DIR) clean
+	rm -rf obj
 
+# Rule to clean the objects files and the executables
 fclean: clean
 	$(MAKE) -C $(LIBFT_DIR) fclean
-	rm -f $(TARGET)
+	rm -f $(TARGET) $(BONUS)
 
+# Rule to recompile the project
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+# Phony rule
+.PHONY: all clean fclean re bonus
+
+# # Nom de l'exécutable
+# TARGET = fdf
+
+# # Répertoires
+# SRC_DIR = src
+# UTILS_DIR = utils
+# OBJ_DIR = obj
+# OBJ_DIR_MAIN = $(OBJ_DIR)/main
+# INC_DIR = includes
+# LIBFT_DIR = libft
+
+# # Fichiers source et objets
+# MAIN = $(SRC_DIR)/main.c
+# SRCS = $(filter-out $(MAIN), $(wildcard $(SRC_DIR)/*.c)) $(wildcard $(UTILS_DIR)/*.c)
+
+# OBJS = $(patsubst %.c, $(OBJ_DIR_MAIN)/%.o, $(notdir $(SRCS)))
+# MAIN_OBJ = $(patsubst %.c, $(OBJ_DIR_MAIN)/%.o, $(notdir $(MAIN)))
+
+# # Options de compilation
+# CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)/includes
+
+# # Spécifier le compilateur
+# CC = gcc
+
+# # Options de l'éditeur de liens
+# LDFLAGS = -L$(LIBFT_DIR) -lft
+
+# # Règles
+# all: $(TARGET)
+
+# $(TARGET): $(OBJS) $(MAIN_OBJ) $(LIBFT_DIR)/libft.a
+# 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+
+# $(OBJ_DIR_MAIN)/%.o: $(SRC_DIR)/%.c
+# 	@mkdir -p $(OBJ_DIR_MAIN)
+# 	$(CC) $(CFLAGS) -c $< -o $@
+
+# $(OBJ_DIR_MAIN)/%.o: $(UTILS_DIR)/%.c
+# 	@mkdir -p $(OBJ_DIR_MAIN)
+# 	$(CC) $(CFLAGS) -c $< -o $@
+
+# $(LIBFT_DIR)/libft.a:
+# 	$(MAKE) -C $(LIBFT_DIR)
+
+# clean:
+# 	$(MAKE) -C $(LIBFT_DIR) clean
+# 	rm -rf $(OBJ_DIR)
+
+# fclean: clean
+# 	$(MAKE) -C $(LIBFT_DIR) fclean
+# 	rm -f $(TARGET)
+
+# re: fclean all
+
+# .PHONY: all bonus clean fclean re
