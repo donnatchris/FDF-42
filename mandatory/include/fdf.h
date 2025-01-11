@@ -6,7 +6,7 @@
 /*   By: christophedonnat <christophedonnat@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/11 20:16:06 by christophed      ###   ########.fr       */
+/*   Updated: 2025/01/11 22:44:01 by christophed      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 #include <stdarg.h>
 #include "../../libft/includes/libft.h"
 // # ifdef __apple__
-
 # include "../../mlx_mac/mlx.h"
 // # endif
 // # ifdef __linux__

@@ -25,16 +25,24 @@ Implement rotation (rotating your rendering).
 Add an extra bonus feature of your choice.
 
 SOME COMMANDS YOU CAN USE:
-complete by the aim of the project
+make
+	compiles the program
+./fdf <file>
+	execute the program (you must pass a file containing coordonates)
 
 ARCHITECTURE:
-- src/ directory for main src files
-- utils/ directory for secondary files
-- bonus/ directory for the bonus files (if any)
-- includes/ directory for header files
+- mandatory/ directory with files for the mandatory part
+		- src/ directory for main files of the project
+		- utils/ directory for secondary files
+		- include/ directory for headers
+- bonus/ directory with files for the bonus part
+		- src/ directory for main files of the project
+		- utils/ directory for secondary files
+		- include/ directory for headers
 - test/ directory fot tests files
 - libft/ directory with my own library (standard functions, ft_printf, get_next_line)
-- minilibx/ directory with a simple X-Window (X11R6) programming API provided with the subject
+- mlx_mac/ directory for the mac version of the minilibx library
+- mlx_linux/ directory for the linux version of the minilibx library
 - Makefile (with rules: make bonus clean fclean re)
 - readme.txt for quick explanation and main commands of the project
 
