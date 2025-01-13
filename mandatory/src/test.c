@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:35:06 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/13 13:21:02 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/13 15:57:41 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,50 @@
 
 #include "../include/fdf.h"
 
+// Function to draw lines
+void bresenham(t_fdf *fdf, int x0, int y0, int x1, int y1, int color)
+{
+    int dx = abs(x1 - x0);
+    int dy = abs(y1 - y0);
+    int sx = (x0 < x1) ? 1 : -1; // Direction en x
+    int sy = (y0 < y1) ? 1 : -1; // Direction en y
+    int err = dx - dy;           // Erreur initiale
 
+    while (1)
+    {
+        my_mlx_pixel_put(fdf, x0, y0, color); // Dessiner le pixel
+        if (x0 == x1 && y0 == y1)             // Si on atteint la fin de la ligne
+            break;
+
+        int e2 = 2 * err;
+        if (e2 > -dy) {
+            err -= dy;
+            x0 += sx;
+        }
+        if (e2 < dx) {
+            err += dx;
+            y0 += sy;
+        }
+    }
+}
+
+
+
+// Function to project the points from 3D to 2D by isometric view
+void project_isometric(t_point *point, int *x_out, int *y_out)
+{
+    double angle = M_PI / 6; // 30 degrees in radians
+
+    *x_out = (point->x - point->y) * cos(angle);
+    *y_out = (point->x + point->y) * sin(angle) - point->z;
+}
+
+// *x_out += SCREEN_WIDTH / 2;
+// *y_out += SCREEN_HEIGHT / 2;
+
+// int scale = 10; // Exemple : zoom
+// *x_out *= scale;
+// *y_out *= scale;
 
 // Function to free multiple pointers
 void	multiple_free(int count, ...)
