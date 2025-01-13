@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:31:09 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/13 13:22:10 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/13 13:35:07 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	deal_key(int key, t_fdf *fdf)
 	if (key == 65307)
 		free_and_exit(fdf);
 	
-	my_mlx_pixel_put(fdf, x, y, 0xFFFFFF);
+	my_mlx_pixel_put(fdf, x, y, PINK);
 	x += 1;
 	y += 1;
 	mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img_ptr, 0, 0);
