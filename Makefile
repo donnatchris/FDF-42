@@ -3,12 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: christophedonnat <christophedonnat@stud    +#+  +:+       +#+         #
+#    By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 16:21:20 by christophed       #+#    #+#              #
-#    Updated: 2025/01/11 21:25:18 by christophed      ###   ########.fr        #
+#    Updated: 2025/01/13 13:23:15 by chdonnat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+
+# OS detection
+UNAME := $(shell uname)
 
 # Name of the executable for mandatory part
 TARGET = fdf
@@ -30,10 +34,12 @@ BONUS_OBJ_DIR = obj/bonus
 
 # Directories for common part
 LIBFT_DIR = libft
-# minilibx for MacOS
-MLX_DIR = mlx_mac
-# Minilibx for linux
-# MLX_DIR = mlx_linux
+# minilibx for MacOS or Linux
+ifeq ($(UNAME), Darwin)
+	MLX_DIR = mlx_mac
+else ifeq ($(UNAME), Linux)
+	MLX_DIR = mlx_linux
+endif
 
 # Main file for mandatory part
 MAIN = $(SRC_DIR)/test.c	# ou main.c
@@ -47,6 +53,8 @@ SRC = \
 	$(SRC_DIR)/limits.c \
 	$(SRC_DIR)/points.c \
 	$(SRC_DIR)/read_and_extract.c \
+	$(SRC_DIR)/linux_functions.c \
+	$(SRC_DIR)/macos_functions.c \
 	$(UTILS_DIR)/count_function.c \
 	$(UTILS_DIR)/free_functions.c \
 	$(UTILS_DIR)/ft_atoi_long.c \
@@ -71,13 +79,15 @@ OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 # Objects files for bonus part
 BONUS_OBJ = $(BONUS_SRC:$(BONUS_SRC_DIR)/%.c=$(BONUS_OBJ_DIR)/%.o)
 
-# Compilation options for MacOS
-CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)/includes -I$(MLX_DIR) -I/opt/homebrew/opt/libx11/include -I/opt/homebrew/opt/libxext/include
-LDFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -L/opt/homebrew/opt/libx11/lib -L/opt/homebrew/opt/libxext/lib -lX11 -lXext -lm -framework OpenGL -framework AppKit
 
-# Compilation options for Linux
-# CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)/includes -I$(MLX_DIR) -I/usr/include/X11 -I/usr/include/X11/extensions
-# LDFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -L/usr/lib/X11 -L/usr/lib/X11/extensions -lX11 -lXext -lm -lGL -lGLU
+# Compilation options for MacOS or Linux
+ifeq ($(UNAME), Darwin)
+	CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)/includes -I$(MLX_DIR) -I/opt/homebrew/opt/libx11/include -I/opt/homebrew/opt/libxext/include
+	LDFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -L/opt/homebrew/opt/libx11/lib -L/opt/homebrew/opt/libxext/lib -lX11 -lXext -lm -framework OpenGL -framework AppKit
+else ifeq ($(UNAME), Linux)
+	CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)/includes -I$(MLX_DIR) -I/usr/include/X11 -I/usr/include/X11/extensions
+	LDFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -L/usr/lib/X11 -L/usr/lib/X11/extensions -lX11 -lXext -lm -lGL -lGLU
+endif
 
 # Compiler
 CC = gcc

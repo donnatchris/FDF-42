@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christophedonnat <christophedonnat@stud    +#+  +:+       +#+        */
+/*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/11 22:44:01 by christophed      ###   ########.fr       */
+/*   Updated: 2025/01/13 13:23:49 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 # include <fcntl.h>
 #include <stdarg.h>
 #include "../../libft/includes/libft.h"
-// # ifdef __apple__
-# include "../../mlx_mac/mlx.h"
-// # endif
-// # ifdef __linux__
-// # include "../../mlx_linux/mlx.h"
-// # endif
+# ifdef __APPLE__
+#  include "../../mlx_mac/mlx.h"
+# endif
+# ifdef __linux__
+#  include "../../mlx_linux/mlx.h"
+# endif
 
 
 // Structure
@@ -35,6 +35,19 @@ typedef struct s_point
 	int	z;
 	int	color;
 }	t_point;
+
+typedef struct s_fdf
+{
+	void		*mlx_ptr;
+	void 		*win_ptr;
+	void		*img_ptr;
+	char		*addr;
+	int			bpp;
+	int			line_length;
+	int			endian;
+	int			win_width;
+	int			win_height;
+}				t_fdf;
 
 //SRC DIRECTORY
 // error_manager.c
@@ -74,6 +87,14 @@ long	ft_atoi_long(const char *nptr);
 // test_functions.c
 // tests functions to be removed before the final version
 void	print_point_tab(t_point **tab);
+
+int	free_and_exit(t_fdf *fdf);
+void	my_mlx_pixel_put(t_fdf	*fdf, int x, int y, int color);
+
+
+// linux or MacOs functions
+int		deal_key(int key, t_fdf *fdf);
+void	free_fdf(t_fdf *fdf);
 
 // BONUS DIRECTORY
 
