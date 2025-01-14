@@ -3,20 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christophedonnat <christophedonnat@stud    +#+  +:+       +#+        */
+/*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/02 14:34:30 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/11 18:48:38 by christophed      ###   ########.fr       */
+/*   Created: 2025/01/10 10:35:06 by chdonnat          #+#    #+#             */
+/*   Updated: 2025/01/14 09:52:05 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+// bressenham
+
+// LINUX compil with:
+// gcc -o progtest test.c -Lmlx -Imlx -lmlx -lX11 -lXext -lm
+// avec la libft:
+// gcc -o progtest test.c -Lmlx -Imlx -lmlx -Llibft -Ilibft -lft -lX11 -lXext -lm
+
+// MAC compil with:
+// gcc -o progtest test.c -Lmlx -Imlx -lmlx -Llibft -Ilibft/includes -lft -L/opt/homebrew/opt/libx11/lib -I/opt/homebrew/opt/libx11/include -L/opt/homebrew/opt/libxext/lib -I/opt/homebrew/opt/libxext/include -lX11 -lXext -lm -framework OpenGL -framework AppKit
 
 #include "../include/fdf.h"
 
 int	main(int ac, char **av)
 {
+	t_point	**point;
+	t_fdf	*fdf;
+	
 	errno = 0;
 	if (ac != 2)
 		error("Wrong number of arguments");
-	read_and_extract(av[1]);
+	point = read_and_extract(av[1]);
+	fdf = malloc_fdf();
+	if (!fdf)
+		return (ft_printf("memory allocation failed"),1);
+	init_fdf(fdf);
+	fdf->point = point;
+	project_isometric_map(fdf);
+	mlx_hook(fdf->win_ptr, 2, 1L << 0, deal_key, fdf);
+	mlx_hook(fdf->win_ptr, 17, 0L, free_and_exit, fdf);
+	mlx_loop(fdf->mlx_ptr);
 	return (0);
 }
+

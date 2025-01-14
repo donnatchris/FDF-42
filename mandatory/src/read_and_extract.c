@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   read_and_extract.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christophedonnat <christophedonnat@stud    +#+  +:+       +#+        */
+/*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 19:21:10 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/11 10:47:32 by christophed      ###   ########.fr       */
+/*   Updated: 2025/01/14 09:26:23 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	read_and_extract(char *file)
+t_point	**read_and_extract(char *file)
 {
 	ft_printf("read_and_extract\n");
 	t_point	**src;
@@ -27,6 +27,7 @@ void	read_and_extract(char *file)
 	src = allocate_point_memory(src, (n_columns * n_lines));
 	create_point_tab(src, file, n_columns, n_lines);
 	print_point_tab(src);
+	return (src);
 }
 
 // Create a table of points from a file
@@ -99,29 +100,6 @@ void	fill_coordonates(t_point *point, int x, int y, char *str)
 	ft_printf("z = %d\n", point->z);
 }
 
-// Check if the string is a valid z coordinate (must be an integer)
-int		input_is_valid(char *str)
-{
-	ft_printf("input_is_valid\n");
-	int		i;
-	long	nbr;
-
-	i = 0;
-	if (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]) && (str[i] != '\n'))
-			return (0);
-		i++;
-	}
-	nbr = ft_atoi_long(str);
-	if (nbr > 2147483647 || nbr < -2147483648)
-		return (0);
-	return (1);
-}
 
 // Allocate memory for a table of points
 t_point	**allocate_point_memory(t_point **src, int size)

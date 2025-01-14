@@ -6,7 +6,7 @@
 #    By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 16:21:20 by christophed       #+#    #+#              #
-#    Updated: 2025/01/13 13:23:15 by chdonnat         ###   ########.fr        #
+#    Updated: 2025/01/14 09:33:02 by chdonnat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ else ifeq ($(UNAME), Linux)
 endif
 
 # Main file for mandatory part
-MAIN = $(SRC_DIR)/test.c	# ou main.c
+MAIN = $(SRC_DIR)/main.c
 
 # Main file for bonus part
 BONUS_MAIN = $(BONUS_SRC_DIR)/main.c
@@ -53,6 +53,7 @@ SRC = \
 	$(SRC_DIR)/limits.c \
 	$(SRC_DIR)/points.c \
 	$(SRC_DIR)/read_and_extract.c \
+	$(SRC_DIR)/window_manager.c \
 	$(SRC_DIR)/linux_functions.c \
 	$(SRC_DIR)/macos_functions.c \
 	$(UTILS_DIR)/count_function.c \

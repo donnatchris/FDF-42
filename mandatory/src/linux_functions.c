@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:31:09 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/13 13:35:07 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/14 09:31:38 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,5 @@ int	deal_key(int key, t_fdf *fdf)
 	return (0);
 }
 
-// Function to free the memory allocated for the fdf structure on Linux
-void	free_fdf(t_fdf *fdf)
-{
-	if (fdf)
-	{
-		if (fdf->img_ptr)
-			mlx_destroy_image(fdf->mlx_ptr, fdf->img_ptr);
-		if (fdf->win_ptr)
-			mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);
-		if (fdf->mlx_ptr)
-			mlx_destroy_display(fdf->mlx_ptr);
-		free(fdf->mlx_ptr);
-		free(fdf);
-	}
-}
 
 #endif
