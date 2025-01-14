@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:25:08 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/14 10:29:54 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/14 11:05:53 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,23 @@ void draw_points(t_fdf *fdf)
     }
     mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img_ptr, 0, 0);
 }
+
+// Function to clear the image
+void clear_image(t_fdf *fdf)
+{
+    int x;
+    int y;
+
+    y = 0;
+    while (y < fdf->win_height)
+    {
+        x = 0;
+        while (x < fdf->win_width)
+        {
+            put_pixel_to_image(fdf, x, y, BLACK);
+            x++;
+        }
+        y++;
+    }
+}
+

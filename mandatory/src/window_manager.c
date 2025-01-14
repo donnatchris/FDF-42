@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/14 10:26:11 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/14 10:51:53 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,6 @@ void	init_fdf(t_fdf *fdf)
 	fdf->addr = mlx_get_data_addr(fdf->img_ptr, &fdf->bpp, &fdf->line_length, &fdf->endian);
 	if (!fdf->addr)
 		free_and_exit(fdf);
+    fdf->zoom = 10;
+    fdf->depth = 1;
 }

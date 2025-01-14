@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/14 10:31:12 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/14 11:06:28 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_fdf
 	int			endian;
 	int			win_width;
 	int			win_height;
+	int			zoom;
 	t_point		**point;
 }				t_fdf;
 
@@ -92,15 +93,17 @@ long	ft_atoi_long(const char *nptr);
 // tests functions to be removed before the final version
 void	print_point_tab(t_point **tab);
 
-int		free_and_exit(t_fdf *fdf);
+int		free_and_exit(t_fdf *fdf);	
 void	put_pixel_to_image(t_fdf	*fdf, int x, int y, int color);
 t_fdf	*malloc_fdf(void);
 int		free_and_exit(t_fdf *fdf);
 void	init_fdf(t_fdf *fdf);
 void	put_pixel_to_image(t_fdf *fdf, int x, int y, int color);
-void 	project_isometric_point(t_point *point, int width, int height);
+void 	project_isometric_point(t_point *point, int width, int height, int zoom);
 void    project_isometric_map(t_fdf *fdf);
 void 	draw_points(t_fdf *fdf);
+void 	clear_image(t_fdf *fdf);
+
 
 
 

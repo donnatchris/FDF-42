@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:43:07 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/14 10:19:24 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/14 10:56:23 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,21 @@
 // }
 
 // Function to project the points from 3D to 2D by isometric view
-void project_isometric_point(t_point *point, int width, int height)
+void project_isometric_point(t_point *point, int width, int height, int zoom)
 {
     ft_printf("project_isometric_point\n");
     const double angle = M_PI / 6;
     const double cos_angle = cos(angle);
     const double sin_angle = sin(angle);
-    
-    point->x_out = (point->x - point->y) * cos_angle + (width / 2);
-    point->y_out = (point->x + point->y) * sin_angle - point->z + (height / 2);
+    int           x;
+    int           y;
+    int           z;
+
+    x = point->x * zoom;
+    y = point->y * zoom;
+    z = point->z * zoom;
+    point->x_out = (x - y) * cos_angle + (width / 2);
+    point->y_out = (x + y) * sin_angle - z + (height / 2);
 }
 
 // Function to generate x_out and y_out
@@ -62,7 +68,7 @@ void    project_isometric_map(t_fdf *fdf)
     i = 0;
     while(fdf->point[i])
     {
-        project_isometric_point(fdf->point[i], fdf->win_width, fdf->win_height);
+        project_isometric_point(fdf->point[i], fdf->win_width, fdf->win_height, fdf->zoom);
         printf("Point %d : x_out = %.2f, y_out = %.2f\n", i, fdf->point[i]->x_out, fdf->point[i]->y_out);
         i++;
     }
