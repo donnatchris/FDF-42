@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   count_function.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christophedonnat <christophedonnat@stud    +#+  +:+       +#+        */
+/*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:17:03 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/11 11:04:52 by christophed      ###   ########.fr       */
+/*   Updated: 2025/01/14 14:29:32 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,40 @@ int	count_lines(char *file)
 		n_lines++;
 	close(fd);
 	return (n_lines);
+}
+
+// Function to find the maximum x value among the points
+int	find_x_max(t_fdf *fdf)
+{
+	ft_printf("find_x_max\n");
+	int i;
+	int x_max;
+
+	i = 0;
+	x_max = 0;
+	while (fdf->point[i])
+	{
+		if (fdf->point[i]->x > x_max)
+			x_max = fdf->point[i]->x;
+		i++;
+	}
+	return (x_max);
+}
+
+// Function to find the maximum y value among the points
+int	find_y_max(t_fdf *fdf)
+{
+	ft_printf("find_y_max\n");
+	int i;
+	int y_max;
+
+	i = 0;
+	y_max = 0;
+	while (fdf->point[i])
+	{
+		if (fdf->point[i]->y > y_max)
+			y_max = fdf->point[i]->y;
+		i++;
+	}
+	return (y_max);
 }

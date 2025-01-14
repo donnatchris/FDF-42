@@ -105,3 +105,29 @@ common errno error codes
 	EPIPE	32	Broken pipe
 	EDOM	33	Math argument out of domain
 	ERANGE	34	Result too large
+
+
+The math.h library in C provides a wide range of mathematical functions that are essential for performing advanced calculations.
+These functions include operations for basic arithmetic, trigonometry, logarithms, exponentiation, and more.
+
+1. Basic Arithmetic Functions
+fabs(): Returns the absolute value of a floating-point number.
+fmod(): Computes the remainder of division of two floating-point numbers.
+pow(): Calculates the power of a number (base raised to the exponent).
+sqrt(): Computes the square root of a number.
+
+2. Trigonometric Functions
+sin(), cos(), tan(): Return the sine, cosine, and tangent of an angle (in radians), respectively.
+asin(), acos(), atan(): Return the arcsine, arccosine, and arctangent of a value, returning the result in radians.
+
+3. Logarithmic and Exponential Functions
+log(): Computes the natural logarithm (base e) of a number.
+log10(): Computes the logarithm to base 10 of a number.
+exp(): Computes the exponential function, returning e raised to the power of the argument.
+
+4. Other Mathematical Functions
+ceil(): Returns the smallest integer value greater than or equal to the given number.
+floor(): Returns the largest integer value less than or equal to the given number.
+round(): Rounds the value to the nearest integer.
+modf(): Breaks a floating-point number into its integral and fractional parts.
+These functions help with a broad range of mathematical tasks, from simple arithmetic to complex trigonometric and logarithmic operations, making math.h an essential tool in any scientific or engineering computation in C.
