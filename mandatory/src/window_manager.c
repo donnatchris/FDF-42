@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/14 14:30:55 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:37:21 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ void	init_fdf(t_fdf *fdf, t_point **point)
 	fdf->mlx_ptr = mlx_init();
 	if (!fdf->mlx_ptr)
 		free_and_exit(fdf);
-	fdf->win_width = 1000;
-	fdf->win_height = 500;
+	fdf->win_width = 1800;
+	fdf->win_height = 1000;
 	fdf->point = point;
 	ft_printf("before find max\n");
 	fdf->x_max = find_x_max(fdf);
 	fdf->y_max = find_y_max(fdf);
 	ft_printf("after find max\n");
-    fdf->zoom = 10;
+    fdf->zoom = 30;
     fdf->depth = 1;
 	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, fdf->win_width, \
 		fdf->win_height, "FdF");

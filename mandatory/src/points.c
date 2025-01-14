@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:43:07 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/14 13:30:56 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:29:36 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void project_isometric_point(t_point *point, int width, int height, int zoom, in
     x = point->x * zoom;
     y = point->y * zoom;
     if (point->z != 0)
-        z = (point->z * depth) * zoom;
+        z = (point->z / depth) * zoom;
     else
         z = point->z * zoom;
-    point->x_out = (x - y) * cos_angle + (width / 2);
-    point->y_out = (x + y) * sin_angle - (z) + (height / 2);
+    point->x_out = (x - y) * cos_angle + (width / 2 - 100);
+    point->y_out = (x + y) * sin_angle - (z) + (height / 2 - 100);
 }
 
 // Function to generate x_out and y_out
