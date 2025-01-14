@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:35:06 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/14 09:52:05 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/14 10:33:45 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	main(int ac, char **av)
 	init_fdf(fdf);
 	fdf->point = point;
 	project_isometric_map(fdf);
+	draw_points(fdf);
 	mlx_hook(fdf->win_ptr, 2, 1L << 0, deal_key, fdf);
 	mlx_hook(fdf->win_ptr, 17, 0L, free_and_exit, fdf);
 	mlx_loop(fdf->mlx_ptr);

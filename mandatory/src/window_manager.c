@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/14 09:13:58 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/14 10:26:11 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,4 @@ void	init_fdf(t_fdf *fdf)
 	fdf->addr = mlx_get_data_addr(fdf->img_ptr, &fdf->bpp, &fdf->line_length, &fdf->endian);
 	if (!fdf->addr)
 		free_and_exit(fdf);
-}
-
-void	my_mlx_pixel_put(t_fdf	*fdf, int x, int y, int color)
-{
-	char	*dst;
-
-    if (x >= 0 && x < fdf->win_width && y >= 0 && y < fdf->win_height)
-	{
-        dst = fdf->addr + (y * fdf->line_length + x * (fdf->bpp / 8));
-        *(unsigned int *)dst = color;
-    }
 }
