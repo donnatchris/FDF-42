@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/14 15:26:56 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:09:01 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,13 @@ long	ft_atoi_long(const char *nptr);
 // test_functions.c
 // tests functions to be removed before the final version
 void	print_point_tab(t_point **tab);
-
 int		free_and_exit(t_fdf *fdf);	
 void	put_pixel_to_image(t_fdf	*fdf, int x, int y, int color);
 t_fdf	*malloc_fdf(void);
 int		free_and_exit(t_fdf *fdf);
 void	init_fdf(t_fdf *fdf, t_point **point);
 void	put_pixel_to_image(t_fdf *fdf, int x, int y, int color);
-void 	project_isometric_point(t_point *point, int width, int height, int zoom, int depth);
+void 	project_isometric_point(t_point *point, t_fdf *fdf);
 void    project_isometric_map(t_fdf *fdf);
 void 	draw_points(t_fdf *fdf);
 void 	clear_image(t_fdf *fdf);

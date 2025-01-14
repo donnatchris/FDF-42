@@ -6,14 +6,14 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:43:07 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/14 15:29:36 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:27:09 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 // Function to project the points from 3D to 2D by isometric view
-void project_isometric_point(t_point *point, int width, int height, int zoom, int depth)
+void project_isometric_point(t_point *point, t_fdf *fdf)
 {
     ft_printf("project_isometric_point\n");
     const double	angle = M_PI / 6;
@@ -23,14 +23,14 @@ void project_isometric_point(t_point *point, int width, int height, int zoom, in
     int				y;
     int				z;
 
-    x = point->x * zoom;
-    y = point->y * zoom;
+    x = point->x * fdf->zoom;
+    y = point->y * fdf->zoom;
     if (point->z != 0)
-        z = (point->z / depth) * zoom;
+        z = (point->z / fdf->depth) * fdf->zoom;
     else
-        z = point->z * zoom;
-    point->x_out = (x - y) * cos_angle + (width / 2 - 100);
-    point->y_out = (x + y) * sin_angle - (z) + (height / 2 - 100);
+        z = point->z * fdf->zoom;
+    point->x_out = (x - y) * cos_angle + (fdf->win_width / 2 - 100);
+    point->y_out = (x + y) * sin_angle - (z) + (fdf->win_height / 2 - 100);
 }
 
 // Function to generate x_out and y_out
@@ -42,7 +42,7 @@ void    project_isometric_map(t_fdf *fdf)
     i = 0;
     while(fdf->point[i])
     {
-        project_isometric_point(fdf->point[i], fdf->win_width, fdf->win_height, fdf->zoom, fdf->depth);
+        project_isometric_point(fdf->point[i], fdf);
         printf("Point %d : x_out = %.2f, y_out = %.2f\n", i, fdf->point[i]->x_out, fdf->point[i]->y_out);
         i++;
     }
