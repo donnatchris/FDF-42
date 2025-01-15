@@ -161,7 +161,6 @@ meaning objects retain their proportions regardless of their distance from the v
 To transform a 3D point \((x, y, z)\) into 2D coordinates \((screenX, screenY)\), use the following formulas:
 
 	screenX = originX + factor * (x - z)
- 
 	screenY = originY + factor * ((x + z) / 2 - y)
 
 #### Explanation of Parameters:  
