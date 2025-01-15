@@ -85,63 +85,25 @@ The error codes correspond to specific error conditions that might occur in syst
 such as file handling, memory allocation, and process management.
 **Code	Value	Description**
 
-EPERM	1	Operation not permitted
+EPERM	(1)	Operation not permitted
 
-ENOENT	2	No such file or directory
+ENOENT	(2)	No such file or directory
 
-ESRCH	3	No such process
+EINTR	(4)	Interrupted system call
 
-EINTR	4	Interrupted system call
+EIO	(5)	Input/output error
 
-EIO	5	Input/output error
+EBADF	(9)	Bad file descriptor
 
-ENXIO	6	No such device or address
+EAGAIN	(11)	Resource temporarily unavailable
 
-E2BIG	7	Argument list too long
+ENOMEM	(12)	Out of memory
 
-ENOEXEC	8	Exec format error
+EACCES	(13)	Permission denied
 
-EBADF	9	Bad file descriptor
+ENOTDIR	(20)	Not a directory
 
-ECHILD	10	No child processes
-
-EAGAIN	11	Resource temporarily unavailable
-
-ENOMEM	12	Out of memory
-
-EACCES	13	Permission denied
-
-EFAULT	14	Bad address
-
-EBUSY	16	Device or resource busy
-
-EEXIST	17	File exists
-
-ENODEV	19	No such device
-
-ENOTDIR	20	Not a directory
-
-EISDIR	21	Is a directory
-
-EINVAL	22	Invalid argument
-
-ENFILE	23	Too many open files in system
-
-EMFILE	24	Too many open files (per process)
-
-EFBIG	27	File too large
-
-ENOSPC	28	No space left on device
-
-EROFS	30	Read-only file system
-
-EMLINK	31	Too many links
-
-EPIPE	32	Broken pipe
-
-EDOM	33	Math argument out of domain
-
-ERANGE	34	Result too large
+ENOSPC	(28)	No space left on device
 
 ### The math.h library
 The math.h library in C provides a wide range of mathematical functions that are essential for performing advanced calculations.
@@ -179,7 +141,6 @@ In a typical 2D coordinate system for a screen:
 - The origin (0,0) is located at the top-left corner.
 	Coordinates increase to the right (for x) and downward (for y).
 	However, in most 3D systems:
-
 - The origin (0,0,0) is usually at the center of the scene.
 	A projection without adjustment would center the image on the origin of the 3D system, which could misalign the image on the screen.
 	By adjusting with ResX/2, the projection is properly aligned to the center of the 2D screen.
