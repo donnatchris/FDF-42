@@ -130,7 +130,7 @@ making math.h an essential tool in any scientific or engineering computation in 
 
 ---
 
-### 3D-to-2D projection
+## 3D-to-2D projection
 A 3D-to-2D projection is the mathematical process of converting three-dimensional coordinates (x,y,z)
 into two-dimensional coordinates (screenX,screenY) for display on a flat surface, such as a computer screen.
 This transformation is essential for visualizing 3D objects in a 2D space.
@@ -172,3 +172,33 @@ To transform a 3D point \((x, y, z)\) into 2D coordinates \((screenX, screenY)\)
 Adjusting **factor** dynamically allows you to zoom in or out of the scene.
 
 Adjusting **originX** or **originY** allows you to make translations.
+
+### Perspective Projection
+In a perspective view, coordinates are calculated differently compared to an isometric projection.
+A perspective projection belongs to the category of central projections, where parallel lines in 3D space converge at a vanishing point in the 2D projection.
+This introduces a perspective effect, meaning objects appear smaller as they move further away from the viewer.
+
+In a perspective view: The x, y and z axes are represented based on a point of view (camera or observer),
+with the z-axis typically representing depth along the viewing direction.
+Object sizes reduce as they get further from the viewer, with the z-coordinate influencing the apparent size.
+
+To project a 3D point (x,y,z) to a 2D coordinate (screenX,screenY), a transformation is applied, where the x and y coordinates
+are divided by the z-coordinate to simulate the shrinking of objects with distance.
+
+#### Perspective Projection Formulas
+The standard formulas for transforming 3D coordinates into 2D in a perspective view are:
+	
+	screenX = (x /z) * distance + originX
+	screenY = (y /z) * distance + originY
+
+#### Explanation of Parameters:  
+- **originX, originY**: The reference point on the screen (usually the center or a specific point of the 2D viewport).
+- **x, y, z**: The 3D coordinates of the point.
+- **distance**: The distance from the viewer or camera to the 3D scene.
+#### Differences Between Perspective and Isometric Projection
+- Depth (z):
+	-Perspective: z significantly affects object size; the larger the z-coordinate, the smaller the object appears.
+	- Isometric: z does not affect object size; depth is represented geometrically.
+- Angles and Proportions:
+	- Perspective: Angles converge at a vanishing point, and proportions change with distance.
+	- Isometric: Angles remain fixed (typically 120°), and proportions stay constant.
