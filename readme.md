@@ -170,6 +170,8 @@ These functions include operations for basic arithmetic, trigonometry, logarithm
 These functions help with a broad range of mathematical tasks, from simple arithmetic to complex trigonometric and logarithmic operations,
 making math.h an essential tool in any scientific or engineering computation in C.
 
+--
+
 ### Isometric Projection  
 
 An **isometric projection** is a type of parallel projection where 3D coordinates are mapped to a 2D plane
