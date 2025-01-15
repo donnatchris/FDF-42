@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:17:03 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/14 14:29:32 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/15 08:44:27 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,22 @@ int	find_y_max(t_fdf *fdf)
 		i++;
 	}
 	return (y_max);
+}
+
+// Function to find the maximum z value among the points
+int	find_z_max(t_fdf *fdf)
+{
+	ft_printf("find_z_max\n");
+	int i;
+	int z_max;
+
+	i = 0;
+	z_max = 0;
+	while (fdf->point[i])
+	{
+		if (fdf->point[i]->z > z_max)
+			z_max = fdf->point[i]->z;
+		i++;
+	}
+	return (z_max);
 }

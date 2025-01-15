@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:25:08 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/14 15:40:13 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/15 09:15:22 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	put_pixel_to_image(t_fdf *fdf, int x, int y, int color)
 	char	*dst;
 
     if (x >= 0 && x < fdf->win_width && y >= 0 && y < fdf->win_height)
-	{
+    {
         dst = fdf->addr + (y * fdf->line_length + x * (fdf->bpp / 8));
         *(unsigned int *)dst = color;
     }
