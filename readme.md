@@ -174,6 +174,16 @@ There are different types of projections, such as perspective projection, which 
 and isometric projection, which preserves object proportions and angles without perspective scaling.
 Each type uses specific formulas to map 3D points to the 2D plane while accounting for parameters like scaling, translation, and depth.
 
+In a typical 2D coordinate system for a screen:
+
+- The origin (0,0) is located at the top-left corner.
+	Coordinates increase to the right (for x) and downward (for y).
+	However, in most 3D systems:
+
+- The origin (0,0,0) is usually at the center of the scene.
+	A projection without adjustment would center the image on the origin of the 3D system, which could misalign the image on the screen.
+	By adjusting with ResX/2, the projection is properly aligned to the center of the 2D screen.
+
 ### Isometric Projection  
 An **isometric projection** is a type of parallel projection where 3D coordinates are mapped to a 2D plane
 while maintaining equal angles (120°) between the \(x\), \(y\), and \(z\) axes.
