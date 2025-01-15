@@ -128,6 +128,8 @@ These functions include operations for basic arithmetic, trigonometry, logarithm
 These functions help with a broad range of mathematical tasks, from simple arithmetic to complex trigonometric and logarithmic operations,
 making math.h an essential tool in any scientific or engineering computation in C.
 
+---
+
 ### 3D-to-2D projection
 A 3D-to-2D projection is the mathematical process of converting three-dimensional coordinates (x,y,z)
 into two-dimensional coordinates (screenX,screenY) for display on a flat surface, such as a computer screen.
