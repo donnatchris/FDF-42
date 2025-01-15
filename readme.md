@@ -196,7 +196,7 @@ The standard formulas for transforming 3D coordinates into 2D in a perspective v
 - **distance**: The distance from the viewer or camera to the 3D scene.
 #### Differences Between Perspective and Isometric Projection
 - Depth (z):
-	-Perspective: z significantly affects object size; the larger the z-coordinate, the smaller the object appears.
+	- Perspective: z significantly affects object size; the larger the z-coordinate, the smaller the object appears.
 	- Isometric: z does not affect object size; depth is represented geometrically.
 - Angles and Proportions:
 	- Perspective: Angles converge at a vanishing point, and proportions change with distance.
