@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:31:09 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/14 16:23:49 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/15 08:31:06 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ int	deal_key(int key, t_fdf *fdf)
 		if (fdf->zoom > 1)
 			fdf->zoom -= 1;
 	}
-	if (key == 112)
+	if (key == 65365)
 		fdf->depth += 1;
-	if (key == 111)
+	if (key == 65366)
 		fdf->depth -= 1;
 	project_isometric_map(fdf);
 	draw_lines(fdf);
+	print_menu(fdf);
 	return (0);
 }
 

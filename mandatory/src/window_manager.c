@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/14 15:37:21 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/15 08:30:30 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	init_fdf(t_fdf *fdf, t_point **point)
 	fdf->y_max = find_y_max(fdf);
 	ft_printf("after find max\n");
     fdf->zoom = 30;
-    fdf->depth = 1;
+    fdf->depth = 0;
 	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, fdf->win_width, \
 		fdf->win_height, "FdF");
 	if (!fdf->win_ptr)
@@ -57,4 +57,11 @@ void	init_fdf(t_fdf *fdf, t_point **point)
 	fdf->addr = mlx_get_data_addr(fdf->img_ptr, &fdf->bpp, &fdf->line_length, &fdf->endian);
 	if (!fdf->addr)
 		free_and_exit(fdf);
+}
+
+void	print_menu(t_fdf *fdf)
+{
+	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 30, DARK_BLUE, "Zoom = + / -");
+	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 50, DARK_BLUE, "Depth = Page up / Page down");
+	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 70, DARK_BLUE, "Exit = ESC");
 }
