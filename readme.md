@@ -146,22 +146,18 @@ ERANGE	34	Result too large
 ### The math.h library
 The math.h library in C provides a wide range of mathematical functions that are essential for performing advanced calculations.
 These functions include operations for basic arithmetic, trigonometry, logarithms, exponentiation, and more.
-
 #### Basic Arithmetic Functions
 - fabs(): Returns the absolute value of a floating-point number.
 - fmod(): Computes the remainder of division of two floating-point numbers.
 - pow(): Calculates the power of a number (base raised to the exponent).
 - sqrt(): Computes the square root of a number.
-
 #### Trigonometric Functions
 - sin(), cos(), tan(): Return the sine, cosine, and tangent of an angle (in radians), respectively.
 - asin(), acos(), atan(): Return the arcsine, arccosine, and arctangent of a value, returning the result in radians.
-
 #### Logarithmic and Exponential Functions
 - log(): Computes the natural logarithm (base e) of a number.
 - log10(): Computes the logarithm to base 10 of a number.
 - exp(): Computes the exponential function, returning e raised to the power of the argument.
-
 #### Other Mathematical Functions
 - ceil(): Returns the smallest integer value greater than or equal to the given number.
 - floor(): Returns the largest integer value less than or equal to the given number.
@@ -170,21 +166,24 @@ These functions include operations for basic arithmetic, trigonometry, logarithm
 These functions help with a broad range of mathematical tasks, from simple arithmetic to complex trigonometric and logarithmic operations,
 making math.h an essential tool in any scientific or engineering computation in C.
 
-__
+### 3D-to-2D projection
+A 3D-to-2D projection is the mathematical process of converting three-dimensional coordinates (x,y,z)
+into two-dimensional coordinates (screenX,screenY) for display on a flat surface, such as a computer screen.
+This transformation is essential for visualizing 3D objects in a 2D space.
+There are different types of projections, such as perspective projection, which simulates depth by scaling objects based on their distance from the viewer,
+and isometric projection, which preserves object proportions and angles without perspective scaling.
+Each type uses specific formulas to map 3D points to the 2D plane while accounting for parameters like scaling, translation, and depth.
 
 ### Isometric Projection  
-
 An **isometric projection** is a type of parallel projection where 3D coordinates are mapped to a 2D plane
 while maintaining equal angles (120°) between the \(x\), \(y\), and \(z\) axes.
 Unlike perspective projection, isometric projection does not simulate depth,
 meaning objects retain their proportions regardless of their distance from the viewer.
-
 #### Key Features:  
 - **No perspective scaling**: All objects appear at their true size regardless of depth.  
 - **Angles and proportions**: Axes \(x\), \(y\), and \(z\) are displayed as equally spaced angles, typically at 120°.  
-- **Zoom control**: A scaling factor (referred to as "Factor") determines the size of the projected objects on the 2D plane.
+- **Zoom control**: A scaling factor (referred to as "factor") determines the size of the projected objects on the 2D plane.
   Increasing this factor enlarges objects, simulating a zoom-in effect, while decreasing it simulates a zoom-out effect.  
-
 #### Formula for Isometric Projection  
 To transform a 3D point \((x, y, z)\) into 2D coordinates \((screenX, screenY)\), use the following formulas:
 
@@ -193,8 +192,10 @@ To transform a 3D point \((x, y, z)\) into 2D coordinates \((screenX, screenY)\)
 	screenY = originY + factor * ((x + z) / 2 - y)
 
 #### Explanation of Parameters:  
-- **OriginX, OriginY**: The 2D origin or reference point on the screen, typically the center of the viewport.  
-- **Factor**: A scaling factor controlling the size of the objects (zoom).  
+- **originX, originY**: The 2D origin or reference point on the screen, typically the center of the viewport.  
+- **factor**: A scaling factor controlling the size of the objects (zoom).  
 - **(x, y, z)**: The 3D coordinates of the point being projected.  
 
-Using these formulas, you can convert any 3D point into a 2D coordinate suitable for an isometric rendering. Adjusting **Factor** dynamically allows you to zoom in or out of the scene.
+Adjusting **factor** dynamically allows you to zoom in or out of the scene.
+
+Adjusting **originX** or **originY** allows you to make translations.
