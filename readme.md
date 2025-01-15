@@ -17,7 +17,8 @@ The window management must remain smooth (switching windows, minimizing, etc.).
 Pressing the ESC key must close the window and exit the program cleanly.
 Clicking on the close button at the top of the window must close the window and exit the program cleanly.
 Using MiniLibX images is mandatory.
-BONUS PART:
+
+## BONUS PART:
 You will earn additional points if you:
 Include an additional projection (e.g., parallel or conical projection).
 Implement zoom in and zoom out.
@@ -25,7 +26,7 @@ Implement translation (movement).
 Implement rotation (rotating your rendering).
 Add an extra bonus feature of your choice.
 
-##,SOME COMMANDS YOU CAN USE:
+## SOME COMMANDS YOU CAN USE:
 compile the program:
 
 	make
