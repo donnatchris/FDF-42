@@ -186,8 +186,8 @@ are divided by the z-coordinate to simulate the shrinking of objects with distan
 #### Perspective Projection Formulas
 The standard formulas for transforming 3D coordinates into 2D in a perspective view are:
 	
-	screenX = (x /z) * distance + originX
-	screenY = (y /z) * distance + originY
+	screenX = (x / z) * distance + originX
+	screenY = (y / z) * distance + originY
 
 #### Explanation of Parameters:  
 - **originX, originY**: The reference point on the screen (usually the center or a specific point of the 2D viewport).
