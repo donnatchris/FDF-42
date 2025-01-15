@@ -18,7 +18,7 @@ Pressing the ESC key must close the window and exit the program cleanly.
 Clicking on the close button at the top of the window must close the window and exit the program cleanly.
 Using MiniLibX images is mandatory.
 
-## BONUS PART:
+### BONUS PART:
 You will earn additional points if you:
 Include an additional projection (e.g., parallel or conical projection).
 Implement zoom in and zoom out.
@@ -184,13 +184,11 @@ meaning objects retain their proportions regardless of their distance from the v
   Increasing this factor enlarges objects, simulating a zoom-in effect, while decreasing it simulates a zoom-out effect.  
 
 #### Formula for Isometric Projection  
-To transform a 3D point \((x, y, z)\) into 2D coordinates \((screenX, screenY)\), use the following formulas:  
-\[
-screenX = \text{OriginX} + \text{Factor} \cdot (x - z)
-\]
-\[
-screenY = \text{OriginY} + \text{Factor} \cdot \left(\frac{x + z}{2} - y\right)
-\]
+To transform a 3D point \((x, y, z)\) into 2D coordinates \((screenX, screenY)\), use the following formulas:
+
+	screenX = originX + factor * (x - z)
+ 
+	screenY = originY + factor * ((x + z) / 2 - y)
 
 #### Explanation of Parameters:  
 - **OriginX, OriginY**: The 2D origin or reference point on the screen, typically the center of the viewport.  
