@@ -131,3 +131,28 @@ floor(): Returns the largest integer value less than or equal to the given numbe
 round(): Rounds the value to the nearest integer.
 modf(): Breaks a floating-point number into its integral and fractional parts.
 These functions help with a broad range of mathematical tasks, from simple arithmetic to complex trigonometric and logarithmic operations, making math.h an essential tool in any scientific or engineering computation in C.
+
+### Summary of Isometric Projection  
+
+An **isometric projection** is a type of parallel projection where 3D coordinates are mapped to a 2D plane while maintaining equal angles (120°) between the \(x\), \(y\), and \(z\) axes. Unlike perspective projection, isometric projection does not simulate depth, meaning objects retain their proportions regardless of their distance from the viewer. This makes it ideal for stylized and clear representations, commonly used in games like *SimCity* or *Diablo*.  
+
+#### Key Features:  
+1. **No perspective scaling**: All objects appear at their true size regardless of depth.  
+2. **Angles and proportions**: Axes \(x\), \(y\), and \(z\) are displayed as equally spaced angles, typically at 120°.  
+3. **Zoom control**: A scaling factor (referred to as "Factor") determines the size of the projected objects on the 2D plane. Increasing this factor enlarges objects, simulating a zoom-in effect, while decreasing it simulates a zoom-out effect.  
+
+#### Formula for Isometric Projection  
+To transform a 3D point \((x, y, z)\) into 2D coordinates \((screenX, screenY)\), use the following formulas:  
+\[
+screenX = \text{OriginX} + \text{Factor} \cdot (x - z)
+\]
+\[
+screenY = \text{OriginY} + \text{Factor} \cdot \left(\frac{x + z}{2} - y\right)
+\]
+
+#### Explanation of Parameters:  
+- **OriginX, OriginY**: The 2D origin or reference point on the screen, typically the center of the viewport.  
+- **Factor**: A scaling factor controlling the size of the objects (zoom).  
+- **(x, y, z)**: The 3D coordinates of the point being projected.  
+
+Using these formulas, you can convert any 3D point into a 2D coordinate suitable for an isometric rendering. Adjusting **Factor** dynamically allows you to zoom in or out of the scene.
