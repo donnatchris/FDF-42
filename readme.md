@@ -83,6 +83,7 @@ For thread-safe alternatives, use strerror_r.
 Here are values standardized across UNIX-like systems, including Linux.
 The error codes correspond to specific error conditions that might occur in system calls or library functions,
 such as file handling, memory allocation, and process management.
+
 **Code	Value	Description**
 
 EPERM	(1)	Operation not permitted
@@ -102,8 +103,6 @@ ENOMEM	(12)	Out of memory
 EACCES	(13)	Permission denied
 
 ENOTDIR	(20)	Not a directory
-
-ENOSPC	(28)	No space left on device
 
 ### The math.h library
 The math.h library in C provides a wide range of mathematical functions that are essential for performing advanced calculations.
