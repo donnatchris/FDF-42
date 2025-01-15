@@ -170,7 +170,7 @@ These functions include operations for basic arithmetic, trigonometry, logarithm
 These functions help with a broad range of mathematical tasks, from simple arithmetic to complex trigonometric and logarithmic operations,
 making math.h an essential tool in any scientific or engineering computation in C.
 
---
+__
 
 ### Isometric Projection  
 
