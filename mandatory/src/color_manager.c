@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 10:14:10 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/16 10:48:43 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:47:38 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,35 @@ void	fill_color(t_fdf *fdf)
 int	color_manager(int z, t_fdf *fdf)
 {
     double t;
+    int color1;
+    int color2;
 
     if (z <= 0)
         return (WHITE);
-    if (z >= fdf->altitude_max)
-        return (PURPLE);
+    else if (z >= fdf->altitude_max)
+        return (DARK_RED);
+    else if (z < fdf->altitude_max / 4)
+    {
+        color1 = WHITE;
+        color2 = YELLOW;
+    }
+    else if (z < fdf->altitude_max / 2)
+    {
+        color1 = YELLOW;
+        color2 = ORANGE;
+    }
+    else if (z < fdf->altitude_max * 3 / 4)
+    {
+        color1 = ORANGE;
+        color2 = RED;
+    }
+    else
+    {
+        color1 = RED;
+        color2 = DARK_RED;
+    }
     t = (double)z / fdf->altitude_max;
-    return interpolate_color(WHITE, PURPLE, t);
+    return interpolate_color(color1, color2, t);
 }
 
 // Function to interpolate between two colors

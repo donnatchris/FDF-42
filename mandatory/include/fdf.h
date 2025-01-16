@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/16 11:00:01 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/16 12:36:52 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@
 # ifdef __linux__
 #  include "../../mlx_linux/mlx.h"
 # endif
+
+// Constants
+# define COS_ANGLE 0.866
+# define SIN_ANGLE 0.5
 
 // Structure
 typedef struct s_point
@@ -55,7 +59,7 @@ typedef struct s_fdf
 	int			z_max;
 	int			altitude_max;
 	int			zoom;
-	int			depth;
+	float		depth;
 	t_point		**point;
 }				t_fdf;
 
@@ -105,12 +109,12 @@ void	init_fdf(t_fdf *fdf, t_point **point);
 void	put_pixel_to_image(t_fdf *fdf, int x, int y, int color);
 void 	project_isometric_point(t_point *point, t_fdf *fdf);
 void    project_isometric_map(t_fdf *fdf);
-void 	draw_points(t_fdf *fdf);
+// void 	draw_points(t_fdf *fdf);
 void 	clear_image(t_fdf *fdf);
 void 	bresenham(t_fdf *fdf, int x0, int y0, int x1, int y1, int color);
 void	draw_lines(t_fdf *fdf);
-void	draw_horizontal_line(t_fdf *fdf, int start, int color);
-void	draw_vertical_line(t_fdf *fdf, int start, int color);
+void	draw_horizontal_line(t_fdf *fdf, int start);
+void	draw_vertical_line(t_fdf *fdf, int start);
 int		find_x_max(t_fdf *fdf);
 int		find_y_max(t_fdf *fdf);
 int		find_z_max(t_fdf *fdf);

@@ -6,22 +6,23 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:25:08 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/16 11:05:27 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:32:20 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 // Function to draw a vertical line
-void	draw_vertical_line(t_fdf *fdf, int start, int color)
+void	draw_vertical_line(t_fdf *fdf, int start)
 {
-	ft_printf("draw_horizontal_line\n");
+	// ft_printf("draw_horizontal_line\n");
 	int x0;
 	int x1;
 	int y0;
 	int y1;
 	int i;
 	int j;
+    int color;
 
     i = 0;
     j = fdf->x_max + 1;
@@ -31,6 +32,10 @@ void	draw_vertical_line(t_fdf *fdf, int start, int color)
         y0 = (int)fdf->point[start + i]->y_out;
         x1 = (int)fdf->point[start + j]->x_out;
         y1 = (int)fdf->point[start + j]->y_out;
+        if (fdf->point[start + i]->z > fdf->point[start + j]->z)
+            color = fdf->point[start + i]->color;
+        else
+            color = fdf->point[start + j]->color;
         bresenham(fdf, x0, y0, x1, y1, color);
 		j = i;
         i = i + fdf->x_max + 1;
@@ -38,15 +43,16 @@ void	draw_vertical_line(t_fdf *fdf, int start, int color)
 }
 
 // Function to draw a horizontal line
-void	draw_horizontal_line(t_fdf *fdf, int start, int color)
+void	draw_horizontal_line(t_fdf *fdf, int start)
 {
-	ft_printf("draw_horizontal_line\n");
+	// ft_printf("draw_horizontal_line\n");
 	int x0;
 	int x1;
 	int y0;
 	int y1;
 	int i;
 	int j;
+    int color;
 
     i = 0;
     j = 1;
@@ -56,6 +62,10 @@ void	draw_horizontal_line(t_fdf *fdf, int start, int color)
         y0 = (int)fdf->point[start + i]->y_out;
         x1 = (int)fdf->point[start + j]->x_out;
         y1 = (int)fdf->point[start + j]->y_out;
+        if (fdf->point[start + i]->z > fdf->point[start + j]->z)
+            color = fdf->point[start + i]->color;
+        else
+            color = fdf->point[start + j]->color;
         bresenham(fdf, x0, y0, x1, y1, color);
         i++;
         j++;
@@ -65,7 +75,7 @@ void	draw_horizontal_line(t_fdf *fdf, int start, int color)
 // Function to draw all the lines
 void	draw_lines(t_fdf *fdf)
 {
-    ft_printf("draw_lines\n");
+    // ft_printf("draw_lines\n");
     int start;
 	int line;
 	int	column;
@@ -74,7 +84,7 @@ void	draw_lines(t_fdf *fdf)
 	line = 0;
     while (line <= fdf->y_max)
     {
-		draw_horizontal_line(fdf, start, WHITE);
+		draw_horizontal_line(fdf, start);
 		start += fdf->x_max + 1;
 		line++;
     }
@@ -82,7 +92,7 @@ void	draw_lines(t_fdf *fdf)
 	column = 0;
 	while (column <= fdf->x_max)
 	{
-		draw_vertical_line(fdf, column, WHITE);
+		draw_vertical_line(fdf, column);
 		start += fdf->y_max + 1;
 		column++;
 	}
@@ -129,23 +139,23 @@ void	put_pixel_to_image(t_fdf *fdf, int x, int y, int color)
 }
 
 // Function to draw points in the image
-void draw_points(t_fdf *fdf)
-{
-    ft_printf("draw_points\n");
-    int x;
-    int y;
-    int i;
+// void draw_points(t_fdf *fdf)
+// {
+//     ft_printf("draw_points\n");
+//     int x;
+//     int y;
+//     int i;
 
-    i = 0;
-    while (fdf->point[i])
-    {
-        x = (int)fdf->point[i]->x_out;
-        y = (int)fdf->point[i]->y_out;
-        put_pixel_to_image(fdf, x, y, WHITE);
-        i++;
-    }
-    mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img_ptr, 0, 0);
-}
+//     i = 0;
+//     while (fdf->point[i])
+//     {
+//         x = (int)fdf->point[i]->x_out;
+//         y = (int)fdf->point[i]->y_out;
+//         put_pixel_to_image(fdf, x, y, fdf->point[i]->color);
+//         i++;
+//     }
+//     mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img_ptr, 0, 0);
+// }
 
 // Function to clear the image
 void clear_image(t_fdf *fdf)
