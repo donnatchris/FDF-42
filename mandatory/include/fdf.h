@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/16 12:52:34 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/16 13:55:00 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ void	print_menu(t_fdf *fdf);
 void	fill_color(t_fdf *fdf);
 int		color_manager(int z, t_fdf *fdf);
 int		interpolate_color(int color1, int color2, double t);
+void 	rotate_iso_90(t_fdf *fdf);
 
 
 

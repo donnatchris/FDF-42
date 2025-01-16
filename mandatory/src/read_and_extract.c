@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 19:21:10 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/14 09:26:23 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/16 13:18:54 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ void	fill_src(int fd, t_point **src, char *line, int n_line, int column_max)
 		n_column++;
 	}
 	free_str_tab(tab);
-	if (n_column != column_max)
-		free_close_fd_and_error(fd, src, "Invalid file");
+	// if (n_column != column_max)
+		// free_close_fd_and_error(fd, src, "Invalid file");
 }
 
 // Fill the coordinates of a point
