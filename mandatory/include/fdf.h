@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/15 08:50:46 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:00:01 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_fdf
 	int			x_max;
 	int			y_max;
 	int			z_max;
+	int			altitude_max;
 	int			zoom;
 	int			depth;
 	t_point		**point;
@@ -114,8 +115,9 @@ int		find_x_max(t_fdf *fdf);
 int		find_y_max(t_fdf *fdf);
 int		find_z_max(t_fdf *fdf);
 void	print_menu(t_fdf *fdf);
-void	affect_color(t_point **point, int z_max);
-
+void	fill_color(t_fdf *fdf);
+int		color_manager(int z, t_fdf *fdf);
+int		interpolate_color(int color1, int color2, double t);
 
 
 

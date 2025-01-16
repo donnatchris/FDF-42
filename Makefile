@@ -6,7 +6,7 @@
 #    By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 16:21:20 by christophed       #+#    #+#              #
-#    Updated: 2025/01/14 10:32:22 by chdonnat         ###   ########.fr        #
+#    Updated: 2025/01/16 10:55:44 by chdonnat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ SRC = \
 	$(SRC_DIR)/read_and_extract.c \
 	$(SRC_DIR)/window_manager.c \
 	$(SRC_DIR)/draw.c \
+	$(SRC_DIR)/color_manager.c \
 	$(SRC_DIR)/linux_functions.c \
 	$(SRC_DIR)/macos_functions.c \
 	$(UTILS_DIR)/count_function.c \

@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/16 09:54:32 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:00:44 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,11 @@ void	init_fdf(t_fdf *fdf, t_point **point)
 	fdf->win_width = 1800;
 	fdf->win_height = 1000;
 	fdf->point = point;
-	ft_printf("before find max\n");
 	fdf->x_max = find_x_max(fdf);
 	fdf->y_max = find_y_max(fdf);
 	fdf->z_max = find_z_max(fdf);
-	affect_color(point, fdf->z_max);
-	ft_printf("after find max\n");
+	fdf->altitude_max = fdf->z_max;
+	fill_color(fdf);
     fdf->zoom = 30;
     fdf->depth = -9;
 	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, fdf->win_width, \
@@ -66,29 +65,4 @@ void	print_menu(t_fdf *fdf)
 	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 30, DARK_BLUE, "Zoom = + / -");
 	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 50, DARK_BLUE, "Depth = Page up / Page down");
 	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 70, DARK_BLUE, "Exit = ESC");
-}
-
-// Function to affect colors to the points according to their z value
-void	affect_color(t_point **point, int z_max)
-{
-	ft_printf("affect_colors\n");
-	int i;
-	int z;
-
-	i = 0;
-	while (point[i])
-	{
-		z = point[i]->z;
-		if (z == 0)
-			point[i]->color = WHITE;
-		else if (z == z_max)
-			point[i]->color = PURPLE;
-		else if (z <= z_max / 3)
-			point[i]->color = YELLOW;
-		else if (z <= 2 * (z_max / 3))
-			point[i]->color = ORANGE;
-		else
-			point[i]->color = MAGENTA;
-		i++;
-	}
 }
