@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 10:14:10 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/16 11:47:38 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/16 12:50:08 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	fill_color(t_fdf *fdf)
 	i = 0;
 	while (fdf->point[i])
 	{
-		fdf->point[i]->color = color_manager(fdf->point[i]->z, fdf);
+		fdf->point[i]->color = color_manager(fdf->point[i]->z * fdf->depth, fdf);
 		i++;
 	}
 }
@@ -29,35 +29,13 @@ void	fill_color(t_fdf *fdf)
 int	color_manager(int z, t_fdf *fdf)
 {
     double t;
-    int color1;
-    int color2;
 
     if (z <= 0)
         return (WHITE);
-    else if (z >= fdf->altitude_max)
-        return (DARK_RED);
-    else if (z < fdf->altitude_max / 4)
-    {
-        color1 = WHITE;
-        color2 = YELLOW;
-    }
-    else if (z < fdf->altitude_max / 2)
-    {
-        color1 = YELLOW;
-        color2 = ORANGE;
-    }
-    else if (z < fdf->altitude_max * 3 / 4)
-    {
-        color1 = ORANGE;
-        color2 = RED;
-    }
-    else
-    {
-        color1 = RED;
-        color2 = DARK_RED;
-    }
+    if (z >= fdf->altitude_max)
+        return (DARK_BLUE);
     t = (double)z / fdf->altitude_max;
-    return interpolate_color(color1, color2, t);
+    return interpolate_color(WHITE, DARK_BLUE, t);
 }
 
 // Function to interpolate between two colors

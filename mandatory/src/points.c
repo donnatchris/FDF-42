@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:43:07 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/16 12:37:21 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/16 12:53:48 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,15 @@ void project_isometric_point(t_point *point, t_fdf *fdf)
     int				y;
     int				z;
 
+    fdf->altitude_max = fdf->z_max + fdf->depth;
     x = point->x;
     y = point->y;
     if (point->z != 0)
         z = (point->z * fdf->depth);
     else
         z = point->z;
-    point->x_out = fdf->zoom * ((x - y) * COS_ANGLE) + (fdf->win_width / 2 - 100);
-    point->y_out = fdf->zoom * ((x + y) * SIN_ANGLE - z) + (fdf->win_height / 2 - 100);
+    point->x_out = fdf->zoom * ((x - y) * COS_ANGLE) + (fdf->translation_x);
+    point->y_out = fdf->zoom * ((x + y) * SIN_ANGLE - z) + (fdf->translation_y);
 
 }
 

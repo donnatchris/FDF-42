@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/16 12:36:52 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/16 12:52:34 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ typedef struct s_fdf
 	int			endian;
 	int			win_width;
 	int			win_height;
+	int			translation_x;
+	int			translation_y;
 	int			x_max;
 	int			y_max;
 	int			z_max;
