@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:43:07 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/16 12:53:48 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:54:28 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void project_isometric_point(t_point *point, t_fdf *fdf)
     // const double	angle = M_PI / 6;
     // const double	cos_angle = cos(angle);
     // const double	sin_angle = sin(angle);
-    int				x;
-    int				y;
-    int				z;
+    float   x;
+    float	y;
+    float	z;
 
     fdf->altitude_max = fdf->z_max + fdf->depth;
     x = point->x;

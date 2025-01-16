@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/16 13:55:00 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:49:30 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@
 // Structure
 typedef struct s_point
 {
-	int		x;
-	int		y;
-	int		z;
+	float	x;
+	float	y;
+	float	z;
 	float	x_out;
 	float	y_out;
 	int		color;
@@ -56,9 +56,9 @@ typedef struct s_fdf
 	int			win_height;
 	int			translation_x;
 	int			translation_y;
-	int			x_max;
-	int			y_max;
-	int			z_max;
+	float		x_max;
+	float		y_max;
+	float		z_max;
 	int			altitude_max;
 	int			zoom;
 	float		depth;

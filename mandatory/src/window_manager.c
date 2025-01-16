@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/16 13:03:50 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:38:35 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	init_fdf(t_fdf *fdf, t_point **point)
 	fdf->y_max = find_y_max(fdf);
 	fdf->z_max = find_z_max(fdf);
     fdf->zoom = 30;
-    fdf->depth = 1;
+    fdf->depth = 0.1;
 	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, fdf->win_width, \
 		fdf->win_height, "FdF");
 	if (!fdf->win_ptr)
