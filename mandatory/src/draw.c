@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:25:08 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/17 18:04:42 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/17 18:21:03 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,11 @@ void bresenham(t_fdf *fdf, t_bres *bres, int color0, int color1)
     bres->sx = compare(bres->x0, bres->x1);
     bres->sy = compare(bres->y0, bres->y1);
     bres->err = bres->dx - bres->dy;
-    (void) color0;
+    double total_dist = sqrt((bres->dx * bres->dx) + (bres->dy * bres->dy));
+    double current_dist = 0.0;
     while (1)
     {
-        bres->color = color1;
-        // bres->color = interpolate_color(color0, color1, (double)z / fdf->z_max);
+        bres->color = interpolate_color(color1, color0, current_dist / total_dist);
         put_pixel_to_image(fdf, bres->x0, bres->y0, bres->color);
         if (bres->x0 == bres->x1 && bres->y0 == bres->y1)
             break;
@@ -118,6 +118,7 @@ void bresenham(t_fdf *fdf, t_bres *bres, int color0, int color1)
             bres->err += bres->dx;
             bres->y0 += bres->sy;
         }
+        current_dist = sqrt((bres->x0 - bres->x1) * (bres->x0 - bres->x1) + (bres->y0 - bres->y1) * (bres->y0 - bres->y1));
     }
 }
 

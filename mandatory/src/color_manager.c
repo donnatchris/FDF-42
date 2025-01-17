@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 10:14:10 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/17 17:53:37 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/17 18:23:52 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	color_manager(int z, t_fdf *fdf)
     if (z > 0)
         return (interpolate_color(WHITE, DARK_GREEN, t));
     else
-        return (interpolate_color(WHITE, DARK_RED, t));
+        return (interpolate_color(DARK_RED, WHITE, t));
 }
 
 // Function to interpolate between two colors
