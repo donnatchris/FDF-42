@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/16 16:38:35 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/17 09:04:02 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,16 @@ void	init_fdf(t_fdf *fdf, t_point **point)
 		free_and_exit(fdf);
 	fdf->win_width = 1800;
 	fdf->win_height = 1000;
-	fdf->translation_x = (fdf->win_width / 2) -100;
-	fdf->translation_y = (fdf->win_height / 2) -100;
+	fdf->originX = (fdf->win_width / 2) -100;
+	fdf->originY = (fdf->win_height / 2) -100;
 	fdf->point = point;
 	fdf->x_max = find_x_max(fdf);
 	fdf->y_max = find_y_max(fdf);
 	fdf->z_max = find_z_max(fdf);
-    fdf->zoom = 30;
+    fdf->factor = 30;
     fdf->depth = 0.1;
+	fdf->Ox = 0.7854;
+	fdf->Oy = 0.6155;
 	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, fdf->win_width, \
 		fdf->win_height, "FdF");
 	if (!fdf->win_ptr)
@@ -62,8 +64,11 @@ void	init_fdf(t_fdf *fdf, t_point **point)
 
 void	print_menu(t_fdf *fdf)
 {
-	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 30, BLUE, "Zoom = + / -");
-	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 50, BLUE, "Depth = Page up / Page down");
-	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 90, BLUE, "Move = Arrows");
-	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 70, BLUE, "Exit = ESC");
+	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 30, LIGHT_GREEN, "ZOOM: ........ + / -");
+	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 60, LIGHT_GREEN, "DEPTH: ....... Page up / Page down");
+	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 90, LIGHT_GREEN, "MOVE: ........ Arrows");
+	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 120, LIGHT_GREEN, "ROTATE: ...... a / s / d / f");
+	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 150, LIGHT_GREEN, "ROTATE 90: ... r");
+	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 180, LIGHT_GREEN, "BACK TO ISO: . i");
+	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 210, LIGHT_GREEN, "EXIT: ........ esc");
 }

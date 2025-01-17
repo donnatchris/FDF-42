@@ -21,7 +21,7 @@ Using MiniLibX images is mandatory.
 ### BONUS PART:
 You will earn additional points if you:
 Include an additional projection (e.g., parallel or conical projection).
-Implement zoom in and zoom out.
+Implement factor in and factor out.
 Implement translation (movement).
 Implement rotation (rotating your rendering).
 Add an extra bonus feature of your choice.
@@ -154,8 +154,8 @@ meaning objects retain their proportions regardless of their distance from the v
 #### Key Features:  
 - **No perspective scaling**: All objects appear at their true size regardless of depth.  
 - **Angles and proportions**: Axes \(x\), \(y\), and \(z\) are displayed as equally spaced angles, typically at 120°.  
-- **Zoom control**: A scaling factor (referred to as "factor") determines the size of the projected objects on the 2D plane.
-  Increasing this factor enlarges objects, simulating a zoom-in effect, while decreasing it simulates a zoom-out effect.  
+- **factor control**: A scaling factor (referred to as "factor") determines the size of the projected objects on the 2D plane.
+  Increasing this factor enlarges objects, simulating a factor-in effect, while decreasing it simulates a factor-out effect.  
 #### Formula for Isometric Projection  
 To transform a 3D point \((x, y, z)\) into 2D coordinates \((screenX, screenY)\), use the following formulas:
 
@@ -164,10 +164,10 @@ To transform a 3D point \((x, y, z)\) into 2D coordinates \((screenX, screenY)\)
 
 #### Explanation of Parameters:  
 - **originX, originY**: The 2D origin or reference point on the screen, typically the center of the viewport.  
-- **factor**: A scaling factor controlling the size of the objects (zoom).  
+- **factor**: A scaling factor controlling the size of the objects (factor).  
 - **(x, y, z)**: The 3D coordinates of the point being projected.  
 
-Adjusting **factor** dynamically allows you to zoom in or out of the scene.
+Adjusting **factor** dynamically allows you to factor in or out of the scene.
 
 Adjusting **originX** or **originY** allows you to make translations.
 
@@ -201,12 +201,12 @@ The standard formulas for transforming 3D coordinates into 2D in a perspective v
 	- Perspective: Angles converge at a vanishing point, and proportions change with distance.
 	- Isometric: Angles remain fixed (typically 120°), and proportions stay constant.
 
-### Zoom and translation
-#### Adjusting the factor (zoom):
+### factor and translation
+#### Adjusting the factor (factor):
 - For Isometric Projection:
 
-	The factor (also known as the scale or zoom factor) controls the size of the objects on the 2D screen.
-	Adjusting the factor dynamically allows you to zoom in or out, changing how large or small objects appear without affecting their proportions.
+	The factor (also known as the scale or factor factor) controls the size of the objects on the 2D screen.
+	Adjusting the factor dynamically allows you to factor in or out, changing how large or small objects appear without affecting their proportions.
 	The factor only affects the size of objects on the screen, but it does not introduce perspective effects
 	(since isometric projection does not account for depth or distance like perspective does).
 - For Perspective Projection:
@@ -215,7 +215,7 @@ The standard formulas for transforming 3D coordinates into 2D in a perspective v
 	also changes the size of the objects on the screen.
 	When you adjust the distance, it affects how far objects appear, and as the distance changes,
 	objects will appear smaller or larger depending on their z value (depth), as part of the perspective effect.
-	So adjusting this factor also functions as a zoom but with the added effect of changing how the scene is perceived in terms of depth
+	So adjusting this factor also functions as a factor but with the added effect of changing how the scene is perceived in terms of depth
 	(objects closer appear larger, and those further away appear smaller).
 #### Adjusting originX and originY (translation):
 - For Isometric Projection:
@@ -228,8 +228,8 @@ The standard formulas for transforming 3D coordinates into 2D in a perspective v
 	Similarly, adjusting originX and originY in perspective projection moves the scene on the screen, translating the entire view without affecting the 3D scene itself.
 	However, in perspective, since the view is inherently affected by depth (z-axis),
 	the origin shift might also result in changes to how objects are perceived in terms of their relative positions,
-	especially when combined with changes in the distance (zoom factor).
+	especially when combined with changes in the distance (factor factor).
 #### In summary:
-Factor (Zoom): Both isometric and perspective projections allow dynamic zooming by adjusting the factor, with isometric affecting object size directly, and perspective affecting both size and the appearance of depth.
+Factor (factor): Both isometric and perspective projections allow dynamic factoring by adjusting the factor, with isometric affecting object size directly, and perspective affecting both size and the appearance of depth.
 
 originX and originY (Translation): These adjust the position of the entire scene on the 2D screen, without altering the geometry of the scene itself, in both isometric and perspective projections. However, in perspective, changes in translation may also affect how the scene is perceived due to the depth-based effects.

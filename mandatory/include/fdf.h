@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/16 16:49:30 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/17 08:47:05 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,15 @@ typedef struct s_fdf
 	int			endian;
 	int			win_width;
 	int			win_height;
-	int			translation_x;
-	int			translation_y;
+	int			originX;
+	int			originY;
 	float		x_max;
 	float		y_max;
 	float		z_max;
 	int			altitude_max;
-	int			zoom;
+	float		Ox;
+	float		Oy;
+	int			factor;
 	float		depth;
 	t_point		**point;
 }				t_fdf;
