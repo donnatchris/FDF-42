@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:25:08 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/17 17:35:39 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/17 18:04:42 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	draw_vertical_line(t_fdf *fdf, int start)
     t_bres bres;
     int     i;
     int     j;
+    int     color0;
+    int     color1;
     
     i = 0;
     j = fdf->x_max + 1;
@@ -28,7 +30,9 @@ void	draw_vertical_line(t_fdf *fdf, int start)
         bres.y0 = (int)fdf->point[start + i]->y_out;
         bres.x1 = (int)fdf->point[start + j]->x_out;
         bres.y1 = (int)fdf->point[start + j]->y_out;
-        bresenham(fdf, &bres);
+        color0 = fdf->point[start + i]->color;
+        color1 = fdf->point[start + j]->color;
+        bresenham(fdf, &bres, color0, color1);
 		j = i;
         i = i + fdf->x_max + 1;
     }
@@ -41,6 +45,8 @@ void	draw_horizontal_line(t_fdf *fdf, int start)
     t_bres  bres;
 	int     i;
 	int     j;
+    int     color0;
+    int     color1;
 
     i = 0;
     j = 1;
@@ -50,7 +56,9 @@ void	draw_horizontal_line(t_fdf *fdf, int start)
         bres.y0 = (int)fdf->point[start + i]->y_out;
         bres.x1 = (int)fdf->point[start + j]->x_out;
         bres.y1 = (int)fdf->point[start + j]->y_out;
-        bresenham(fdf, &bres);
+        color0 = fdf->point[start + i]->color;
+        color1 = fdf->point[start + j]->color;
+        bresenham(fdf, &bres, color0, color1);
         i++;
         j++;
     }
@@ -84,18 +92,18 @@ void	draw_lines(t_fdf *fdf)
 }
 
 // Function to draw a line between two points
-void bresenham(t_fdf *fdf, t_bres *bres)
+void bresenham(t_fdf *fdf, t_bres *bres, int color0, int color1)
 {
     bres->dx = abs(bres->x1 - bres->x0);
     bres->dy = abs(bres->y1 - bres->y0);
-    // bres->sx = (bres->x0 < bres->x1) ? 1 : -1;
-    // bres->sy = (bres->y0 < bres->y1) ? 1 : -1;
     bres->sx = compare(bres->x0, bres->x1);
     bres->sy = compare(bres->y0, bres->y1);
     bres->err = bres->dx - bres->dy;
-
+    (void) color0;
     while (1)
     {
+        bres->color = color1;
+        // bres->color = interpolate_color(color0, color1, (double)z / fdf->z_max);
         put_pixel_to_image(fdf, bres->x0, bres->y0, bres->color);
         if (bres->x0 == bres->x1 && bres->y0 == bres->y1)
             break;
@@ -164,6 +172,7 @@ void clear_image(t_fdf *fdf)
     }
 }
 
+// Function to compare 2 floats and return 1 or -1
 int     compare(float n1, float n2)
 {
     if (n1 < n2)

@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/17 17:35:27 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/17 18:04:12 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ void 	project_isometric_point(t_point *point, t_fdf *fdf);
 void    project_isometric_map(t_fdf *fdf);
 // void 	draw_points(t_fdf *fdf);
 void 	clear_image(t_fdf *fdf);
-void bresenham(t_fdf *fdf, t_bres *bres);
+void bresenham(t_fdf *fdf, t_bres *bres, int color0, int color1);
 void	draw_lines(t_fdf *fdf);
 void	draw_horizontal_line(t_fdf *fdf, int start);
 void	draw_vertical_line(t_fdf *fdf, int start);
