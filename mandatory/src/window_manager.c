@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/17 09:04:02 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:58:01 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,8 @@ void	init_fdf(t_fdf *fdf, t_point **point)
 	fdf->mlx_ptr = mlx_init();
 	if (!fdf->mlx_ptr)
 		free_and_exit(fdf);
-	fdf->win_width = 1800;
-	fdf->win_height = 1000;
-	fdf->originX = (fdf->win_width / 2) -100;
-	fdf->originY = (fdf->win_height / 2) -100;
 	fdf->point = point;
-	fdf->x_max = find_x_max(fdf);
-	fdf->y_max = find_y_max(fdf);
-	fdf->z_max = find_z_max(fdf);
-    fdf->factor = 30;
-    fdf->depth = 0.1;
-	fdf->Ox = 0.7854;
-	fdf->Oy = 0.6155;
+	init_values(fdf);
 	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, fdf->win_width, \
 		fdf->win_height, "FdF");
 	if (!fdf->win_ptr)
@@ -60,6 +50,22 @@ void	init_fdf(t_fdf *fdf, t_point **point)
 	fdf->addr = mlx_get_data_addr(fdf->img_ptr, &fdf->bpp, &fdf->line_length, &fdf->endian);
 	if (!fdf->addr)
 		free_and_exit(fdf);
+}
+
+// Function to initialize values
+void	init_values(t_fdf *fdf)
+{
+	fdf->win_width = 1800;
+	fdf->win_height = 1000;
+	fdf->originX = (fdf->win_width / 2) -100;
+	fdf->originY = (fdf->win_height / 2) -100;
+	fdf->x_max = find_x_max(fdf);
+	fdf->y_max = find_y_max(fdf);
+	fdf->z_max = find_z_max(fdf);
+    fdf->factor = 30;
+    fdf->depth = 0.1;
+	fdf->Ox = 0.7854;
+	fdf->Oy = 0.6155;
 }
 
 void	print_menu(t_fdf *fdf)
