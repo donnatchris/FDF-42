@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/17 15:58:11 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/17 17:17:44 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,21 @@ typedef struct s_point
 	float	y_out;
 	int		color;
 }	t_point;
+
+typedef struct s_bres
+{
+    int x0;
+    int y0;
+    int x1;
+    int y1;
+    int dx;
+    int dy;
+    int sx;
+    int sy;
+    int err;
+    int e2;
+    int color;
+}		t_bres;
 
 typedef struct s_fdf
 {
@@ -115,7 +130,7 @@ void 	project_isometric_point(t_point *point, t_fdf *fdf);
 void    project_isometric_map(t_fdf *fdf);
 // void 	draw_points(t_fdf *fdf);
 void 	clear_image(t_fdf *fdf);
-void 	bresenham(t_fdf *fdf, int x0, int y0, int x1, int y1, int color);
+void bresenham(t_fdf *fdf, t_bres *bres);
 void	draw_lines(t_fdf *fdf);
 void	draw_horizontal_line(t_fdf *fdf, int start);
 void	draw_vertical_line(t_fdf *fdf, int start);
