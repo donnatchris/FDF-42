@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:25:08 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/17 17:17:27 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/17 17:35:39 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,28 +86,29 @@ void	draw_lines(t_fdf *fdf)
 // Function to draw a line between two points
 void bresenham(t_fdf *fdf, t_bres *bres)
 {
-    int dx = abs(bres->x1 - bres->x0);
-    int dy = abs(bres->y1 - bres->y0);
-    int sx = (bres->x0 < bres->x1) ? 1 : -1;
-    int sy = (bres->y0 < bres->y1) ? 1 : -1;
-    int err = dx - dy;
-    int e2;
+    bres->dx = abs(bres->x1 - bres->x0);
+    bres->dy = abs(bres->y1 - bres->y0);
+    // bres->sx = (bres->x0 < bres->x1) ? 1 : -1;
+    // bres->sy = (bres->y0 < bres->y1) ? 1 : -1;
+    bres->sx = compare(bres->x0, bres->x1);
+    bres->sy = compare(bres->y0, bres->y1);
+    bres->err = bres->dx - bres->dy;
 
     while (1)
     {
         put_pixel_to_image(fdf, bres->x0, bres->y0, bres->color);
         if (bres->x0 == bres->x1 && bres->y0 == bres->y1)
             break;
-        e2 = 2 * err;
-        if (e2 > -dy)
+        bres->e2 = 2 * bres->err;
+        if (bres->e2 > -bres->dy)
         {
-            err -= dy;
-            bres->x0 += sx;
+            bres->err -= bres->dy;
+            bres->x0 += bres->sx;
         }
-        if (e2 < dx)
+        if (bres->e2 < bres->dx)
         {
-            err += dx;
-            bres->y0 += sy;
+            bres->err += bres->dx;
+            bres->y0 += bres->sy;
         }
     }
 }
@@ -163,3 +164,9 @@ void clear_image(t_fdf *fdf)
     }
 }
 
+int     compare(float n1, float n2)
+{
+    if (n1 < n2)
+        return (1);
+    return (-1);
+}
