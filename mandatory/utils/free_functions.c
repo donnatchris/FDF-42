@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:12:34 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/14 09:45:16 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/18 14:29:08 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,13 @@ void	free_str_tab(char **tab)
 	free(tab);
 }
 
+// Function to free allocated memory before exiting
+int	free_and_exit(t_fdf *fdf)
+{
+	free_fdf(fdf);
+	exit (1);
+}
+
 // Function to free the memory allocated for the fdf structure on Linux
 void	free_fdf(t_fdf *fdf)
 {
@@ -60,6 +67,7 @@ void	free_fdf(t_fdf *fdf)
 		free(fdf);
 	}
 }
+
 
 // Function to free multiple pointers
 // void	multiple_free(int count, ...)

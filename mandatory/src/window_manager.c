@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/17 15:58:01 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/18 14:28:05 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,7 @@ t_fdf	*malloc_fdf(void)
 	return (fdf);
 }
 
-int	free_and_exit(t_fdf *fdf)
-{
-	free_fdf(fdf);
-	exit (1);
-}
+
 
 void	init_fdf(t_fdf *fdf, t_point **point)
 {

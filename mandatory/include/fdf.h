@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/17 18:04:12 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/18 14:31:24 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,19 @@ typedef struct s_bres
     int e2;
     int color;
 }		t_bres;
+
+typedef struct s_color
+{
+	int r1;
+    int g1;
+    int b1;
+    int r2;
+    int g2;
+    int b2;
+    int r;
+    int g;
+    int b;
+}		t_color;
 
 typedef struct s_fdf
 {

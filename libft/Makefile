@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: christophedonnat <christophedonnat@stud    +#+  +:+       +#+         #
+#    By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/26 08:59:54 by christophed       #+#    #+#              #
-#    Updated: 2024/12/26 09:27:33 by christophed      ###   ########.fr        #
+#    Updated: 2025/01/06 14:30:58 by chdonnat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

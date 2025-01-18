@@ -3,83 +3,117 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christophedonnat <christophedonnat@stud    +#+  +:+       +#+        */
+/*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 09:37:31 by chdonnat          #+#    #+#             */
-/*   Updated: 2024/12/26 09:38:53 by christophed      ###   ########.fr       */
+/*   Created: 2024/11/23 17:40:35 by nifromon          #+#    #+#             */
+/*   Updated: 2025/01/18 14:13:16 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
-#include "../includes/get_next_line_bonus.h"
+//START
+#include "get_next_line_bonus.h"
 
-int	ft_has_newline(t_list *list)
+int	search_newline(t_list *store)
 {
-	int		i;
-	t_list	*current;
+	int	i;
 
-	if (!list)
+	if (!store)
 		return (0);
-	current = ft_lst_get_last(list);
-	i = 0;
-	while (((char *)current->content)[i])
+	while (store)
 	{
-		if (((char *)current->content)[i] == '\n')
-			return (1);
-		i++;
+		i = 0;
+		while (store->content[i] && i < BUFFER_SIZE)
+		{
+			if (store->content[i] == '\n')
+				return (1);
+			i++;
+		}
+		store = store->next;
 	}
 	return (0);
 }
 
-void	ft_free_list(t_list *list)
+t_list	*ft_lstlast(t_list *store)
 {
-	t_list	*current;
-	t_list	*next;
+	if (!store)
+		return (NULL);
+	while (store->next)
+		store = store->next;
+	return (store);
+}
 
-	current = list;
-	while (current)
+void	cpylst_to_str(t_list *store, char *queue)
+{
+	int	i;
+	int	j;
+
+	if (!store)
+		return ;
+	i = 0;
+	while (store)
 	{
-		free(current->content);
-		next = current->next;
-		free(current);
-		current = next;
+		j = 0;
+		while (store->content[j])
+		{
+			if (store->content[j] == '\n')
+			{
+				queue[i++] = '\n';
+				queue[i] = '\0';
+				return ;
+			}
+			queue[i++] = store->content[j++];
+		}
+		store = store->next;
+	}
+	queue[i] = '\0';
+}
+
+int	lstlen_till_newline(t_list *store)
+{
+	int	i;
+	int	len;
+
+	if (!store)
+		return (0);
+	len = 0;
+	while (store)
+	{
+		i = 0;
+		while (store->content[i])
+		{
+			if (store->content[i] == '\n')
+				return (len + 1);
+			i++;
+			len++;
+		}
+		store = store->next;
+	}
+	return (len);
+}
+
+void	free_store(t_list	**store, t_list *clean_store, char *product)
+{
+	t_list	*pop_up;
+
+	if (!*store)
+		return ;
+	while (*store)
+	{
+		pop_up = (*store)->next;
+		free((*store)->content);
+		free(*store);
+		*store = pop_up;
+	}
+	*store = NULL;
+	if (clean_store->content[0])
+		*store = clean_store;
+	else
+	{
+		free(product);
+		product = NULL;
+		free(clean_store);
+		clean_store = NULL;
 	}
 }
 
-t_list	*ft_lst_get_last(t_list *list)
-{
-	t_list	*current;
-
-	current = list;
-	while (current && current->next)
-		current = current->next;
-	return (current);
-}
-
-void	ft_clean_list(t_list	**p_list)
-{
-	t_list	*last;
-	t_list	*clean_node;
-	int		i;
-	int		j;
-
-	clean_node = (t_list *) malloc(sizeof(t_list));
-	if (!(*p_list) || !clean_node)
-		return ;
-	clean_node->next = NULL;
-	last = ft_lst_get_last(*p_list);
-	i = 0;
-	while (((char *)last->content)[i] && ((char *)last->content)[i] != '\n')
-		i++;
-	if (last->content && ((char *)last->content)[i] == '\n')
-		i++;
-	clean_node->content = (char *) malloc((ft_strlen(last->content) - i) + 1);
-	if (!(clean_node->content))
-		return ;
-	j = 0;
-	while (((char *)last->content)[i])
-		((char *)clean_node->content)[j++] = ((char *)last->content)[i++];
-	((char *)clean_node->content)[j] = '\0';
-	ft_free_list(*p_list);
-	*p_list = clean_node;
-}
+//END
