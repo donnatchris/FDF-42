@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:43:07 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/17 08:46:28 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/18 17:26:44 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void    project_isometric_map(t_fdf *fdf)
 {
     // ft_printf("project_isometric_map\n");
     int i;
-
+    
     fill_color(fdf);
     i = 0;
     while(fdf->point[i])
@@ -26,6 +26,7 @@ void    project_isometric_map(t_fdf *fdf)
         // printf("Point %d : x_out = %.2f, y_out = %.2f\n", i, fdf->point[i]->x_out, fdf->point[i]->y_out);
         i++;
     }
+
 }
 
 // Function to project the points from 3D to 2D by isometric view

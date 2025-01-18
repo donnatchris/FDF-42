@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:25:08 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/17 18:21:03 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/18 16:40:05 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ void clear_image(t_fdf *fdf)
         x = 0;
         while (x < fdf->win_width)
         {
-            put_pixel_to_image(fdf, x, y, BLACK);
+            put_pixel_to_image(fdf, x, y, fdf->back_color);
             x++;
         }
         y++;

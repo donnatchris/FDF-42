@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 10:14:10 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/18 14:32:56 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/18 17:31:56 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,28 @@ void	fill_color(t_fdf *fdf)
 	i = 0;
 	while (fdf->point[i])
 	{
-		fdf->point[i]->color = color_manager(fdf->point[i]->z * fdf->depth, fdf);
+		fdf->point[i]->color = color_manager(fdf->point[i]->z, fdf);
 		i++;
 	}
 }
 
 // Function to affect a color to a point depending on its altitude
-int	color_manager(int z, t_fdf *fdf)
+int	color_manager(float z, t_fdf *fdf)
 {
     double t;
 
     if (z == 0)
-        return (WHITE);
+        return (fdf->zero_color);
     if (z == fdf->z_max)
-        return (DARK_GREEN);
+        return (fdf->up_color);
     t = (double)z / fdf->z_max;
     if (z > 0)
-        return (interpolate_color(WHITE, DARK_GREEN, t));
+        return (interpolate_color(fdf->zero_color, fdf->up_color, t));
     else
-        return (interpolate_color(DARK_RED, WHITE, t));
+    {
+        t = -t;
+        return (interpolate_color(fdf->zero_color, fdf->low_color, t));
+    }
 }
 
 // Function to interpolate between two colors
@@ -56,4 +59,67 @@ int	interpolate_color(int color1, int color2, double t)
     rgb.g = rgb.g1 + t * (rgb.g2 - rgb.g1);
     rgb.b = rgb.b1 + t * (rgb.b2 - rgb.b1);
     return (rgb.r << 16) | (rgb.g << 8) | rgb.b;
+}
+
+// Function to have some fun
+void	animate_colors(t_fdf *fdf)
+{
+    int i;
+
+    // fdf->anim_on = 0;
+    while (1)
+    {
+        i = 0;
+        while (i++ < 4)
+        {
+            swap_colors(&fdf->back_color, &fdf->zero_color);
+            project_isometric_map(fdf);
+            draw_lines(fdf);
+            // print_menu(fdf);
+            usleep(500000);
+        }
+        i = 0;
+        while (i++ < 10)
+        {
+            swap_colors(&fdf->up_color, &fdf->low_color);
+            project_isometric_map(fdf);
+            draw_lines(fdf);
+            // print_menu(fdf);
+            usleep(100000);
+        }
+        i = 0;
+        while (i++ < 4)
+        {
+            swap_colors(&fdf->back_color, &fdf->zero_color);
+            project_isometric_map(fdf);
+            draw_lines(fdf);
+            // print_menu(fdf);
+            usleep(500000);
+        }
+        i = 0;
+        while (i++ < 4)
+        {
+            swap_colors(&fdf->up_color, &fdf->zero_color);
+            project_isometric_map(fdf);
+            draw_lines(fdf);
+            // print_menu(fdf);
+            usleep(100000);
+            swap_colors(&fdf->zero_color, &fdf->low_color);
+            project_isometric_map(fdf);
+            draw_lines(fdf);
+            // print_menu(fdf);
+            usleep(100000);
+            swap_colors(&fdf->low_color, &fdf->back_color);
+            project_isometric_map(fdf);
+            draw_lines(fdf);
+            // print_menu(fdf);
+            usleep(100000);
+            swap_colors(&fdf->back_color, &fdf->up_color);
+            project_isometric_map(fdf);
+            draw_lines(fdf);
+            // print_menu(fdf);
+            usleep(100000);
+        }
+    }
+
 }

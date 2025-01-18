@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_long.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christophedonnat <christophedonnat@stud    +#+  +:+       +#+        */
+/*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:42:17 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/11 11:04:16 by christophed      ###   ########.fr       */
+/*   Updated: 2025/01/18 17:11:09 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,14 @@ long	ft_atoi_long(const char *nptr)
 		i++;
 	}
 	return (result * sign);
+}
+
+// Function to swap colors
+void	swap_colors(int *color1, int *color2)
+{
+	int	temp;
+
+	temp = *color1;
+	*color1 = *color2;
+	*color2 = temp;
 }

@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/18 14:31:24 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/18 17:22:01 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,11 @@ typedef struct s_fdf
 	float		Oy;
 	int			factor;
 	float		depth;
+	int			back_color;
+	int			zero_color;
+	int			up_color;
+	int			low_color;
+	int			anim_on;
 	t_point		**point;
 }				t_fdf;
 
@@ -152,11 +157,13 @@ int		find_y_max(t_fdf *fdf);
 int		find_z_max(t_fdf *fdf);
 void	print_menu(t_fdf *fdf);
 void	fill_color(t_fdf *fdf);
-int		color_manager(int z, t_fdf *fdf);
+int		color_manager(float z, t_fdf *fdf);
 int		interpolate_color(int color1, int color2, double t);
 void 	rotate_iso_90(t_fdf *fdf);
 void	init_values(t_fdf *fdf);
 int     compare(float n1, float n2);
+void	swap_colors(int *color1, int *color2);
+void	animate_colors(t_fdf *fdf);
 
 
 

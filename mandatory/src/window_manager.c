@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/18 14:28:05 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/18 17:30:11 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	init_fdf(t_fdf *fdf, t_point **point)
 // Function to initialize values
 void	init_values(t_fdf *fdf)
 {
+	fdf->anim_on = 0;
 	fdf->win_width = 1800;
 	fdf->win_height = 1000;
 	fdf->originX = (fdf->win_width / 2) -100;
@@ -62,6 +63,10 @@ void	init_values(t_fdf *fdf)
     fdf->depth = 0.1;
 	fdf->Ox = 0.7854;
 	fdf->Oy = 0.6155;
+	fdf->back_color = BLACK;
+	fdf->zero_color = WHITE;
+	fdf->up_color = DARK_GREEN;
+	fdf->low_color = PURPLE;
 }
 
 void	print_menu(t_fdf *fdf)
