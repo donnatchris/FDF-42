@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 10:14:10 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/20 14:59:17 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/20 15:43:10 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,69 +61,66 @@ int	interpolate_color(int color1, int color2, double t)
     return (rgb.r << 16) | (rgb.g << 8) | rgb.b;
 }
 
-// Function to have some fun
-void	animate_colors(t_fdf *fdf)
-{
-    int i;
-    int j;
+// // Function to have some fun
+// void	animate_colors(t_fdf *fdf)
+// {
+//     int i;
+//     int j;
 
-    j = 0;
-    if (!fdf->anim_on)
-        return ;
-    // mlx_loop_end(fdf);
-    while (j < 4)
-    {
-        i = 0;
-        while (i++ < 4)
-        {
-            swap_colors(&fdf->back_color, &fdf->zero_color);
-            project_isometric_map(fdf);
-            draw_lines(fdf);
-            // print_menu(fdf);
-            usleep(500000);
-        }
-        i = 0;
-        while (i++ < 10)
-        {
-            swap_colors(&fdf->up_color, &fdf->low_color);
-            project_isometric_map(fdf);
-            draw_lines(fdf);
-            // print_menu(fdf);
-            usleep(100000);
-        }
-        i = 0;
-        while (i++ < 4)
-        {
-            swap_colors(&fdf->back_color, &fdf->zero_color);
-            project_isometric_map(fdf);
-            draw_lines(fdf);
-            // print_menu(fdf);
-            usleep(500000);
-        }
-        i = 0;
-        while (i++ < 4)
-        {
-            swap_colors(&fdf->up_color, &fdf->zero_color);
-            project_isometric_map(fdf);
-            draw_lines(fdf);
-            // print_menu(fdf);
-            usleep(100000);
-            swap_colors(&fdf->zero_color, &fdf->low_color);
-            project_isometric_map(fdf);
-            draw_lines(fdf);
-            // print_menu(fdf);
-            usleep(100000);
-            swap_colors(&fdf->low_color, &fdf->back_color);
-            project_isometric_map(fdf);
-            draw_lines(fdf);
-            // print_menu(fdf);
-            usleep(100000);
-            swap_colors(&fdf->back_color, &fdf->up_color);
-            project_isometric_map(fdf);
-            draw_lines(fdf);
-            // print_menu(fdf);
-            usleep(100000);
-        }
-    }
+//     j = 0;
+//     while (j < 4)
+//     {
+//         i = 0;
+//         while (i++ < 4)
+//         {
+//             swap_colors(&fdf->back_color, &fdf->zero_color);
+//             project_isometric_map(fdf);
+//             draw_lines(fdf);
+//             // print_menu(fdf);
+//             usleep(500000);
+//         }
+//         i = 0;
+//         while (i++ < 10)
+//         {
+//             swap_colors(&fdf->up_color, &fdf->low_color);
+//             project_isometric_map(fdf);
+//             draw_lines(fdf);
+//             // print_menu(fdf);
+//             usleep(100000);
+//         }
+//         i = 0;
+//         while (i++ < 4)
+//         {
+//             swap_colors(&fdf->back_color, &fdf->zero_color);
+//             project_isometric_map(fdf);
+//             draw_lines(fdf);
+//             // print_menu(fdf);
+//             usleep(500000);
+//         }
+//         i = 0;
+//         while (i++ < 4)
+//         {
+//             swap_colors(&fdf->up_color, &fdf->zero_color);
+//             project_isometric_map(fdf);
+//             draw_lines(fdf);
+//             // print_menu(fdf);
+//             usleep(100000);
+//             swap_colors(&fdf->zero_color, &fdf->low_color);
+//             project_isometric_map(fdf);
+//             draw_lines(fdf);
+//             // print_menu(fdf);
+//             usleep(100000);
+//             swap_colors(&fdf->low_color, &fdf->back_color);
+//             project_isometric_map(fdf);
+//             draw_lines(fdf);
+//             // print_menu(fdf);
+//             usleep(100000);
+//             swap_colors(&fdf->back_color, &fdf->up_color);
+//             project_isometric_map(fdf);
+//             draw_lines(fdf);
+//             // print_menu(fdf);
+//             usleep(100000);
+//         }
+//     }
 
-}
+// }

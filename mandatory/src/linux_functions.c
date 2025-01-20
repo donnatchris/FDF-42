@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:31:09 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/20 15:18:20 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/20 15:45:28 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	deal_key(int key, t_fdf *fdf)
 	{
 		if (fdf->anim_on)
 			fdf->anim_on = 0;
-		if (!fdf->anim_on)
+		else if (!fdf->anim_on)
 			fdf->anim_on = 1;
 	}
 	clear_image(fdf);
@@ -90,33 +90,71 @@ void rotate_iso_90(t_fdf *fdf)
 }
 
 int	render(t_fdf *fdf)
-{
-	int	temp_color;
-	static int	i = 0;
-	
+{	
 	if (fdf->anim_on)
-	{
-		if (i < 300)
-			i++;
-		else
-		{
-			temp_color = fdf->up_color;
-			swap_colors(&fdf->up_color, &fdf->zero_color);
-			swap_colors(&fdf->zero_color, &fdf->low_color);
-			swap_colors(&fdf->low_color, &fdf->back_color);
-			swap_colors(&fdf->back_color, &temp_color);
-			i = 0;
-		}
-	}
+		animation(fdf);
 	project_isometric_map(fdf);
 	draw_lines(fdf);
 	print_menu(fdf);
 	return (0);
 }
 
-// void	animation(fdf)
+void	animation(t_fdf *fdf)
+{
+	static int	i = 0;
+	static int	j = 0;
+
+	if (j < 4)
+	{
+		if (i < 400)
+			i++;
+		else
+		{
+			slow_animation(fdf);
+			i = 0;
+			j++;
+		}
+	}
+	else
+	{
+		if (i < 40)
+			i++;
+		else
+		{
+			fast_animation(fdf);
+			i = 0;
+			if (j++ > 40)
+				j = 0;
+		}
+	}
+}
+
+void	slow_animation(t_fdf *fdf)
+{
+	int	temp_color;
+
+	temp_color = fdf->up_color;
+	swap_colors(&fdf->up_color, &fdf->zero_color);
+	swap_colors(&fdf->zero_color, &fdf->low_color);
+	swap_colors(&fdf->low_color, &fdf->back_color);
+	swap_colors(&fdf->back_color, &temp_color);
+}
+
+void	fast_animation(t_fdf *fdf)
+{
+	int	temp_color;
+
+	temp_color = fdf->up_color;
+	swap_colors(&fdf->up_color, &fdf->zero_color);
+	swap_colors(&fdf->zero_color, &fdf->low_color);
+	swap_colors(&fdf->low_color, &fdf->back_color);
+	swap_colors(&fdf->back_color, &temp_color);
+}
+
+// void	iniialize_colors(t_fdf *fdf)
 // {
 	
 // }
+
 
 #endif
