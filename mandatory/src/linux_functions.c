@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:31:09 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/20 15:45:28 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/20 15:55:21 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ int	render(t_fdf *fdf)
 {	
 	if (fdf->anim_on)
 		animation(fdf);
+	else
+		initialize_colors(fdf);
 	project_isometric_map(fdf);
 	draw_lines(fdf);
 	print_menu(fdf);
@@ -151,10 +153,14 @@ void	fast_animation(t_fdf *fdf)
 	swap_colors(&fdf->back_color, &temp_color);
 }
 
-// void	iniialize_colors(t_fdf *fdf)
-// {
-	
-// }
+void	initialize_colors(t_fdf *fdf)
+{
+	ft_printf("initialize_colors/n");
+	fdf->back_color = BLACK;
+	fdf->zero_color = WHITE;
+	fdf->up_color = DARK_GREEN;
+	fdf->low_color = PURPLE;
+}
 
 
 #endif

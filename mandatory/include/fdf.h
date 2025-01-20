@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/20 15:36:41 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/20 15:49:58 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,12 +163,11 @@ void 	rotate_iso_90(t_fdf *fdf);
 void	init_values(t_fdf *fdf);
 int     compare(float n1, float n2);
 void	swap_colors(int *color1, int *color2);
-void	animate_colors(t_fdf *fdf);
 int		render(t_fdf *fdf);
 void	animation(t_fdf *fdf);
 void	slow_animation(t_fdf *fdf);
 void	fast_animation(t_fdf *fdf);
-
+void	initialize_colors(t_fdf *fdf);
 
 
 // linux or MacOs functions
