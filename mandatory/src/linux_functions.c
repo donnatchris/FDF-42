@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:31:09 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/20 15:55:21 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:03:25 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ int	deal_key(int key, t_fdf *fdf)
 		if (fdf->anim_on)
 			fdf->anim_on = 0;
 		else if (!fdf->anim_on)
+		{
 			fdf->anim_on = 1;
+			initialize_colors(fdf);
+		}
 	}
 	clear_image(fdf);
 	return (0);
@@ -91,10 +94,7 @@ void rotate_iso_90(t_fdf *fdf)
 
 int	render(t_fdf *fdf)
 {	
-	if (fdf->anim_on)
-		animation(fdf);
-	else
-		initialize_colors(fdf);
+	animation(fdf);
 	project_isometric_map(fdf);
 	draw_lines(fdf);
 	print_menu(fdf);
@@ -105,7 +105,13 @@ void	animation(t_fdf *fdf)
 {
 	static int	i = 0;
 	static int	j = 0;
-
+	
+	if (!fdf->anim_on)
+	{
+		i = 0;
+		j = 0;
+		return ;
+	}
 	if (j < 4)
 	{
 		if (i < 400)
@@ -155,7 +161,6 @@ void	fast_animation(t_fdf *fdf)
 
 void	initialize_colors(t_fdf *fdf)
 {
-	ft_printf("initialize_colors/n");
 	fdf->back_color = BLACK;
 	fdf->zero_color = WHITE;
 	fdf->up_color = DARK_GREEN;
