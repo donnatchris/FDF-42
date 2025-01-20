@@ -6,7 +6,7 @@
 #    By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 16:21:20 by christophed       #+#    #+#              #
-#    Updated: 2025/01/16 16:46:53 by chdonnat         ###   ########.fr        #
+#    Updated: 2025/01/20 14:56:20 by chdonnat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,7 +93,7 @@ else ifeq ($(UNAME), Linux)
 endif
 
 # Compiler
-CC = gcc
+CC = cc
 
 # Rule to compile the mandatory part
 all: $(TARGET)

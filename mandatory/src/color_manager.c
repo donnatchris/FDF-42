@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 10:14:10 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/18 17:31:56 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:59:17 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,13 @@ int	interpolate_color(int color1, int color2, double t)
 void	animate_colors(t_fdf *fdf)
 {
     int i;
+    int j;
 
-    // fdf->anim_on = 0;
-    while (1)
+    j = 0;
+    if (!fdf->anim_on)
+        return ;
+    // mlx_loop_end(fdf);
+    while (j < 4)
     {
         i = 0;
         while (i++ < 4)
