@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:12:34 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/22 11:37:11 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:51:59 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ void	free_points_tab(t_point **tab)
 	while (tab[i])
 	{
 		free(tab[i]);
+		tab[i] = NULL;
 		i++;
 	}
 	free(tab);
+	tab = NULL;
 }
 
 // Free the memory allocated for a table of strings
@@ -39,9 +41,11 @@ void	free_str_tab(char **tab)
 	while (tab[i])
 	{
 		free(tab[i]);
+		tab[i] = NULL;
 		i++;
 	}
 	free(tab);
+	tab = NULL;
 }
 
 // Function to free allocated memory before exiting
@@ -56,15 +60,29 @@ void	free_fdf(t_fdf *fdf)
 {
 	if (fdf)
 	{
-		if (fdf->img_ptr)
-			mlx_destroy_image(fdf->mlx_ptr, fdf->img_ptr);
-		if (fdf->win_ptr)
-			mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);
-		if (fdf->mlx_ptr)
-			mlx_destroy_display(fdf->mlx_ptr);
 		if (fdf->point)
+		{
 			free_points_tab(fdf->point);
+			fdf->point = NULL;
+		}
+		if (fdf->img_ptr)
+		{
+			mlx_destroy_image(fdf->mlx_ptr, fdf->img_ptr);
+			fdf->img_ptr = NULL;
+		}
+		if (fdf->win_ptr)
+		{
+			mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);
+			fdf->win_ptr = NULL;
+		}
+		if (fdf->mlx_ptr)
+		{
+			mlx_destroy_display(fdf->mlx_ptr);
+			free(fdf->mlx_ptr);
+			fdf->mlx_ptr = NULL;
+		}
 		free(fdf);
+		fdf = NULL;
 	}
 }
 

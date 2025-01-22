@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 19:21:10 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/22 11:01:36 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:00:39 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_point	**read_and_extract(char *file)
 	src = NULL;
 	src = allocate_point_memory(src, (n_columns * n_lines));
 	create_point_tab(src, file, n_columns, n_lines);
-	// print_point_tab(src);
 	return (src);
 }
 
@@ -75,8 +74,8 @@ void	fill_src(int fd, t_point **src, char *line, int n_line, int column_max)
 		n_column++;
 	}
 	free_str_tab(tab);
-	// if (n_column != column_max)
-		// free_close_fd_and_error(fd, src, "Invalid file");
+	if (n_column != column_max)
+		free_close_fd_and_error(fd, src, "Invalid file");
 }
 
 // Fill the coordinates of a point
