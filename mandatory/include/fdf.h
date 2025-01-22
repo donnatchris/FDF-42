@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/22 08:23:32 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/22 10:00:01 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,8 +172,8 @@ void	animation(t_fdf *fdf);
 void	slow_animation(t_fdf *fdf);
 void	fast_animation(t_fdf *fdf);
 void	initialize_colors(t_fdf *fdf);
-void	project_perspective_point(t_point *point, t_fdf *fdf);
 void	calculate_center(t_fdf *fdf);
+void	project_conic_point(t_point *point, t_fdf *fdf);
 
 
 // linux or MacOs functions

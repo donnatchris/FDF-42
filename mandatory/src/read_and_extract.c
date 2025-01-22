@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 19:21:10 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/16 13:18:54 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:01:36 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_point	**read_and_extract(char *file)
 {
-	ft_printf("read_and_extract\n");
 	t_point	**src;
 	int		n_columns;
 	int		n_lines;
@@ -26,14 +25,13 @@ t_point	**read_and_extract(char *file)
 	src = NULL;
 	src = allocate_point_memory(src, (n_columns * n_lines));
 	create_point_tab(src, file, n_columns, n_lines);
-	print_point_tab(src);
+	// print_point_tab(src);
 	return (src);
 }
 
 // Create a table of points from a file
 void	create_point_tab(t_point **point_tab, char *file, int column_max, int line_max)
 {
-	ft_printf("create_point_tab\n");
 	int		fd;
 	char	*line;
 	int		n_line;
@@ -57,7 +55,6 @@ void	create_point_tab(t_point **point_tab, char *file, int column_max, int line_
 // Fill a table of points with the values of a line
 void	fill_src(int fd, t_point **src, char *line, int n_line, int column_max)
 {
-	ft_printf("fill_src\n");
 	char	**tab;
 	int		n_column;
 	int 	index;
@@ -85,26 +82,20 @@ void	fill_src(int fd, t_point **src, char *line, int n_line, int column_max)
 // Fill the coordinates of a point
 void	fill_coordonates(t_point *point, int x, int y, char *str)
 {
-	ft_printf("fill_coordonates\n");
-	ft_printf("x vaut %d, y vaut %d, z vaut %s\n", x, y, str);
 	if (!point)
     {
         ft_printf("Point is NULL\n");
         return;
     }
 	point->x = x;
-	ft_printf("x = %d\n", x);
 	point->y = y;
-	ft_printf("y = %d\n", y);
 	point->z = ft_atoi(str);
-	ft_printf("z = %d\n", point->z);
 }
 
 
 // Allocate memory for a table of points
 t_point	**allocate_point_memory(t_point **src, int size)
 {
-	ft_printf("allocate_point_memory\n");
 	int		i;
 	
 	src = (t_point **)malloc(sizeof(t_point *) * (size + 1));

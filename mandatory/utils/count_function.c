@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:17:03 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/15 08:44:27 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:10:37 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 // Count the number of columns in the first line of a file
 int	count_columns(char *file)
 {
-	ft_printf("count_columns\n");
 	int		fd;
 	char	*line;
 	char 	**tab;
@@ -24,7 +23,7 @@ int	count_columns(char *file)
 	n_columns = 0;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		error("Error opening file");
+		close_fd_and_error(fd, "Error opening file");
 	line = get_next_line(fd);
 	if (!line)
 		close_fd_and_error(fd, "Error reading file");
@@ -45,16 +44,21 @@ int	count_columns(char *file)
 // Count the number of lines in a file
 int	count_lines(char *file)
 {
-	ft_printf("count_lines\n");
 	int		fd;
 	int		n_lines;
+	char	*line;
 
 	n_lines = 0;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		error("Error opening file");
-	while (get_next_line(fd))
+		close_fd_and_error(fd, "Error opening file");
+	line = get_next_line(fd);
+	while (line)
+	{
 		n_lines++;
+		free(line);
+		line = get_next_line(fd);
+	}
 	close(fd);
 	return (n_lines);
 }
@@ -62,7 +66,6 @@ int	count_lines(char *file)
 // Function to find the maximum x value among the points
 int	find_x_max(t_fdf *fdf)
 {
-	ft_printf("find_x_max\n");
 	int i;
 	int x_max;
 
@@ -80,7 +83,6 @@ int	find_x_max(t_fdf *fdf)
 // Function to find the maximum y value among the points
 int	find_y_max(t_fdf *fdf)
 {
-	ft_printf("find_y_max\n");
 	int i;
 	int y_max;
 
@@ -98,7 +100,6 @@ int	find_y_max(t_fdf *fdf)
 // Function to find the maximum z value among the points
 int	find_z_max(t_fdf *fdf)
 {
-	ft_printf("find_z_max\n");
 	int i;
 	int z_max;
 

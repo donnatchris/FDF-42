@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/22 08:29:31 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:02:25 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ t_fdf	*malloc_fdf(void)
 
 void	init_fdf(t_fdf *fdf, t_point **point)
 {
-	ft_printf("init_fdf\n");
 	fdf->mlx_ptr = mlx_init();
 	if (!fdf->mlx_ptr)
 		free_and_exit(fdf);
@@ -64,6 +63,8 @@ void	init_values(t_fdf *fdf)
     fdf->depth = 0.1;
 	fdf->Ox = 0.7854;
 	fdf->Oy = 0.6155;
+	// fdf->Ox = 0.6155;
+	// fdf->Oy = 0.7854;
 	fdf->back_color = BLACK;
 	fdf->zero_color = WHITE;
 	fdf->up_color = DARK_GREEN;

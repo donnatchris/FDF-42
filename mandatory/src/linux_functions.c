@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:31:09 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/22 08:51:06 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:20:14 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void	animation(t_fdf *fdf)
 	{
 		i = 0;
 		j = 0;
+		initialize_colors(fdf);
 		return ;
 	}
 	if (j < 4)
