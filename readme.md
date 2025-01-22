@@ -52,6 +52,7 @@ execute the program (you must pass a file containing coordonates)
 - readme.md for quick explanation and main commands of the project
 
 ## DOCUMENTATION:
+
 ### errno
 errno is a global variable defined in <errno.h> that stores an error code set by system calls or library functions when they fail.
 Each error code corresponds to a specific failure reason, such as ENOENT for "No such file or directory" or EACCES for "Permission denied."
@@ -103,6 +104,8 @@ ENOMEM	(12)	Out of memory
 EACCES	(13)	Permission denied
 
 ENOTDIR	(20)	Not a directory
+
+---
 
 ### The math.h library
 The math.h library in C provides a wide range of mathematical functions that are essential for performing advanced calculations.
@@ -233,3 +236,194 @@ The standard formulas for transforming 3D coordinates into 2D in a perspective v
 Factor (factor): Both isometric and perspective projections allow dynamic factoring by adjusting the factor, with isometric affecting object size directly, and perspective affecting both size and the appearance of depth.
 
 originX and originY (Translation): These adjust the position of the entire scene on the 2D screen, without altering the geometry of the scene itself, in both isometric and perspective projections. However, in perspective, changes in translation may also affect how the scene is perceived due to the depth-based effects.
+
+
+
+---
+
+Projection de 3D vers 2D
+- x, y et z sont les coordonnées d'origine (z est l'altitude)
+- x_mean, y_mean et z_mean sont les valeurs moyennes pour l'ensemble des coordonnées x, y et z des points de la carte
+	(on obtient par exemple x_mean en faisant la somme des coordonnées x de chaque point puis en divisant le résultat par le nombre de points)
+- Ox,Oy,Oz : Angles de rotation autour des axes (exprimés en radians)
+- x_rot, y_rot, z_rot sont les cordonnées transformées une fois appliquées les rotations sur les axes x, y et z
+- x_proj et y_proj sont les coordonnées projetées sur le plan en 2D
+- distance : Distance de la "caméra" (utilisé uniquement pour la vue en perspective)
+- zoom : variable qui permet de zoomer et dezoomer
+
+// Etape préliminaire: Centrer les coordonnées (calcul à faire une seule fois)
+x = x - x_mean
+y = y - y_mean
+z = z - z_mean
+
+// Step 1: Rotation autour de l'axe X
+x_rot = x
+y_rot = y * cos(Ox) - z * sin(Ox)
+z_rot = y * sin(Ox) + z * cos(Ox)
+
+// Step 2: Rotation autour de l'axe Y
+x_temp = x_rot
+x_rot = x_temp * cos(Oy) + z_rot * sin(Oy)
+z_rot = -x_temp * sin(Oy) + z_rot * cos(Oy)
+
+// Step 3: Rotation autour de l'axe Z
+x_temp = x_rot
+y_temp = y_rot
+x_rot = x_temp * cos(Oz) - y_temp * sin(Oz)
+y_rot = x_temp * sin(Oz) + y_temp * cos(Oz)
+
+// Step 4: Projection 3D vers 2D
+if ProjectionType == "isometric":
+x_proj = 0.866 * x_rot - 0.866 * y_rot
+y_proj = 0.5 * x_rot + 0.5 * y_rot - z_rot
+
+else if ProjectionType == "perspective":
+factor = Distance / (Distance + z_rot)
+x_proj = x_rot * factor
+y_proj = y_rot * factor
+
+// Step 5: Application du zoom
+x_out = x_proj * Zoom
+y_out = y_proj * Zoom
+
+// Step 6: Après zoom, centrer par rapport à l’écran
+x_out = x_out + Width / 2
+y_out = y_out + Height / 2
+
+return (x_out, y_out)
+
+
+
+Dans une projection isométrique, les axes 3D sont inclinés de manière à ce que les angles entre les axes X, Y, et Z soient égaux (120°), créant une vue sans distorsion de profondeur. Cela signifie que chaque axe est vu sous un angle de 30° par rapport au plan horizontal. Les valeurs 0.866 et 0.5 proviennent des fonctions trigonométriques associées à cet angle. Plus précisément, 0.866 est une approximation de cos(30°), et 0.5 est sin(30°). Ces coefficients permettent de projeter les coordonnées 3D (x, y, z) sur un plan 2D tout en conservant des proportions uniformes pour les axes inclinés, ce qui donne l’illusion de la profondeur sans perspective.
+
+Dans une projection perspective, la distance simule l’effet de profondeur en ajustant la taille des objets en fonction de leur éloignement de la caméra. Cet effet est obtenu grâce à un facteur de réduction : factor = Distance / (Distance + z_rot). Plus un objet est éloigné (z_rot grand), plus ce facteur est petit, et donc plus ses coordonnées projetées (x_proj, y_proj) sont réduites. Cela crée l’impression visuelle que les objets proches de l’observateur sont plus grands et ceux éloignés sont plus petits, reproduisant ainsi la manière dont l’œil humain perçoit la profondeur dans le monde réel. La variable Distance contrôle directement cet effet, où une grande valeur diminue la distorsion perspective (rendant la vue proche de l’isométrique) et une petite valeur l’amplifie.
+
+
+
+
+
+
+
+
+Projection de 3D vers 2D
+x, y et z sont les coordonnées d'origine (z est l'altitude). Comme on veut projeter de la 3D sur un écran 2D, l'opération va consister à calculer des coordonnées x_proj et y_proj pour donner un effet 3D
+
+Etape préliminaire: Centrer les coordonnées (calcul à faire une seule fois)
+Afin de centrer les coordonnées, on modifie les valeurs x, y et z de chaque point en leur soustrayant les valeurs moyennes x_mean, y_mean et z_mean
+On calcule ces moyennes très simplement. Par exemple pour x_mean, on additionne les valeurs x de chaque point de la carte pouis on divise cette somme par le nombre de points.
+Ce calcul doit être réalisé une seule fois avant la première projection.
+x = x - x_mean
+y = y - y_mean
+z = z - z_mean
+
+Projection isometrique de base
+Voici la formule à appliquer pour projeter des coordonnées 3D sur un plan 2D en vu isométrique (sans rotation, sans zoom),
+où x_proj et y_proj sont les coordonnées obtenues après application de la projection en 2D (il n'y a donc pas de valeur z_proj)
+x_proj = 0.866 * x - 0.866 * y
+y_proj = 0.5 * x + 0.5 * y - z
+Dans une projection isométrique, les axes 3D sont inclinés de manière à ce que les angles entre les axes X, Y, et Z soient égaux (120°), créant une vue sans distorsion de profondeur. Cela signifie que chaque axe est vu sous un angle de 30° par rapport au plan horizontal. Les valeurs 0.866 et 0.5 proviennent des fonctions trigonométriques associées à cet angle. Plus précisément, 0.866 est une approximation de cos(30°), et 0.5 est sin(30°). Ces coefficients permettent de projeter les coordonnées 3D (x, y, z) sur un plan 2D tout en conservant des proportions uniformes pour les axes inclinés, ce qui donne l’illusion de la profondeur sans perspective.
+
+Ajoutons la possibilité d'effectuer des rotations
+Afin d'être capable de faire des rotations, avant de faire la projection 3D vers 2D, on calcule des valeurs intermédiaires pour x, y et z (appelées ici x_rot, y_rot et z_rot) après avoir appliqué les formules pour prendre en commte les rotations. Ces rotations sont calculées à partir des angles 0x, Oy et Oz exprimés en radians. Pour produire des rotations, il suffit donc de faire varier les valeurs Ox, Oy ou Oz.
+// Step 1: Rotation autour de l'axe X
+x_rot = x
+y_rot = y * cos(Ox) - z * sin(Ox)
+z_rot = y * sin(Ox) + z * cos(Ox)
+// Step 2: Rotation autour de l'axe Y
+x_temp = x_rot
+x_rot = x_temp * cos(Oy) + z_rot * sin(Oy)
+z_rot = -x_temp * sin(Oy) + z_rot * cos(Oy)
+// Step 3: Rotation autour de l'axe Z
+x_temp = x_rot
+y_temp = y_rot
+x_rot = x_temp * cos(Oz) - y_temp * sin(Oz)
+y_rot = x_temp * sin(Oz) + y_temp * cos(Oz)
+// Step 4: Projection 3D vers 2D
+x_proj = 0.866 * x_rot - 0.866 * y_rot
+y_proj = 0.5 * x_rot + 0.5 * y_rot - z_rot
+
+Ajoutons la possibilité de zoomer et dezoomer
+On suit les mêmes étapes et on multiplie juste les coordonnées projetées par la valeur du zoom pour obtenir les coordonnées finales x_out et y_out.
+Il suffit de mofifier la valeur de la variable zoom pour zommer ou dezoomer.
+zoom peut être une valeur inférieure à 1 pour un effet de dézoom, et que la valeur de 1 correspond à l'absence de zoom.
+La valeur de zoom doit être maintenue strictement supérieure à zéro afin d'éviter un étrange effet d'inversion.
+// Step 1: Rotation autour de l'axe X
+x_rot = x
+y_rot = y * cos(Ox) - z * sin(Ox)
+z_rot = y * sin(Ox) + z * cos(Ox)
+// Step 2: Rotation autour de l'axe Y
+x_temp = x_rot
+x_rot = x_temp * cos(Oy) + z_rot * sin(Oy)
+z_rot = -x_temp * sin(Oy) + z_rot * cos(Oy)
+// Step 3: Rotation autour de l'axe Z
+x_temp = x_rot
+y_temp = y_rot
+x_rot = x_temp * cos(Oz) - y_temp * sin(Oz)
+y_rot = x_temp * sin(Oz) + y_temp * cos(Oz)
+// Step 4: Projection 3D vers 2D
+if ProjectionType == "isometric":
+x_proj = 0.866 * x_rot - 0.866 * y_rot
+y_proj = 0.5 * x_rot + 0.5 * y_rot - z_rot
+// Step 5: Application du zoom
+x_out = x_proj * Zoom
+y_out = y_proj * Zoom
+
+Ajoutons le centrage par rapport à l'écran
+Pour centrer la projection sur l'écran, il suffit d'ajouter à x_out la largeur de l'écran (width) divisée par 2 et à y_out la hauteur (height) de l'écran divisée par 2
+// Step 1: Rotation autour de l'axe X
+x_rot = x
+y_rot = y * cos(Ox) - z * sin(Ox)
+z_rot = y * sin(Ox) + z * cos(Ox)
+// Step 2: Rotation autour de l'axe Y
+x_temp = x_rot
+x_rot = x_temp * cos(Oy) + z_rot * sin(Oy)
+z_rot = -x_temp * sin(Oy) + z_rot * cos(Oy)
+// Step 3: Rotation autour de l'axe Z
+x_temp = x_rot
+y_temp = y_rot
+x_rot = x_temp * cos(Oz) - y_temp * sin(Oz)
+y_rot = x_temp * sin(Oz) + y_temp * cos(Oz)
+// Step 4: Projection 3D vers 2D
+x_proj = 0.866 * x_rot - 0.866 * y_rot
+y_proj = 0.5 * x_rot + 0.5 * y_rot - z_rot
+// Step 5: Application du zoom
+x_out = x_proj * Zoom
+y_out = y_proj * Zoom
+// Step 6: Après zoom, centrer par rapport à l’écran
+x_out = x_out + Width / 2
+y_out = y_out + Height / 2
+
+Projection en perspective
+Dans une projection perspective, la distance simule l’effet de profondeur en ajustant la taille des objets en fonction de leur éloignement de la caméra. Cet effet est obtenu grâce à un facteur de réduction : factor = Distance / (Distance + z_rot). Plus un objet est éloigné (z_rot grand), plus ce facteur est petit, et donc plus ses coordonnées projetées (x_proj, y_proj) sont réduites. Cela crée l’impression visuelle que les objets proches de l’observateur sont plus grands et ceux éloignés sont plus petits, reproduisant ainsi la manière dont l’œil humain perçoit la profondeur dans le monde réel. La variable Distance contrôle directement cet effet, où une grande valeur diminue la distorsion perspective (rendant la vue proche de l’isométrique) et une petite valeur l’amplifie.
+Pour une perspective, on suit les mêmes étapes, mais on va faire intervenir deux nouvelles valeurs: la distance et le factor.
+distance : C'est la distance entre la caméra et l'écran de projection (le plan 2D). Appelons cette distance Distance. C'est cette valeur qu'on peut faire varier pour modifier l'effet de profondeur.
+factor : le "factor" dans la projection perspective est une valeur qui est utilisée pour simuler l'effet de profondeur, c'est-à-dire l'apparition d'un objet plus petit à mesure qu'il s'éloigne de la caméra. En d'autres termes, cela correspond à un facteur de réduction qui rend les objets plus proches plus grands et les objets plus éloignés plus petits.
+Dans une projection perspective, l'objet est projeté sur le plan de projection en fonction de sa distance à la caméra. Plus un objet est loin, plus il sera réduit dans la projection. Le "factor" représente cette réduction. Il est calculé à partie de la valeur de distance.
+Au final la formule complète pour une perspective avec rotations, zoom, variation de la profondeur et centrage par rapport à l'écran.
+// Step 1: Rotation autour de l'axe X
+x_rot = x
+y_rot = y * cos(Ox) - z * sin(Ox)
+z_rot = y * sin(Ox) + z * cos(Ox)
+// Step 2: Rotation autour de l'axe Y
+x_temp = x_rot
+x_rot = x_temp * cos(Oy) + z_rot * sin(Oy)
+z_rot = -x_temp * sin(Oy) + z_rot * cos(Oy)
+// Step 3: Rotation autour de l'axe Z
+x_temp = x_rot
+y_temp = y_rot
+x_rot = x_temp * cos(Oz) - y_temp * sin(Oz)
+y_rot = x_temp * sin(Oz) + y_temp * cos(Oz)
+// Step 4: Projection 3D vers 2D
+factor = Distance / (Distance + z_rot)
+x_proj = x_rot * factor
+y_proj = y_rot * factor
+// Step 5: Application du zoom
+x_out = x_proj * Zoom
+y_out = y_proj * Zoom
+// Step 6: Après zoom, centrer par rapport à l’écran
+x_out = x_out + Width / 2
+y_out = y_out + Height / 2
+
+
+
+
