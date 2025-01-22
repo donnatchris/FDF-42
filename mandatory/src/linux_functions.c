@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:31:09 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/20 16:03:25 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/22 08:51:06 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,13 @@ int	deal_key(int key, t_fdf *fdf)
 	if (key == 32)
 	{
 		if (fdf->anim_on)
+		{
 			fdf->anim_on = 0;
+			initialize_colors(fdf);
+		}
 		else if (!fdf->anim_on)
 		{
 			fdf->anim_on = 1;
-			initialize_colors(fdf);
 		}
 	}
 	clear_image(fdf);

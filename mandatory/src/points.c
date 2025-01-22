@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:43:07 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/18 17:26:44 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:06:22 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,54 +23,47 @@ void    project_isometric_map(t_fdf *fdf)
     while(fdf->point[i])
     {
         project_isometric_point(fdf->point[i], fdf);
-        // printf("Point %d : x_out = %.2f, y_out = %.2f\n", i, fdf->point[i]->x_out, fdf->point[i]->y_out);
+        // project_perspective_point(fdf->point[i], fdf);
         i++;
     }
 
 }
 
-// Function to project the points from 3D to 2D by isometric view
-// void project_isometric_point(t_point *point, t_fdf *fdf)
-// {
-//     // ft_printf("project_isometric_point\n");
-//     // const double	angle = M_PI / 6;
-//     // const double	cos_angle = cos(angle);
-//     // const double	sin_angle = sin(angle);
-//     float   x;
-//     float	y;
-//     float	z;
-
-//     fdf->altitude_max = fdf->z_max + fdf->depth;
-//     x = point->x;
-//     y = point->y;
-//     if (point->z != 0)
-//         z = (point->z * fdf->depth);
-//     else
-//         z = point->z;
-//     point->x_out = (fdf->originX) + fdf->factor * ((x - y) * COS_ANGLE);
-//     point->y_out = (fdf->originY) + fdf->factor * ((x + y) * SIN_ANGLE - z);
-
-// }
-
-
-// Function to project the points from 3D to 2D by isometric view
-void project_isometric_point(t_point *point, t_fdf *fdf)
+// Function to project the points from 3D to 2D
+// using a perspective projection
+void	project_perspective_point(t_point *point, t_fdf *fdf)
 {
-    // ft_printf("project_isometric_point\n");
-    // const double	angle = M_PI / 6;
-    // const double	cos_angle = cos(angle);
-    // const double	sin_angle = sin(angle);
+	float	x;
+    float	y;
+    float	z;
+	float	x_rot;
+	float	y_rot;
+	float	z_rot;
+
+	fdf->distance = 100;
+	x = point->x;
+    y = point->y;
+    z = (point->z * fdf->depth);
+	y_rot = y * cos(fdf->Ox) - z * sin(fdf->Ox);
+    z_rot = y * sin(fdf->Ox) + z * cos(fdf->Ox);
+    x_rot = x * cos(fdf->Oy) + z_rot * sin(fdf->Oy);
+    z_rot = -x * sin(fdf->Oy) + z_rot * cos(fdf->Oy);
+    point->x_out = fdf->originX + fdf->factor * (x_rot * fdf->distance) / (y_rot + fdf->distance);
+    point->y_out = fdf->originY + fdf->factor * (z_rot * fdf->distance) / (y_rot + fdf->distance);
+}
+
+
+// Function to project the points from 3D to 2D
+// using a isometric projection
+void	project_isometric_point(t_point *point, t_fdf *fdf)
+{
     float   x;
     float	y;
     float	z;
 
-    fdf->altitude_max = fdf->z_max + fdf->depth;
-    x = point->x;
-    y = point->y;
-    if (point->z != 0)
-        z = (point->z * fdf->depth);
-    else
-        z = point->z;
+    x = point->x - fdf->x_mid;
+    y = point->y - fdf->y_mid;
+    z = point->z * fdf->depth;
     point->x_out = fdf->originX + fdf->factor * (x * cos(fdf->Ox) - y * cos(fdf->Oy));
     point->y_out = fdf->originY + fdf->factor * (x * sin(fdf->Ox) + y * sin(fdf->Oy) - z);
 }

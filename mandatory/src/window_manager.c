@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/18 17:30:11 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/22 08:29:31 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	init_values(t_fdf *fdf)
 	fdf->x_max = find_x_max(fdf);
 	fdf->y_max = find_y_max(fdf);
 	fdf->z_max = find_z_max(fdf);
+	calculate_center(fdf);
     fdf->factor = 30;
     fdf->depth = 0.1;
 	fdf->Ox = 0.7854;
@@ -69,6 +70,7 @@ void	init_values(t_fdf *fdf)
 	fdf->low_color = PURPLE;
 }
 
+// Function to print the menu on screen
 void	print_menu(t_fdf *fdf)
 {
 	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 30, LIGHT_GREEN, "ZOOM: ........ + / -");
@@ -79,3 +81,27 @@ void	print_menu(t_fdf *fdf)
 	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 180, LIGHT_GREEN, "BACK TO ISO: . i");
 	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 210, LIGHT_GREEN, "EXIT: ........ esc");
 }
+
+// Function to find central points
+void	calculate_center(t_fdf *fdf)
+{
+	int	n_points;
+	int	i;
+
+    n_points = fdf->x_max * fdf->y_max;
+	fdf->x_mid = 0;
+	fdf->y_mid = 0;
+	fdf->z_mid = 0;
+	i = 0;
+	while (i < n_points)
+	{
+		fdf->x_mid += fdf->point[i]->x;
+		fdf->y_mid += fdf->point[i]->y;
+		fdf->z_mid += fdf->point[i]->z;
+		i++;
+	}
+	fdf->x_mid = fdf->x_mid / n_points;
+	fdf->y_mid = fdf->y_mid / n_points;
+	fdf->z_mid = fdf->z_mid / n_points;
+}
+	

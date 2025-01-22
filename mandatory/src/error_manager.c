@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:42:47 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/14 08:56:00 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:06:43 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,24 @@ void	free_close_fd_and_error(int fd, t_point **tab, char *message)
 // Check if the string is a valid z coordinate (must be an integer)
 int		input_is_valid(char *str)
 {
-	ft_printf("input_is_valid\n");
-	int		i;
-	long	nbr;
+	(void) str;
+// 	ft_printf("input_is_valid\n");
+// 	int		i;
+// 	long	nbr;
 
-	i = 0;
-	if (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]) && (str[i] != '\n'))
-			return (0);
-		i++;
-	}
-	nbr = ft_atoi_long(str);
-	if (nbr > 2147483647 || nbr < -2147483648)
-		return (0);
-	return (1);
+// 	i = 0;
+// 	if (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+// 		i++;
+// 	if (str[i] == '-' || str[i] == '+')
+// 		i++;
+// 	while (str[i])
+// 	{
+// 		if (!ft_isdigit(str[i]) && (str[i] != '\n'))
+// 			return (0);
+// 		i++;
+// 	}
+// 	nbr = ft_atoi_long(str);
+// 	if (nbr > 2147483647 || nbr < -2147483648)
+// 		return (0);
+ 	return (1);
 }

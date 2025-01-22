@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/20 15:49:58 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/22 08:23:32 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,15 @@ typedef struct s_fdf
 	float		x_max;
 	float		y_max;
 	float		z_max;
+	float		x_mid;
+	float		y_mid;
+	float		z_mid;
 	int			altitude_max;
 	float		Ox;
 	float		Oy;
 	int			factor;
 	float		depth;
+	float		distance;
 	int			back_color;
 	int			zero_color;
 	int			up_color;
@@ -168,6 +172,8 @@ void	animation(t_fdf *fdf);
 void	slow_animation(t_fdf *fdf);
 void	fast_animation(t_fdf *fdf);
 void	initialize_colors(t_fdf *fdf);
+void	project_perspective_point(t_point *point, t_fdf *fdf);
+void	calculate_center(t_fdf *fdf);
 
 
 // linux or MacOs functions
