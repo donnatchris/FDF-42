@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/22 10:00:01 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/22 23:14:42 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,18 @@ typedef struct s_color
     int b;
 }		t_color;
 
+typedef struct	s_rotation
+{
+	float	x;
+	float	y;
+	float	z;
+	float	temp_x;
+	float	temp_y;
+	float	temp_z;
+	float	x_proj;
+	float	y_proj;
+}				t_rotation;
+
 typedef struct s_fdf
 {
 	void		*mlx_ptr;
@@ -93,6 +105,7 @@ typedef struct s_fdf
 	int			altitude_max;
 	float		Ox;
 	float		Oy;
+	float		Oz;
 	int			factor;
 	float		depth;
 	float		distance;
@@ -173,7 +186,7 @@ void	slow_animation(t_fdf *fdf);
 void	fast_animation(t_fdf *fdf);
 void	initialize_colors(t_fdf *fdf);
 void	calculate_center(t_fdf *fdf);
-void	project_conic_point(t_point *point, t_fdf *fdf);
+void	center(t_fdf *fdf);
 
 
 // linux or MacOs functions

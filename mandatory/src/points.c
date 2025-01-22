@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   points.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christophedonnat <christophedonnat@stud    +#+  +:+       +#+        */
+/*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:43:07 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/22 17:56:53 by christophed      ###   ########.fr       */
+/*   Updated: 2025/01/23 00:10:01 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,115 +38,137 @@ void    project_isometric_map(t_fdf *fdf)
 //     float	y;
 //     float	z;
 
-//     x = point->x - fdf->x_mid;
-//     y = point->y - fdf->y_mid;
-//     z = point->z * fdf->depth;
+//     // x = point->x - fdf->x_mid;
+//     // y = point->y - fdf->y_mid;
+//     // z = point->z * fdf->depth;
 //     point->x_out = fdf->originX + fdf->factor * (x * cos(fdf->Ox) - y * cos(fdf->Oy));
 //     point->y_out = fdf->originY + fdf->factor * (x * sin(fdf->Ox) + y * sin(fdf->Oy) - z);
 // }
 
-// GPT ISO - rotation ok but not view
-// Function to project the points from 3D to 2D
-// using an isometric projection with rotation
-void project_isometric_point(t_point *point, t_fdf *fdf)
-{
-    float x, y, z;
-    float x_rot, y_rot, z_rot;
 
-    // Appliquer le décalage vers le centre et la profondeur
-    x = point->x - fdf->x_mid;
-    y = point->y - fdf->y_mid;
-    z = point->z * fdf->depth;
-
-    // Appliquer les rotations autour des axes X et Y
-    // Rotation autour de l'axe X (Ox)
-    x_rot = x;
-    y_rot = y * cos(fdf->Ox) - z * sin(fdf->Ox);
-    z_rot = y * sin(fdf->Ox) + z * cos(fdf->Ox);
-
-    // Rotation autour de l'axe Y (Oy)
-    x = x_rot * cos(fdf->Oy) + z_rot * sin(fdf->Oy);
-    y = y_rot;
-    z = -x_rot * sin(fdf->Oy) + z_rot * cos(fdf->Oy);
-
-    // Projection isométrique sur les axes X et Y
-    point->x_out = fdf->originX + fdf->factor * (x * cos(0.7854) - y * cos(0.6155));
-    point->y_out = fdf->originY + fdf->factor * (x * sin(0.7854) + y * sin(0.6155) - z);
-    // point->x_out = fdf->originX + fdf->factor * (x  - y);
-    // point->y_out = fdf->originY + fdf->factor * (x  + y - z);
-}
-
-// typedef struct	s_projection
+// void project_isometric_point(t_point *point, t_fdf *fdf)
 // {
-// 	float	x_rot;
-// 	float	y_rot;
-// 	float	z_rot;
-// 	float	temp_x_rot;
-// }				t_projection;
-
-// // TEST ISO
-// void	project_isometric_point(t_point *point, t_fdf *fdf)
-// {
-// 	t_projection	proj;
-
-// 	// Appliquer le décalage vers le centre
-//     point->x = point->x - fdf->x_mid;
-//     point->y = point->y - fdf->y_mid;
-//     point->z = point->z * fdf->depth;
-
-// 	// Rotation selon X
-// 	proj.x_rot = point->x;
-// 	proj.y_rot = point->y * cos(fdf->Ox) - point->z * sin(fdf->Ox);
-// 	proj.z_rot = point->y * sin(fdf->Ox) + point->z * cos(fdf->Ox);
-
-// 	// Rotation selon Y
-// 	proj.temp_x_rot = proj.x_rot; // Sauvegarder pour éviter un écrasement immédiat
-// 	proj.x_rot = proj.temp_x_rot * cos(fdf->Oy) + proj.z_rot * sin(fdf->Oy);
-// 	proj.z_rot = -proj.temp_x_rot * sin(fdf->Oy) + proj.z_rot * cos(fdf->Oy);
-
-// 	// Projection isométrique
-// 	point->x_out = 0.866 * proj.x_rot - 0.866 * proj.y_rot;
-// 	point->y_out = 0.5 * proj.x_rot + 0.5 * proj.y_rot - proj.z_rot;
-
+//     point->x_out = fdf->originX + fdf->factor * (point->x - point->y);
+//     point->y_out = fdf->originY + fdf->factor * ((point->x + point->y) / 2 - point->z);
 // }
 
-typedef struct	s_rotation
+
+
+// LAST VERSION
+void    project_isometric_point(t_point *point, t_fdf *fdf)
 {
-	float	x;
-	float	y;
-	float	z;
-	float	temp_x;
-}				t_rotation;
+    t_rotation	rot;
 
-// TEST ISO
-void	project_isometric_point(t_point *point, t_fdf *fdf)
-{
-	t_rotation	rot;
-
-	// Appliquer le décalage vers le centre
-	// ATTENTION A APPLIQUER UNE FOIS DANS L INITIALISATION ET PLUS PAR LA SUITE
-    point->x = point->x - fdf->x_mid;
-    point->y = point->y - fdf->y_mid;
-
-	// Appliquer la profondeur
-    point->z = point->z * fdf->depth;
-
+    // Appliquer la profondeur
+    rot.temp_z = point->z * fdf->depth;
+    // Step 1: Rotation autour de l'axe X
 	// Rotation selon X
 	rot.x = point->x;
-	rot.y = point->y * cos(fdf->Ox) - point->z * sin(fdf->Ox);
-	rot.z = point->y * sin(fdf->Ox) + point->z * cos(fdf->Ox);
-
-	// Rotation selon Y
+	rot.y = point->y * cos(fdf->Ox) - rot.temp_z * sin(fdf->Ox);
+	rot.z = point->y * sin(fdf->Ox) + rot.temp_z * cos(fdf->Ox);
+    // Step 2: Rotation autour de l'axe Y
 	rot.temp_x = rot.x;
 	rot.x = rot.temp_x * cos(fdf->Oy) + rot.z * sin(fdf->Oy);
 	rot.z = -rot.temp_x * sin(fdf->Oy) + rot.z * cos(fdf->Oy);
-
-	// Projection isométrique
-	point->x_out = fdf->originX + fdf->factor * (0.866 * rot.x - 0.866 * rot.y);
-	point->y_out = fdf->originY + fdf->factor * (0.5 * rot.x + 0.5 * rot.y - rot.z);
-
-	// Projection oblique
-	point->x_out = fdf->originX + fdf->factor * (rot.x + 0.5 * rot.z);
-	point->y_out = fdf->originY + fdf->factor * (rot.y + 0.5 * rot.z);
+    // Step 3: Rotation autour de l'axe Z
+    rot.temp_x = rot.x;
+    rot.temp_y = rot.y;
+    rot.x = rot.temp_x * cos(fdf->Oz) - rot.temp_y* sin(fdf->Oz);
+    rot.y = rot.temp_x* sin(fdf->Oz) + rot.temp_y * cos(fdf->Oz);
+    // Step 4: Projection 3D vers 2D
+    rot.x_proj = 0.866 * rot.x - 0.866 * rot.y;
+    rot.y_proj = 0.5 * rot.x + 0.5 * rot.y - rot.z;
+    // Step 5: Application du zoom
+    point->x_out = rot.x_proj * fdf->factor;
+    point->y_out = rot.y_proj * fdf->factor;
+    // Step 6: Après zoom, centrer par rapport à l’écran
+    point->x_out = point->x_out + fdf->originX;
+    point->y_out = point->y_out + fdf->originY;
 }
 
+// // Fonction pour multiplier deux matrices 4x4
+// void matrix_multiply(double result[4][4], double mat1[4][4], double mat2[4][4])
+// {
+//     int i, j, k;
+//     for (i = 0; i < 4; i++)
+//     {
+//         for (j = 0; j < 4; j++)
+//         {
+//             result[i][j] = 0;
+//             for (k = 0; k < 4; k++)
+//             {
+//                 result[i][j] += mat1[i][k] * mat2[k][j];
+//             }
+//         }
+//     }
+// }
+
+// // Fonction pour appliquer une matrice de rotation à un point
+// void apply_matrix_to_point(double point[4], double matrix[4][4])
+// {
+//     double temp[4];
+//     for (int i = 0; i < 4; i++)
+//     {
+//         temp[i] = 0;
+//         for (int j = 0; j < 4; j++)
+//         {
+//             temp[i] += matrix[i][j] * point[j];
+//         }
+//     }
+//     for (int i = 0; i < 4; i++)
+//     {
+//         point[i] = temp[i];
+//     }
+// }
+
+// // Fonction de projection iso avec rotation par matrices
+// void project_isometric_point(t_point *point, t_fdf *fdf)
+// {
+//     // Matrices de rotation autour des axes X, Y et Z
+//     double Rx[4][4] = {
+//         {1, 0, 0, 0},
+//         {0, cos(fdf->Ox), -sin(fdf->Ox), 0},
+//         {0, sin(fdf->Ox), cos(fdf->Ox), 0},
+//         {0, 0, 0, 1}
+//     };
+
+//     double Ry[4][4] = {
+//         {cos(fdf->Oy), 0, sin(fdf->Oy), 0},
+//         {0, 1, 0, 0},
+//         {-sin(fdf->Oy), 0, cos(fdf->Oy), 0},
+//         {0, 0, 0, 1}
+//     };
+
+//     double Rz[4][4] = {
+//         {cos(fdf->Oz), -sin(fdf->Oz), 0, 0},
+//         {sin(fdf->Oz), cos(fdf->Oz), 0, 0},
+//         {0, 0, 1, 0},
+//         {0, 0, 0, 1}
+//     };
+
+//     // Matrice résultante (combinée)
+//     double rotation_matrix[4][4];
+
+//     // Multiplier les matrices de rotation: Rz * Ry * Rx
+//     double temp_matrix[4][4];
+//     matrix_multiply(temp_matrix, Rz, Ry);
+//     matrix_multiply(rotation_matrix, temp_matrix, Rx);
+
+//     // Représenter le point comme un vecteur colonne [x, y, z, 1]
+//     double point_vec[4] = {point->x, point->y, point->z, 1};
+
+//     // Appliquer la matrice de rotation au point
+//     apply_matrix_to_point(point_vec, rotation_matrix);
+
+//     // Calculer la projection 2D après la rotation
+//     double x_proj = 0.866 * point_vec[0] - 0.866 * point_vec[1];
+//     double y_proj = 0.5 * point_vec[0] + 0.5 * point_vec[1] - point_vec[2];
+
+//     // Application du zoom
+//     point->x_out = x_proj * fdf->factor;
+//     point->y_out = y_proj * fdf->factor;
+
+//     // Après zoom, centrer par rapport à l'écran
+//     point->x_out += fdf->originX;
+//     point->y_out += fdf->originY;
+// }

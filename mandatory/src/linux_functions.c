@@ -6,11 +6,12 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:31:09 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/22 09:20:14 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 00:20:11 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+# include <stdio.h>
 
 #ifdef __linux__
 
@@ -58,8 +59,9 @@ int	deal_key(int key, t_fdf *fdf)
 		fdf->Oy -= 0.1;
 	if (key == 105)
 		{
-			fdf->Ox = 0.7854;
-			fdf->Oy = 0.6155;
+			fdf->Ox = -0.0764;
+			fdf->Oy = 0.2854;
+			fdf->Oz = 0;
 		}
 	if (key == 32)
 	{
@@ -73,6 +75,7 @@ int	deal_key(int key, t_fdf *fdf)
 			fdf->anim_on = 1;
 		}
 	}
+	printf("Ox = %f, Oy = %f, Oz = %f\n", fdf->Ox, fdf->Oy, fdf->Oz);
 	clear_image(fdf);
 	return (0);
 }

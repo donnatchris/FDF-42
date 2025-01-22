@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/22 11:02:25 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 00:19:02 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,18 @@ void	init_values(t_fdf *fdf)
 	fdf->anim_on = 0;
 	fdf->win_width = 1800;
 	fdf->win_height = 1000;
-	fdf->originX = (fdf->win_width / 2) -100;
-	fdf->originY = (fdf->win_height / 2) -100;
+	fdf->originX = (fdf->win_width / 2);
+	fdf->originY = (fdf->win_height / 2);
 	fdf->x_max = find_x_max(fdf);
 	fdf->y_max = find_y_max(fdf);
 	fdf->z_max = find_z_max(fdf);
 	calculate_center(fdf);
+	center(fdf);
     fdf->factor = 30;
     fdf->depth = 0.1;
-	fdf->Ox = 0.7854;
-	fdf->Oy = 0.6155;
-	// fdf->Ox = 0.6155;
-	// fdf->Oy = 0.7854;
+	fdf->Ox = -0.0764;
+	fdf->Oy = 0.2854;
+	fdf->Oz = 0;
 	fdf->back_color = BLACK;
 	fdf->zero_color = WHITE;
 	fdf->up_color = DARK_GREEN;
@@ -105,4 +105,17 @@ void	calculate_center(t_fdf *fdf)
 	fdf->y_mid = fdf->y_mid / n_points;
 	fdf->z_mid = fdf->z_mid / n_points;
 }
-	
+
+// Apply central decalage
+void	center(t_fdf *fdf)
+{
+	int	i;
+
+	i = 0;
+	while (fdf->point[i])
+	{
+		fdf->point[i]->x = fdf->point[i]->x - fdf->x_mid;
+		fdf->point[i]->y = fdf->point[i]->y - fdf->y_mid;
+		i++;
+	}
+}
