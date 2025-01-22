@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:31:09 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 00:20:11 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 00:45:01 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int	deal_key(int key, t_fdf *fdf)
 	if (key == 65307)
 		free_and_exit(fdf);
 	if (key == 65451)
-		fdf->factor += 1;
+		fdf->zoom += 1;
 	if (key == 65453)
 	{
-		if (fdf->factor > 1)
-			fdf->factor -= 1;
+		if (fdf->zoom > 1)
+			fdf->zoom -= 1;
 	}
 	if (key == 65365)
 	{
@@ -76,6 +76,7 @@ int	deal_key(int key, t_fdf *fdf)
 		}
 	}
 	printf("Ox = %f, Oy = %f, Oz = %f\n", fdf->Ox, fdf->Oy, fdf->Oz);
+	printf("distance = %f\n", fdf->distance);
 	clear_image(fdf);
 	return (0);
 }

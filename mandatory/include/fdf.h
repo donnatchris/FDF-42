@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/22 23:14:42 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 00:24:15 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct s_fdf
 	float		Ox;
 	float		Oy;
 	float		Oz;
-	int			factor;
+	int			zoom;
 	float		depth;
 	float		distance;
 	int			back_color;
