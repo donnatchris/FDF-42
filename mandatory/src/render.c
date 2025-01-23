@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:43:07 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/23 15:21:06 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:48:38 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 int	render(t_fdf *fdf)
 {
     clear_image(fdf);
-	fdf->sinOx = sinf(fdf->Ox);
-	fdf->cosOx = cosf(fdf->Ox);
-	fdf->sinOy = sinf(fdf->Oy);
-	fdf->cosOy = cosf(fdf->Oy);
-	fdf->sinOz = sinf(fdf->Oz);
-	fdf->cosOz = cosf(fdf->Oz);
+	fdf->sinox = sinf(fdf->ox);
+	fdf->cosox = cosf(fdf->ox);
+	fdf->sinoy = sinf(fdf->oy);
+	fdf->cosoy = cosf(fdf->oy);
+	fdf->sinoz = sinf(fdf->oz);
+	fdf->cosoz = cosf(fdf->oz);
 	animation(fdf);
 	project_map(fdf);
 	draw_lines(fdf);

@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 09:37:37 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 10:46:59 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:48:38 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 void    initialize_perspective_view(t_fdf *fdf)
 {
     fdf->iso_on = 0;
-    fdf->Ox = -0.0764;
-    fdf->Oy = 0.6854;
-    fdf->Oz = 0;
+    fdf->ox = -0.0764;
+    fdf->oy = 0.6854;
+    fdf->oz = 0;
 }
 
 // Function to transform coordonates for a perspective view
@@ -29,20 +29,20 @@ void    project_perspective_point(t_point *point, t_fdf *fdf)
     
     rot.temp_z = point->z * - fdf->depth;
 	rot.x = point->x;
-	rot.y = point->y * fdf->cosOx - rot.temp_z * fdf->sinOx;
-	rot.z = point->y * fdf->sinOx + rot.temp_z * fdf->cosOx;
+	rot.y = point->y * fdf->cosox - rot.temp_z * fdf->sinox;
+	rot.z = point->y * fdf->sinox + rot.temp_z * fdf->cosox;
 	rot.temp_x = rot.x;
-	rot.x = rot.temp_x * fdf->cosOy + rot.z * fdf->sinOy;
-	rot.z = -rot.temp_x * fdf->sinOy + rot.z * fdf->cosOy;
+	rot.x = rot.temp_x * fdf->cosoy + rot.z * fdf->sinoy;
+	rot.z = -rot.temp_x * fdf->sinoy + rot.z * fdf->cosoy;
     rot.temp_x = rot.x;
     rot.temp_y = rot.y;
-    rot.x = rot.temp_x * fdf->cosOz - rot.temp_y* fdf->sinOz;
-    rot.y = rot.temp_x* fdf->sinOz + rot.temp_y * fdf->cosOz;
+    rot.x = rot.temp_x * fdf->cosoz - rot.temp_y* fdf->sinoz;
+    rot.y = rot.temp_x* fdf->sinoz + rot.temp_y * fdf->cosoz;
     factor = fdf->distance / (fdf->distance + rot.z);
     rot.x_proj = rot.x * factor;
     rot.y_proj = rot.y * factor;
     point->x_out = rot.x_proj * fdf->zoom;
     point->y_out = rot.y_proj * fdf->zoom;
-    point->x_out = point->x_out + fdf->originX;
-    point->y_out = point->y_out + fdf->originY;
+    point->x_out = point->x_out + fdf->originx;
+    point->y_out = point->y_out + fdf->originy;
 }

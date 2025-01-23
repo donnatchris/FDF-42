@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:37:41 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 15:28:00 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:53:42 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	animation(t_fdf *fdf)
 {
 	static int	i = 0;
 	static int	j = 0;
-	
+
 	if (!fdf->anim_on)
 	{
 		i = 0;
@@ -68,7 +68,7 @@ void	fast_animation(t_fdf *fdf, int *i, int *j)
 	*i = 0;
 	(*j)++;
 	if (*j > 40)
-    	*j = 0;
+		*j = 0;
 }
 
 // Function to swap 2 olors

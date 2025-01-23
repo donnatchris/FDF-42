@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 14:53:32 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:48:38 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	init_values(t_fdf *fdf)
 	fdf->anim_on = 0;
 	fdf->win_width = 1600;
 	fdf->win_height = 900;
-	fdf->originX = (fdf->win_width / 2);
-	fdf->originY = (fdf->win_height / 2);
+	fdf->originx = (fdf->win_width / 2);
+	fdf->originy = (fdf->win_height / 2);
 	fdf->x_max = find_x_max(fdf);
 	fdf->y_max = find_y_max(fdf);
 	fdf->z_max = find_z_max(fdf);
@@ -60,9 +60,9 @@ void	init_values(t_fdf *fdf)
 	center(fdf);
     fdf->zoom = 30;
     fdf->depth = 0.1;
-	fdf->Ox = 0;
-	fdf->Oy = 0;
-	fdf->Oz = 0;
+	fdf->ox = 0;
+	fdf->oy = 0;
+	fdf->oz = 0;
 	fdf->distance = 30;
 	fdf->back_color = BLACK;
 	fdf->zero_color = WHITE;

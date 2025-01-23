@@ -162,17 +162,17 @@ meaning objects retain their proportions regardless of their distance from the v
 #### Formula for Isometric Projection  
 To transform a 3D point \((x, y, z)\) into 2D coordinates \((screenX, screenY)\), use the following formulas:
 
-	screenX = originX + factor * (x - z)
-	screenY = originY + factor * ((x + z) / 2 - y)
+	screenX = originx + factor * (x - z)
+	screenY = originy + factor * ((x + z) / 2 - y)
 
 #### Explanation of Parameters:  
-- **originX, originY**: The 2D origin or reference point on the screen, typically the center of the viewport.  
+- **originx, originy**: The 2D origin or reference point on the screen, typically the center of the viewport.  
 - **factor**: A scaling factor controlling the size of the objects (factor).  
 - **(x, y, z)**: The 3D coordinates of the point being projected.  
 
 Adjusting **factor** dynamically allows you to factor in or out of the scene.
 
-Adjusting **originX** or **originY** allows you to make translations.
+Adjusting **originx** or **originy** allows you to make translations.
 
 ### Perspective Projection
 In a perspective view, coordinates are calculated differently compared to an isometric projection.
@@ -189,11 +189,11 @@ are divided by the z-coordinate to simulate the shrinking of objects with distan
 #### Perspective Projection Formulas
 The standard formulas for transforming 3D coordinates into 2D in a perspective view are:
 	
-	screenX = (x / z) * distance + originX
-	screenY = (y / z) * distance + originY
+	screenX = (x / z) * distance + originx
+	screenY = (y / z) * distance + originy
 
 #### Explanation of Parameters:  
-- **originX, originY**: The reference point on the screen (usually the center or a specific point of the 2D viewport).
+- **originx, originy**: The reference point on the screen (usually the center or a specific point of the 2D viewport).
 - **x, y, z**: The 3D coordinates of the point.
 - **distance**: The distance from the viewer or camera to the 3D scene.
 #### Differences Between Perspective and Isometric Projection
@@ -220,22 +220,22 @@ The standard formulas for transforming 3D coordinates into 2D in a perspective v
 	objects will appear smaller or larger depending on their z value (depth), as part of the perspective effect.
 	So adjusting this factor also functions as a factor but with the added effect of changing how the scene is perceived in terms of depth
 	(objects closer appear larger, and those further away appear smaller).
-#### Adjusting originX and originY (translation):
+#### Adjusting originx and originy (translation):
 - For Isometric Projection:
 
-	originX and originY are used to translate or shift the entire 2D scene on the screen.
+	originx and originy are used to translate or shift the entire 2D scene on the screen.
 	This is similar to moving the camera in a 3D space but in 2D.
 	Adjusting the origin does not change the objects themselves but shifts the entire view, making the scene appear to move without altering object sizes or angles.
 - For Perspective Projection:
 
-	Similarly, adjusting originX and originY in perspective projection moves the scene on the screen, translating the entire view without affecting the 3D scene itself.
+	Similarly, adjusting originx and originy in perspective projection moves the scene on the screen, translating the entire view without affecting the 3D scene itself.
 	However, in perspective, since the view is inherently affected by depth (z-axis),
 	the origin shift might also result in changes to how objects are perceived in terms of their relative positions,
 	especially when combined with changes in the distance (factor factor).
 #### In summary:
 Factor (factor): Both isometric and perspective projections allow dynamic factoring by adjusting the factor, with isometric affecting object size directly, and perspective affecting both size and the appearance of depth.
 
-originX and originY (Translation): These adjust the position of the entire scene on the 2D screen, without altering the geometry of the scene itself, in both isometric and perspective projections. However, in perspective, changes in translation may also affect how the scene is perceived due to the depth-based effects.
+originx and originy (Translation): These adjust the position of the entire scene on the 2D screen, without altering the geometry of the scene itself, in both isometric and perspective projections. However, in perspective, changes in translation may also affect how the scene is perceived due to the depth-based effects.
 
 
 
@@ -245,7 +245,7 @@ Projection de 3D vers 2D
 - x, y et z sont les coordonnées d'origine (z est l'altitude)
 - x_mean, y_mean et z_mean sont les valeurs moyennes pour l'ensemble des coordonnées x, y et z des points de la carte
 	(on obtient par exemple x_mean en faisant la somme des coordonnées x de chaque point puis en divisant le résultat par le nombre de points)
-- Ox,Oy,Oz : Angles de rotation autour des axes (exprimés en radians)
+- ox,oy,oz : Angles de rotation autour des axes (exprimés en radians)
 - x_rot, y_rot, z_rot sont les cordonnées transformées une fois appliquées les rotations sur les axes x, y et z
 - x_proj et y_proj sont les coordonnées projetées sur le plan en 2D
 - distance : Distance de la "caméra" (utilisé uniquement pour la vue en perspective)
@@ -258,19 +258,19 @@ z = z - z_mean
 
 // Step 1: Rotation autour de l'axe X
 x_rot = x
-y_rot = y * cos(Ox) - z * sin(Ox)
-z_rot = y * sin(Ox) + z * cos(Ox)
+y_rot = y * cos(ox) - z * sin(ox)
+z_rot = y * sin(ox) + z * cos(ox)
 
 // Step 2: Rotation autour de l'axe Y
 x_temp = x_rot
-x_rot = x_temp * cos(Oy) + z_rot * sin(Oy)
-z_rot = -x_temp * sin(Oy) + z_rot * cos(Oy)
+x_rot = x_temp * cos(oy) + z_rot * sin(oy)
+z_rot = -x_temp * sin(oy) + z_rot * cos(oy)
 
 // Step 3: Rotation autour de l'axe Z
 x_temp = x_rot
 y_temp = y_rot
-x_rot = x_temp * cos(Oz) - y_temp * sin(Oz)
-y_rot = x_temp * sin(Oz) + y_temp * cos(Oz)
+x_rot = x_temp * cos(oz) - y_temp * sin(oz)
+y_rot = x_temp * sin(oz) + y_temp * cos(oz)
 
 // Step 4: Projection 3D vers 2D
 if ProjectionType == "isometric":
@@ -324,20 +324,20 @@ y_proj = 0.5 * x + 0.5 * y - z
 Dans une projection isométrique, les axes 3D sont inclinés de manière à ce que les angles entre les axes X, Y, et Z soient égaux (120°), créant une vue sans distorsion de profondeur. Cela signifie que chaque axe est vu sous un angle de 30° par rapport au plan horizontal. Les valeurs 0.866 et 0.5 proviennent des fonctions trigonométriques associées à cet angle. Plus précisément, 0.866 est une approximation de cos(30°), et 0.5 est sin(30°). Ces coefficients permettent de projeter les coordonnées 3D (x, y, z) sur un plan 2D tout en conservant des proportions uniformes pour les axes inclinés, ce qui donne l’illusion de la profondeur sans perspective.
 
 Ajoutons la possibilité d'effectuer des rotations
-Afin d'être capable de faire des rotations, avant de faire la projection 3D vers 2D, on calcule des valeurs intermédiaires pour x, y et z (appelées ici x_rot, y_rot et z_rot) après avoir appliqué les formules pour prendre en commte les rotations. Ces rotations sont calculées à partir des angles 0x, Oy et Oz exprimés en radians. Pour produire des rotations, il suffit donc de faire varier les valeurs Ox, Oy ou Oz.
+Afin d'être capable de faire des rotations, avant de faire la projection 3D vers 2D, on calcule des valeurs intermédiaires pour x, y et z (appelées ici x_rot, y_rot et z_rot) après avoir appliqué les formules pour prendre en commte les rotations. Ces rotations sont calculées à partir des angles 0x, oy et oz exprimés en radians. Pour produire des rotations, il suffit donc de faire varier les valeurs ox, oy ou oz.
 // Step 1: Rotation autour de l'axe X
 x_rot = x
-y_rot = y * cos(Ox) - z * sin(Ox)
-z_rot = y * sin(Ox) + z * cos(Ox)
+y_rot = y * cos(ox) - z * sin(ox)
+z_rot = y * sin(ox) + z * cos(ox)
 // Step 2: Rotation autour de l'axe Y
 x_temp = x_rot
-x_rot = x_temp * cos(Oy) + z_rot * sin(Oy)
-z_rot = -x_temp * sin(Oy) + z_rot * cos(Oy)
+x_rot = x_temp * cos(oy) + z_rot * sin(oy)
+z_rot = -x_temp * sin(oy) + z_rot * cos(oy)
 // Step 3: Rotation autour de l'axe Z
 x_temp = x_rot
 y_temp = y_rot
-x_rot = x_temp * cos(Oz) - y_temp * sin(Oz)
-y_rot = x_temp * sin(Oz) + y_temp * cos(Oz)
+x_rot = x_temp * cos(oz) - y_temp * sin(oz)
+y_rot = x_temp * sin(oz) + y_temp * cos(oz)
 // Step 4: Projection 3D vers 2D
 x_proj = 0.866 * x_rot - 0.866 * y_rot
 y_proj = 0.5 * x_rot + 0.5 * y_rot - z_rot
@@ -349,17 +349,17 @@ zoom peut être une valeur inférieure à 1 pour un effet de dézoom, et que la 
 La valeur de zoom doit être maintenue strictement supérieure à zéro afin d'éviter un étrange effet d'inversion.
 // Step 1: Rotation autour de l'axe X
 x_rot = x
-y_rot = y * cos(Ox) - z * sin(Ox)
-z_rot = y * sin(Ox) + z * cos(Ox)
+y_rot = y * cos(ox) - z * sin(ox)
+z_rot = y * sin(ox) + z * cos(ox)
 // Step 2: Rotation autour de l'axe Y
 x_temp = x_rot
-x_rot = x_temp * cos(Oy) + z_rot * sin(Oy)
-z_rot = -x_temp * sin(Oy) + z_rot * cos(Oy)
+x_rot = x_temp * cos(oy) + z_rot * sin(oy)
+z_rot = -x_temp * sin(oy) + z_rot * cos(oy)
 // Step 3: Rotation autour de l'axe Z
 x_temp = x_rot
 y_temp = y_rot
-x_rot = x_temp * cos(Oz) - y_temp * sin(Oz)
-y_rot = x_temp * sin(Oz) + y_temp * cos(Oz)
+x_rot = x_temp * cos(oz) - y_temp * sin(oz)
+y_rot = x_temp * sin(oz) + y_temp * cos(oz)
 // Step 4: Projection 3D vers 2D
 if ProjectionType == "isometric":
 x_proj = 0.866 * x_rot - 0.866 * y_rot
@@ -372,17 +372,17 @@ Ajoutons le centrage par rapport à l'écran
 Pour centrer la projection sur l'écran, il suffit d'ajouter à x_out la largeur de l'écran (width) divisée par 2 et à y_out la hauteur (height) de l'écran divisée par 2
 // Step 1: Rotation autour de l'axe X
 x_rot = x
-y_rot = y * cos(Ox) - z * sin(Ox)
-z_rot = y * sin(Ox) + z * cos(Ox)
+y_rot = y * cos(ox) - z * sin(ox)
+z_rot = y * sin(ox) + z * cos(ox)
 // Step 2: Rotation autour de l'axe Y
 x_temp = x_rot
-x_rot = x_temp * cos(Oy) + z_rot * sin(Oy)
-z_rot = -x_temp * sin(Oy) + z_rot * cos(Oy)
+x_rot = x_temp * cos(oy) + z_rot * sin(oy)
+z_rot = -x_temp * sin(oy) + z_rot * cos(oy)
 // Step 3: Rotation autour de l'axe Z
 x_temp = x_rot
 y_temp = y_rot
-x_rot = x_temp * cos(Oz) - y_temp * sin(Oz)
-y_rot = x_temp * sin(Oz) + y_temp * cos(Oz)
+x_rot = x_temp * cos(oz) - y_temp * sin(oz)
+y_rot = x_temp * sin(oz) + y_temp * cos(oz)
 // Step 4: Projection 3D vers 2D
 x_proj = 0.866 * x_rot - 0.866 * y_rot
 y_proj = 0.5 * x_rot + 0.5 * y_rot - z_rot
@@ -402,17 +402,17 @@ Dans une projection perspective, l'objet est projeté sur le plan de projection 
 Au final la formule complète pour une perspective avec rotations, zoom, variation de la profondeur et centrage par rapport à l'écran.
 // Step 1: Rotation autour de l'axe X
 x_rot = x
-y_rot = y * cos(Ox) - z * sin(Ox)
-z_rot = y * sin(Ox) + z * cos(Ox)
+y_rot = y * cos(ox) - z * sin(ox)
+z_rot = y * sin(ox) + z * cos(ox)
 // Step 2: Rotation autour de l'axe Y
 x_temp = x_rot
-x_rot = x_temp * cos(Oy) + z_rot * sin(Oy)
-z_rot = -x_temp * sin(Oy) + z_rot * cos(Oy)
+x_rot = x_temp * cos(oy) + z_rot * sin(oy)
+z_rot = -x_temp * sin(oy) + z_rot * cos(oy)
 // Step 3: Rotation autour de l'axe Z
 x_temp = x_rot
 y_temp = y_rot
-x_rot = x_temp * cos(Oz) - y_temp * sin(Oz)
-y_rot = x_temp * sin(Oz) + y_temp * cos(Oz)
+x_rot = x_temp * cos(oz) - y_temp * sin(oz)
+y_rot = x_temp * sin(oz) + y_temp * cos(oz)
 // Step 4: Projection 3D vers 2D
 factor = Distance / (Distance + z_rot)
 x_proj = x_rot * factor

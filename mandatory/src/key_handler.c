@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:31:09 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 15:23:50 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:48:38 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 // Function to handle keys on Linux
 int	deal_key(int key, t_fdf *fdf)
 {	
+	ft_printf("%d\n", key);
 	if (key == 65307)
 		free_and_exit(fdf);
 	if (key == 65451 || key == 65453 || key == 65365|| key == 65366)
 		zoom_and_depth(key, fdf);
 	if (key == 65361 || key == 65363 || key == 65362 || key == 65364)
 		translate(key, fdf);
-	if (key == 97 || key == 115 || key == 100 || key == 102)
+	if (key == 97 || key == 115 || key == 113 || key == 119 || key == 122 || key == 120)
 		rotate(key, fdf);
 	if (key == 105 || key == 112 || key == 32)
 		change_view(key, fdf);
@@ -73,25 +74,29 @@ void	zoom_and_depth(int key, t_fdf *fdf)
 void	rotate(int key, t_fdf *fdf)
 {
 	if (key == 97)
-		fdf->Ox += 0.1;
+		fdf->ox += 0.1;
 	if (key == 115)
-		fdf->Ox -= 0.1;
-	if (key == 100)
-		fdf->Oy += 0.1;
-	if (key == 102)
-		fdf->Oy -= 0.1;
+		fdf->ox -= 0.1;
+	if (key == 113)
+		fdf->oy += 0.1;
+	if (key == 119)
+		fdf->oy -= 0.1;	
+	if (key == 122)
+		fdf->oz += 0.1;
+	if (key == 120)
+		fdf->oz -= 0.1;
 }
 
 // Function to translate the view
 void	translate(int key, t_fdf *fdf)
 {
 	if (key == 65361)
-		fdf->originX -= 10;
+		fdf->originx -= 10;
 	if (key == 65363)
-		fdf->originX += 10;
+		fdf->originx += 10;
 	if (key == 65362)
-		fdf->originY -= 10;
+		fdf->originy -= 10;
 	if (key == 65364)
-		fdf->originY += 10;
+		fdf->originy += 10;
 }
 
