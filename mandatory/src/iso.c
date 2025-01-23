@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 09:37:56 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 10:03:40 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 10:44:09 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ void    project_isometric_point(t_point *point, t_fdf *fdf)
 
     rot.temp_z = point->z * fdf->depth;
 	rot.x = point->x;
-	rot.y = point->y * cos(fdf->Ox) - rot.temp_z * sin(fdf->Ox);
-	rot.z = point->y * sin(fdf->Ox) + rot.temp_z * cos(fdf->Ox);
+	rot.y = point->y * fdf->cosOx - rot.temp_z * fdf->sinOx;
+	rot.z = point->y * fdf->sinOx + rot.temp_z * fdf->cosOx;
 	rot.temp_x = rot.x;
-	rot.x = rot.temp_x * cos(fdf->Oy) + rot.z * sin(fdf->Oy);
-	rot.z = -rot.temp_x * sin(fdf->Oy) + rot.z * cos(fdf->Oy);
+	rot.x = rot.temp_x * fdf->cosOy + rot.z * fdf->sinOy;
+	rot.z = -rot.temp_x * fdf->sinOy + rot.z * fdf->cosOy;
     rot.temp_x = rot.x;
     rot.temp_y = rot.y;
-    rot.x = rot.temp_x * cos(fdf->Oz) - rot.temp_y* sin(fdf->Oz);
-    rot.y = rot.temp_x* sin(fdf->Oz) + rot.temp_y * cos(fdf->Oz);
+    rot.x = rot.temp_x * fdf->cosOz - rot.temp_y* fdf->sinOz;
+    rot.y = rot.temp_x* fdf->sinOz + rot.temp_y * fdf->cosOz;
     rot.x_proj = 0.866 * rot.x - 0.866 * rot.y;
     rot.y_proj = 0.5 * rot.x + 0.5 * rot.y - rot.z;
     point->x_out = rot.x_proj * fdf->zoom;

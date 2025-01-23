@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/23 10:21:21 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 10:39:09 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,12 @@ typedef struct s_fdf
 	float		Ox;
 	float		Oy;
 	float		Oz;
+	float		sinOx;
+	float		cosOx;
+	float		sinOy;
+	float		cosOy;
+	float		sinOz;
+	float		cosOz;
 	int			zoom;
 	float		depth;
 	float		distance;
