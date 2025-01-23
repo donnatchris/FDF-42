@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 11:14:10 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 14:35:10 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ void	init_values(t_fdf *fdf)
 	center(fdf);
     fdf->zoom = 30;
     fdf->depth = 0.1;
-	fdf->Ox = -0.0764;
-	fdf->Oy = 0.2854;
+	fdf->Ox = 0;
+	fdf->Oy = 0;
 	fdf->Oz = 0;
-	fdf->distance = 15;
+	fdf->distance = 30;
 	fdf->back_color = BLACK;
 	fdf->zero_color = WHITE;
 	fdf->up_color = DARK_GREEN;
