@@ -6,12 +6,11 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 01:46:39 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 01:58:35 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-
 
 // Fonction pour initialiser la fenetre et l'image
 t_fdf	*malloc_fdf(void)
@@ -72,7 +71,7 @@ void	init_values(t_fdf *fdf)
 }
 
 
-// Apply central decalage
+// Apply central decalage on each point
 void	center(t_fdf *fdf)
 {
 	int	i;
@@ -84,4 +83,27 @@ void	center(t_fdf *fdf)
 		fdf->point[i]->y = fdf->point[i]->y - fdf->y_mid;
 		i++;
 	}
+}
+
+// Function to find central points
+void	calculate_center(t_fdf *fdf)
+{
+	int	n_points;
+	int	i;
+
+    n_points = fdf->x_max * fdf->y_max;
+	fdf->x_mid = 0;
+	fdf->y_mid = 0;
+	fdf->z_mid = 0;
+	i = 0;
+	while (i < n_points)
+	{
+		fdf->x_mid += fdf->point[i]->x;
+		fdf->y_mid += fdf->point[i]->y;
+		fdf->z_mid += fdf->point[i]->z;
+		i++;
+	}
+	fdf->x_mid = fdf->x_mid / n_points;
+	fdf->y_mid = fdf->y_mid / n_points;
+	fdf->z_mid = fdf->z_mid / n_points;
 }

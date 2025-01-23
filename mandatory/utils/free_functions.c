@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:12:34 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/22 11:51:59 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 02:00:30 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,21 +86,3 @@ void	free_fdf(t_fdf *fdf)
 	}
 }
 
-
-// Function to free multiple pointers
-// void	multiple_free(int count, ...)
-// {
-// 	va_list	args;
-// 	void	*ptr;
-// 	int		i;
-
-// 	va_start(args, count);
-// 	i = 0;
-// 	while (i < count)
-// 	{
-// 		ptr = va_arg(args, void *);
-// 		free(ptr);
-// 		i++;
-// 	}
-// 	va_end(args);
-// }

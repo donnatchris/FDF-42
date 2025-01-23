@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/23 01:11:16 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 01:54:42 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,20 @@ typedef struct s_point
 
 typedef struct s_bres
 {
-    int x0;
-    int y0;
-    int x1;
-    int y1;
-    int dx;
-    int dy;
-    int sx;
-    int sy;
-    int err;
-    int e2;
-    int color;
-}		t_bres;
+    int 	x0;
+    int		y0;
+    int		x1;
+    int 	y1;
+    int 	dx;
+    int 	dy;
+    int 	sx;
+    int 	sy;
+    int 	err;
+    int 	e2;
+    int		color;
+	double	total_dist;
+	double	current_dist;
+}			t_bres;
 
 typedef struct s_color
 {

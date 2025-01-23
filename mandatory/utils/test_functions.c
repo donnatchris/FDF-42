@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christophedonnat <christophedonnat@stud    +#+  +:+       +#+        */
+/*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 10:30:44 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/11 11:04:20 by christophed      ###   ########.fr       */
+/*   Updated: 2025/01/23 02:00:38 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,3 +32,22 @@ void	print_point_tab(t_point **tab)
 	}
 	ft_printf("\n");
 }
+
+// Function to free multiple pointers
+// void	multiple_free(int count, ...)
+// {
+// 	va_list	args;
+// 	void	*ptr;
+// 	int		i;
+
+// 	va_start(args, count);
+// 	i = 0;
+// 	while (i < count)
+// 	{
+// 		ptr = va_arg(args, void *);
+// 		free(ptr);
+// 		i++;
+// 	}
+// 	va_end(args);
+// }
+
