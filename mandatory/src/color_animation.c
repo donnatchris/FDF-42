@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:37:41 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 01:43:38 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:00:57 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	animation(t_fdf *fdf)
 	}
 	if (j < 4)
 	{
-		if (i < 400)
+		if (i < 200)
 			i++;
 		else
 		{
@@ -38,7 +38,7 @@ void	animation(t_fdf *fdf)
 	}
 	else
 	{
-		if (i < 40)
+		if (i < 20)
 			i++;
 		else
 		{
