@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 14:35:10 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 14:53:32 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	init_values(t_fdf *fdf)
 {
 	fdf->iso_on = 1;
 	fdf->anim_on = 0;
-	fdf->win_width = 1800;
-	fdf->win_height = 1000;
+	fdf->win_width = 1600;
+	fdf->win_height = 900;
 	fdf->originX = (fdf->win_width / 2);
 	fdf->originY = (fdf->win_height / 2);
 	fdf->x_max = find_x_max(fdf);

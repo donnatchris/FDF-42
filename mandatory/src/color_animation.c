@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:37:41 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 12:00:57 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:28:00 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,31 +27,22 @@ void	animation(t_fdf *fdf)
 	}
 	if (j < 4)
 	{
-		if (i < 200)
+		if (i < 30)
 			i++;
 		else
-		{
-			slow_animation(fdf);
-			i = 0;
-			j++;
-		}
+			slow_animation(fdf, &i, &j);
 	}
 	else
 	{
-		if (i < 20)
+		if (i < 3)
 			i++;
 		else
-		{
-			fast_animation(fdf);
-			i = 0;
-			if (j++ > 40)
-				j = 0;
-		}
+			fast_animation(fdf, &i, &j);
 	}
 }
 
 // Function to animate colors slowly
-void	slow_animation(t_fdf *fdf)
+void	slow_animation(t_fdf *fdf, int *i, int *j)
 {
 	int	temp_color;
 
@@ -60,10 +51,12 @@ void	slow_animation(t_fdf *fdf)
 	swap_colors(&fdf->zero_color, &fdf->low_color);
 	swap_colors(&fdf->low_color, &fdf->ghost_color);
 	swap_colors(&fdf->ghost_color, &temp_color);
+	*i = 0;
+	(*j)++;
 }
 
 // Function to animate colors fast
-void	fast_animation(t_fdf *fdf)
+void	fast_animation(t_fdf *fdf, int *i, int *j)
 {
 	int	temp_color;
 
@@ -72,6 +65,10 @@ void	fast_animation(t_fdf *fdf)
 	swap_colors(&fdf->zero_color, &fdf->low_color);
 	swap_colors(&fdf->low_color, &fdf->ghost_color);
 	swap_colors(&fdf->ghost_color, &temp_color);
+	*i = 0;
+	(*j)++;
+	if (*j > 40)
+    	*j = 0;
 }
 
 // Function to swap 2 olors

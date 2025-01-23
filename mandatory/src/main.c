@@ -6,19 +6,9 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:35:06 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 09:26:31 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 14:56:03 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// bressenham
-
-// LINUX compil with:
-// gcc -o progtest test.c -Lmlx -Imlx -lmlx -lX11 -lXext -lm
-// avec la libft:
-// gcc -o progtest test.c -Lmlx -Imlx -lmlx -Llibft -Ilibft -lft -lX11 -lXext -lm
-
-// MAC compil with:
-// gcc -o progtest test.c -Lmlx -Imlx -lmlx -Llibft -Ilibft/includes -lft -L/opt/homebrew/opt/libx11/lib -I/opt/homebrew/opt/libx11/include -L/opt/homebrew/opt/libxext/lib -I/opt/homebrew/opt/libxext/include -lX11 -lXext -lm -framework OpenGL -framework AppKit
 
 #include "../include/fdf.h"
 

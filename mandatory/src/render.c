@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:43:07 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/23 13:22:53 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:21:06 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 // Function to generate the image
 int	render(t_fdf *fdf)
 {
+    clear_image(fdf);
 	fdf->sinOx = sinf(fdf->Ox);
 	fdf->cosOx = cosf(fdf->Ox);
 	fdf->sinOy = sinf(fdf->Oy);
@@ -24,7 +25,7 @@ int	render(t_fdf *fdf)
 	animation(fdf);
 	project_map(fdf);
 	draw_lines(fdf);
-	print_menu(fdf);
+    print_menu(fdf);
 	return (0);
 }
 

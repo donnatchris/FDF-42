@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:31:09 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 11:03:06 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:23:50 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 // Function to handle keys on Linux
 int	deal_key(int key, t_fdf *fdf)
-{
-	ft_printf("key pressed : %d\n", key);
-	
+{	
 	if (key == 65307)
 		free_and_exit(fdf);
 	if (key == 65451 || key == 65453 || key == 65365|| key == 65366)
@@ -27,7 +25,6 @@ int	deal_key(int key, t_fdf *fdf)
 		rotate(key, fdf);
 	if (key == 105 || key == 112 || key == 32)
 		change_view(key, fdf);
-	clear_image(fdf);
 	return (0);
 }
 
