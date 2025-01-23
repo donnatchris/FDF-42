@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/23 09:30:37 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 10:21:21 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ typedef struct s_fdf
 	int			zoom;
 	float		depth;
 	float		distance;
+	float		factor;
 	int			back_color;
 	int			zero_color;
 	int			up_color;
@@ -191,6 +192,8 @@ void	initialize_colors(t_fdf *fdf);
 void	calculate_center(t_fdf *fdf);
 void	center(t_fdf *fdf);
 void    project_perspective_point(t_point *point, t_fdf *fdf);
+void    initialize_isometric_view(t_fdf *fdf);
+void    initialize_perspective_view(t_fdf *fdf);
 
 
 // linux or MacOs functions

@@ -6,11 +6,20 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 09:37:56 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 09:39:54 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 10:03:40 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+
+// Function to initialize isometric view values
+void    initialize_isometric_view(t_fdf *fdf)
+{
+    fdf->iso_on = 1;
+    fdf->Ox = -0.0764;
+    fdf->Oy = 0.2854;
+    fdf->Oz = 0;
+}
 
 // Function to transform coordonates for an isometric view
 void    project_isometric_point(t_point *point, t_fdf *fdf)

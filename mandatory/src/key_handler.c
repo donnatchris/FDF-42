@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:31:09 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 09:35:37 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 10:07:14 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,9 @@ int	deal_key(int key, t_fdf *fdf)
 	if (key == 102)
 		fdf->Oy -= 0.1;
 	if (key == 105)
-		{
-			fdf->iso_on = 1;
-			fdf->Ox = -0.0764;
-			fdf->Oy = 0.2854;
-			fdf->Oz = 0;
-		}
+		initialize_isometric_view(fdf);
 	if (key == 112)
-	{
-		fdf->iso_on = 0;
-		
-	}
+		initialize_perspective_view(fdf);
 	if (key == 32)
 	{
 		if (fdf->anim_on)

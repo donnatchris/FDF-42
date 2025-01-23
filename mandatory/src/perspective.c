@@ -6,11 +6,20 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 09:37:37 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 09:39:39 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 10:23:17 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+
+// Function to initialize perpsective view values
+void    initialize_perspective_view(t_fdf *fdf)
+{
+    fdf->iso_on = 0;
+    fdf->Ox = -0.0764;
+    fdf->Oy = 0.6854;
+    fdf->Oz = 0;
+}
 
 // Function to transform coordonates for a perspective view
 void    project_perspective_point(t_point *point, t_fdf *fdf)

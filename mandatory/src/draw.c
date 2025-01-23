@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:25:08 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 01:56:01 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 09:46:58 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,10 @@ void bresenham(t_fdf *fdf, t_bres *bres, int color0, int color1)
     bres->err = bres->dx - bres->dy;
     bres->total_dist = sqrt((bres->dx * bres->dx) + (bres->dy * bres->dy));
     bres->current_dist = 0.0;
-    while (1)
+    while (bres->x0 != bres->x1 || bres->y0 != bres->y1)
     {
         bres->color = interpolate_color(color1, color0, bres->current_dist / bres->total_dist);
         put_pixel_to_image(fdf, bres->x0, bres->y0, bres->color);
-        if (bres->x0 == bres->x1 && bres->y0 == bres->y1)
-            break;
         bres->e2 = 2 * bres->err;
         if (bres->e2 > -bres->dy)
         {
@@ -133,3 +131,34 @@ void	put_pixel_to_image(t_fdf *fdf, int x, int y, int color)
         *(unsigned int *)dst = color;
     }
 }
+
+// Function to draw a line between two points
+// void bresenham(t_fdf *fdf, t_bres *bres, int color0, int color1)
+// {
+//     bres->dx = abs(bres->x1 - bres->x0);
+//     bres->dy = abs(bres->y1 - bres->y0);
+//     bres->sx = compare(bres->x0, bres->x1);
+//     bres->sy = compare(bres->y0, bres->y1);
+//     bres->err = bres->dx - bres->dy;
+//     bres->total_dist = sqrt((bres->dx * bres->dx) + (bres->dy * bres->dy));
+//     bres->current_dist = 0.0;
+//     while (1)
+//     {
+//         bres->color = interpolate_color(color1, color0, bres->current_dist / bres->total_dist);
+//         put_pixel_to_image(fdf, bres->x0, bres->y0, bres->color);
+//         if (bres->x0 == bres->x1 && bres->y0 == bres->y1)
+//             break;
+//         bres->e2 = 2 * bres->err;
+//         if (bres->e2 > -bres->dy)
+//         {
+//             bres->err -= bres->dy;
+//             bres->x0 += bres->sx;
+//         }
+//         if (bres->e2 < bres->dx)
+//         {
+//             bres->err += bres->dx;
+//             bres->y0 += bres->sy;
+//         }
+//         bres->current_dist = sqrt((bres->x0 - bres->x1) * (bres->x0 - bres->x1) + (bres->y0 - bres->y1) * (bres->y0 - bres->y1));
+//     }
+// }
