@@ -6,11 +6,21 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 10:14:10 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/22 09:07:20 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 01:42:14 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+
+// Function to setcolors
+void	initialize_colors(t_fdf *fdf)
+{
+	fdf->back_color = BLACK;
+	fdf->zero_color = WHITE;
+	fdf->up_color = DARK_GREEN;
+	fdf->low_color = PURPLE;
+	fdf->ghost_color = BLACK;
+}
 
 // Function to affect a color to all points
 void	fill_color(t_fdf *fdf)

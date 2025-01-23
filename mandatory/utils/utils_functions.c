@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_long.c                                     :+:      :+:    :+:   */
+/*   utils_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/02 18:42:17 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/18 17:11:09 by chdonnat         ###   ########.fr       */
+/*   Created: 2025/01/23 01:41:11 by chdonnat          #+#    #+#             */
+/*   Updated: 2025/01/23 01:43:19 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,11 @@ long	ft_atoi_long(const char *nptr)
 	return (result * sign);
 }
 
-// Function to swap colors
-void	swap_colors(int *color1, int *color2)
+// Function to compare 2 floats and return 1 or -1
+int     compare(float n1, float n2)
 {
-	int	temp;
-
-	temp = *color1;
-	*color1 = *color2;
-	*color2 = temp;
+    if (n1 < n2)
+        return (1);
+    return (-1);
 }
+

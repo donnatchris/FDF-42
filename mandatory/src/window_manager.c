@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 01:11:36 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 01:46:39 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ t_fdf	*malloc_fdf(void)
 		return (NULL);
 	return (fdf);
 }
-
-
 
 void	init_fdf(t_fdf *fdf, t_point **point)
 {
@@ -73,40 +71,6 @@ void	init_values(t_fdf *fdf)
 	fdf->ghost_color = BLACK;
 }
 
-// Function to print the menu on screen
-void	print_menu(t_fdf *fdf)
-{
-	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 30, LIGHT_GREEN, "ZOOM: ........ + / -");
-	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 60, LIGHT_GREEN, "DEPTH: ....... Page up / Page down");
-	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 90, LIGHT_GREEN, "MOVE: ........ Arrows");
-	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 120, LIGHT_GREEN, "ROTATE: ...... a / s / d / f");
-	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 150, LIGHT_GREEN, "ROTATE 90: ... r");
-	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 180, LIGHT_GREEN, "BACK TO ISO: . i");
-	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 210, LIGHT_GREEN, "EXIT: ........ esc");
-}
-
-// Function to find central points
-void	calculate_center(t_fdf *fdf)
-{
-	int	n_points;
-	int	i;
-
-    n_points = fdf->x_max * fdf->y_max;
-	fdf->x_mid = 0;
-	fdf->y_mid = 0;
-	fdf->z_mid = 0;
-	i = 0;
-	while (i < n_points)
-	{
-		fdf->x_mid += fdf->point[i]->x;
-		fdf->y_mid += fdf->point[i]->y;
-		fdf->z_mid += fdf->point[i]->z;
-		i++;
-	}
-	fdf->x_mid = fdf->x_mid / n_points;
-	fdf->y_mid = fdf->y_mid / n_points;
-	fdf->z_mid = fdf->z_mid / n_points;
-}
 
 // Apply central decalage
 void	center(t_fdf *fdf)

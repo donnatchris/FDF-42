@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:25:08 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/18 16:40:05 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 01:50:45 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,51 +132,4 @@ void	put_pixel_to_image(t_fdf *fdf, int x, int y, int color)
         dst = fdf->addr + (y * fdf->line_length + x * (fdf->bpp / 8));
         *(unsigned int *)dst = color;
     }
-}
-
-// Function to draw points in the image
-// void draw_points(t_fdf *fdf)
-// {
-//     ft_printf("draw_points\n");
-//     int x;
-//     int y;
-//     int i;
-
-//     i = 0;
-//     while (fdf->point[i])
-//     {
-//         x = (int)fdf->point[i]->x_out;
-//         y = (int)fdf->point[i]->y_out;
-//         put_pixel_to_image(fdf, x, y, fdf->point[i]->color);
-//         i++;
-//     }
-//     mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img_ptr, 0, 0);
-// }
-
-// Function to clear the image
-void clear_image(t_fdf *fdf)
-{
-    ft_printf("clear_image\n");
-    int x;
-    int y;
-
-    y = 0;
-    while (y < fdf->win_height)
-    {
-        x = 0;
-        while (x < fdf->win_width)
-        {
-            put_pixel_to_image(fdf, x, y, fdf->back_color);
-            x++;
-        }
-        y++;
-    }
-}
-
-// Function to compare 2 floats and return 1 or -1
-int     compare(float n1, float n2)
-{
-    if (n1 < n2)
-        return (1);
-    return (-1);
 }

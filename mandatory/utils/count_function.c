@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:17:03 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/22 11:10:37 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 01:40:14 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,4 +112,27 @@ int	find_z_max(t_fdf *fdf)
 		i++;
 	}
 	return (z_max);
+}
+
+// Function to find central points
+void	calculate_center(t_fdf *fdf)
+{
+	int	n_points;
+	int	i;
+
+    n_points = fdf->x_max * fdf->y_max;
+	fdf->x_mid = 0;
+	fdf->y_mid = 0;
+	fdf->z_mid = 0;
+	i = 0;
+	while (i < n_points)
+	{
+		fdf->x_mid += fdf->point[i]->x;
+		fdf->y_mid += fdf->point[i]->y;
+		fdf->z_mid += fdf->point[i]->z;
+		i++;
+	}
+	fdf->x_mid = fdf->x_mid / n_points;
+	fdf->y_mid = fdf->y_mid / n_points;
+	fdf->z_mid = fdf->z_mid / n_points;
 }

@@ -6,7 +6,7 @@
 #    By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 16:21:20 by christophed       #+#    #+#              #
-#    Updated: 2025/01/20 14:56:20 by chdonnat         ###   ########.fr        #
+#    Updated: 2025/01/23 01:41:29 by chdonnat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,17 +50,16 @@ BONUS_MAIN = $(BONUS_SRC_DIR)/main.c
 # Sources files for mandatory part
 SRC = \
 	$(SRC_DIR)/error_manager.c \
-	$(SRC_DIR)/limits.c \
 	$(SRC_DIR)/points.c \
 	$(SRC_DIR)/read_and_extract.c \
 	$(SRC_DIR)/window_manager.c \
 	$(SRC_DIR)/draw.c \
 	$(SRC_DIR)/color_manager.c \
-	$(SRC_DIR)/linux_functions.c \
-	$(SRC_DIR)/macos_functions.c \
+	$(SRC_DIR)/key_handler.c \
+	$(SRC_DIR)/color_animation.c \
 	$(UTILS_DIR)/count_function.c \
 	$(UTILS_DIR)/free_functions.c \
-	$(UTILS_DIR)/ft_atoi_long.c \
+	$(UTILS_DIR)/utils_functions.c \
 	$(UTILS_DIR)/test_functions.c \
 	$(MAIN)
 
