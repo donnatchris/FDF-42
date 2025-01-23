@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/23 00:24:15 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 01:11:16 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ typedef struct s_fdf
 	int			zero_color;
 	int			up_color;
 	int			low_color;
+	int			ghost_color;
 	int			anim_on;
 	t_point		**point;
 }				t_fdf;

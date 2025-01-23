@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:31:09 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 00:45:01 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 01:12:55 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ void	animation(t_fdf *fdf)
 	}
 }
 
+
 void	slow_animation(t_fdf *fdf)
 {
 	int	temp_color;
@@ -151,8 +152,8 @@ void	slow_animation(t_fdf *fdf)
 	temp_color = fdf->up_color;
 	swap_colors(&fdf->up_color, &fdf->zero_color);
 	swap_colors(&fdf->zero_color, &fdf->low_color);
-	swap_colors(&fdf->low_color, &fdf->back_color);
-	swap_colors(&fdf->back_color, &temp_color);
+	swap_colors(&fdf->low_color, &fdf->ghost_color);
+	swap_colors(&fdf->ghost_color, &temp_color);
 }
 
 void	fast_animation(t_fdf *fdf)
@@ -162,8 +163,8 @@ void	fast_animation(t_fdf *fdf)
 	temp_color = fdf->up_color;
 	swap_colors(&fdf->up_color, &fdf->zero_color);
 	swap_colors(&fdf->zero_color, &fdf->low_color);
-	swap_colors(&fdf->low_color, &fdf->back_color);
-	swap_colors(&fdf->back_color, &temp_color);
+	swap_colors(&fdf->low_color, &fdf->ghost_color);
+	swap_colors(&fdf->ghost_color, &temp_color);
 }
 
 void	initialize_colors(t_fdf *fdf)
@@ -172,6 +173,7 @@ void	initialize_colors(t_fdf *fdf)
 	fdf->zero_color = WHITE;
 	fdf->up_color = DARK_GREEN;
 	fdf->low_color = PURPLE;
+	fdf->ghost_color = BLACK;
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 00:45:38 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 01:11:36 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	init_values(t_fdf *fdf)
 	fdf->zero_color = WHITE;
 	fdf->up_color = DARK_GREEN;
 	fdf->low_color = PURPLE;
+	fdf->ghost_color = BLACK;
 }
 
 // Function to print the menu on screen
