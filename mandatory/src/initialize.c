@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window_manager.c                                   :+:      :+:    :+:   */
+/*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 01:58:35 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 09:30:52 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	init_fdf(t_fdf *fdf, t_point **point)
 // Function to initialize values
 void	init_values(t_fdf *fdf)
 {
+	fdf->iso_on = 1;
 	fdf->anim_on = 0;
 	fdf->win_width = 1800;
 	fdf->win_height = 1000;

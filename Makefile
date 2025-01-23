@@ -6,7 +6,7 @@
 #    By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 16:21:20 by christophed       #+#    #+#              #
-#    Updated: 2025/01/23 01:59:08 by chdonnat         ###   ########.fr        #
+#    Updated: 2025/01/23 09:39:01 by chdonnat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,9 @@ BONUS_MAIN = $(BONUS_SRC_DIR)/main.c
 # Sources files for mandatory part
 SRC = \
 	$(SRC_DIR)/error_manager.c \
-	$(SRC_DIR)/points.c \
+	$(SRC_DIR)/render.c \
+	$(SRC_DIR)/iso.c \
+	$(SRC_DIR)/perspective.c \
 	$(SRC_DIR)/read_and_extract.c \
 	$(SRC_DIR)/initialize.c \
 	$(SRC_DIR)/draw.c \
