@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 09:30:52 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:14:10 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	init_values(t_fdf *fdf)
 	fdf->up_color = DARK_GREEN;
 	fdf->low_color = PURPLE;
 	fdf->ghost_color = BLACK;
+	fdf->menu_color = WHITE;
 }
 
 

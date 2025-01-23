@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:43:07 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/23 10:41:47 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:56:02 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,40 @@ void    project_map(t_fdf *fdf)
 
 // Function to print the menu on screen
 void	print_menu(t_fdf *fdf)
+{	
+    if (fdf->iso_on)
+    {
+        mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 30, fdf->menu_color, "--------- ISOMETRIC  VIEW ---------");
+        mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 80, fdf->menu_color, "Press P to switch to perspective view");
+        mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 110, fdf->menu_color, "Press I to reset view");
+    }
+    else
+    {
+        mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 30, fdf->menu_color, "--------- PERPECTIVE VIEW ---------");
+        mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 80, fdf->menu_color, "Press I to switch to isometric view");
+        mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 110, fdf->menu_color, "Press P to reset view");
+    }
+    mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 200, fdf->menu_color, "---------      KEYS       ---------");
+    mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 250, fdf->menu_color, "ZOOM: ........ + / -");
+	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 280, fdf->menu_color, "DEPTH: ....... Page up / Page down");
+	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 310, fdf->menu_color, "MOVE: ........ Arrows");
+	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 340, fdf->menu_color, "ROTATE: ...... a / s / d / f");
+	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 370, fdf->menu_color, "EXIT: ........ esc");
+    if (fdf->anim_on)
+        animate_menu(fdf);
+}
+
+void    animate_menu(t_fdf *fdf)
 {
-	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 30, LIGHT_GREEN, "ZOOM: ........ + / -");
-	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 60, LIGHT_GREEN, "DEPTH: ....... Page up / Page down");
-	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 90, LIGHT_GREEN, "MOVE: ........ Arrows");
-	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 120, LIGHT_GREEN, "ROTATE: ...... a / s / d / f");
-	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 150, LIGHT_GREEN, "ROTATE 90: ... r");
-	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 180, LIGHT_GREEN, "BACK TO ISO: . i");
-	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 210, LIGHT_GREEN, "EXIT: ........ esc");
+	int			color1;
+	int			color2;
+	int			color3;
+
+	color1 = fdf->up_color;
+	color2 = fdf->zero_color;
+	color3 = fdf->low_color;
+	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 460, color1, "---------       DISCO        --------");
+	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 490, color2, "---------       MODE         --------");
+	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 520, color3, "---------     ACTIVATED      --------");
 }
 
