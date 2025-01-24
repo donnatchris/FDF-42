@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 19:21:10 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/24 10:17:00 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/24 10:47:35 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,29 @@ t_point	**read_and_extract(char *file)
 void	create_point_tab(t_point **point_tab, char *file, \
 	int column_max, int line_max)
 {
-	int		fd;
-	char	*line;
-	int		n_line;
+	int			fd;
+	char		*line;
+	t_src_size	src_size;
 
+	src_size.column_max = column_max;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		free_close_fd_and_error(fd, point_tab, "Error opening file");
-	n_line = 0;
-	while (n_line < line_max)
+	src_size.n_line = 0;
+	while (src_size.n_line < line_max)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			free_close_fd_and_error(fd, point_tab, "Error reading file");
-		fill_src(fd, point_tab, line, n_line, column_max);
+		fill_src(fd, point_tab, line, src_size);
 		free(line);
-		n_line++;
+		src_size.n_line++;
 	}
 	close(fd);
 }
 
 // Fill a table of points with the values of a line
-void	fill_src(int fd, t_point **src, char *line, int n_line, int column_max)
+void	fill_src(int fd, t_point **src, char *line, t_src_size src_size)
 {
 	char	**tab;
 	int		n_column;
@@ -70,12 +71,12 @@ void	fill_src(int fd, t_point **src, char *line, int n_line, int column_max)
 			free_str_tab(tab);
 			free_close_fd_and_error(fd, src, "Invalid file");
 		}
-		index = n_line * column_max + n_column;
-		fill_coordonates(src[index], n_column, n_line, tab[n_column]);
+		index = src_size.n_line * src_size.column_max + n_column;
+		fill_coordonates(src[index], n_column, src_size.n_line, tab[n_column]);
 		n_column++;
 	}
 	free_str_tab(tab);
-	if (n_column != column_max)
+	if (n_column != src_size.column_max)
 		free_close_fd_and_error(fd, src, "Invalid file");
 }
 
