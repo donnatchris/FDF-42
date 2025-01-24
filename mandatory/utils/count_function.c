@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:17:03 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/23 01:58:18 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/24 10:31:58 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	count_columns(char *file)
 {
 	int		fd;
 	char	*line;
-	char 	**tab;
+	char	**tab;
 	int		n_columns;
-	
+
 	n_columns = 0;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
@@ -66,8 +66,8 @@ int	count_lines(char *file)
 // Function to find the maximum x value among the points
 int	find_x_max(t_fdf *fdf)
 {
-	int i;
-	int x_max;
+	int	i;
+	int	x_max;
 
 	i = 0;
 	x_max = 0;
@@ -83,8 +83,8 @@ int	find_x_max(t_fdf *fdf)
 // Function to find the maximum y value among the points
 int	find_y_max(t_fdf *fdf)
 {
-	int i;
-	int y_max;
+	int	i;
+	int	y_max;
 
 	i = 0;
 	y_max = 0;
@@ -100,8 +100,8 @@ int	find_y_max(t_fdf *fdf)
 // Function to find the maximum z value among the points
 int	find_z_max(t_fdf *fdf)
 {
-	int i;
-	int z_max;
+	int	i;
+	int	z_max;
 
 	i = 0;
 	z_max = 0;
@@ -113,4 +113,3 @@ int	find_z_max(t_fdf *fdf)
 	}
 	return (z_max);
 }
-

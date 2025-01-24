@@ -6,7 +6,7 @@
 #    By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 16:21:20 by christophed       #+#    #+#              #
-#    Updated: 2025/01/23 09:39:01 by chdonnat         ###   ########.fr        #
+#    Updated: 2025/01/24 10:35:06 by chdonnat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,10 +47,12 @@ MAIN = $(SRC_DIR)/main.c
 # Main file for bonus part
 BONUS_MAIN = $(BONUS_SRC_DIR)/main.c
 
-# Sources files for mandatory part
+# Sources files for mandatory part	$(SRC_DIR)/iso.c
+
 SRC = \
 	$(SRC_DIR)/error_manager.c \
 	$(SRC_DIR)/render.c \
+	$(SRC_DIR)/menu.c \
 	$(SRC_DIR)/iso.c \
 	$(SRC_DIR)/perspective.c \
 	$(SRC_DIR)/read_and_extract.c \
@@ -62,7 +64,6 @@ SRC = \
 	$(UTILS_DIR)/count_function.c \
 	$(UTILS_DIR)/free_functions.c \
 	$(UTILS_DIR)/utils_functions.c \
-	$(UTILS_DIR)/test_functions.c \
 	$(MAIN)
 
 # Sources files for bonus part
@@ -74,7 +75,6 @@ BONUS_SRC =	\
 	$(BONUS_UTILS_DIR)/bonus_count_function.c \
 	$(BONUS_UTILS_DIR)/bonus_free_functions.c \
 	$(BONUS_UTILS_DIR)/bonus_ft_atoi_long.c \
-	$(BONUS_UTILS_DIR)/bonus_test_functions.c \
 	$(BONUS_MAIN)
 
 # Objects files for mandatory part

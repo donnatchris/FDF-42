@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 16:48:38 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/24 10:11:28 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	init_fdf(t_fdf *fdf, t_point **point)
 	if (!fdf->img_ptr)
 		free_and_exit(fdf);
 	fdf->bpp = 24;
-	fdf->addr = mlx_get_data_addr(fdf->img_ptr, &fdf->bpp, &fdf->line_length, &fdf->endian);
+	fdf->addr = mlx_get_data_addr(fdf->img_ptr, \
+		&fdf->bpp, &fdf->line_length, &fdf->endian);
 	if (!fdf->addr)
 		free_and_exit(fdf);
 }
@@ -58,8 +59,8 @@ void	init_values(t_fdf *fdf)
 	fdf->z_max = find_z_max(fdf);
 	calculate_center(fdf);
 	center(fdf);
-    fdf->zoom = 30;
-    fdf->depth = 0.1;
+	fdf->zoom = 30;
+	fdf->depth = 0.1;
 	fdf->ox = 0;
 	fdf->oy = 0;
 	fdf->oz = 0;
@@ -71,7 +72,6 @@ void	init_values(t_fdf *fdf)
 	fdf->ghost_color = BLACK;
 	fdf->menu_color = WHITE;
 }
-
 
 // Apply central decalage on each point
 void	center(t_fdf *fdf)
@@ -93,7 +93,7 @@ void	calculate_center(t_fdf *fdf)
 	int	n_points;
 	int	i;
 
-    n_points = fdf->x_max * fdf->y_max;
+	n_points = fdf->x_max * fdf->y_max;
 	fdf->x_mid = 0;
 	fdf->y_mid = 0;
 	fdf->z_mid = 0;

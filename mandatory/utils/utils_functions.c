@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:41:11 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 01:43:19 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/24 10:35:49 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 // Function to convert a string to a long integer
 long	ft_atoi_long(const char *nptr)
 {
-	ft_printf("ft_atoi_long\n");
 	int		i;
 	int		sign;
 	long	result;
@@ -40,10 +39,9 @@ long	ft_atoi_long(const char *nptr)
 }
 
 // Function to compare 2 floats and return 1 or -1
-int     compare(float n1, float n2)
+int	compare(float n1, float n2)
 {
-    if (n1 < n2)
-        return (1);
-    return (-1);
+	if (n1 < n2)
+		return (1);
+	return (-1);
 }
-

@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/23 16:52:22 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/24 10:30:28 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,5 +181,7 @@ void	translate(int key, t_fdf *fdf);
 void	animate_menu(t_fdf *fdf);
 void	free_fdf(t_fdf *fdf);
 int		deal_key(int key, t_fdf *fdf);
+void	menu_iso(t_fdf *fdf);
+void	menu_perspective(t_fdf *fdf);
 
 #endif

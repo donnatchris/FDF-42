@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 19:21:10 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/23 02:05:41 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/24 10:17:00 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ t_point	**read_and_extract(char *file)
 }
 
 // Create a table of points from a file
-void	create_point_tab(t_point **point_tab, char *file, int column_max, int line_max)
+void	create_point_tab(t_point **point_tab, char *file, \
+	int column_max, int line_max)
 {
 	int		fd;
 	char	*line;
@@ -56,7 +57,7 @@ void	fill_src(int fd, t_point **src, char *line, int n_line, int column_max)
 {
 	char	**tab;
 	int		n_column;
-	int 	index;
+	int		index;
 
 	tab = ft_split(line, ' ');
 	if (!tab)
@@ -82,21 +83,20 @@ void	fill_src(int fd, t_point **src, char *line, int n_line, int column_max)
 void	fill_coordonates(t_point *point, int x, int y, char *str)
 {
 	if (!point)
-    {
-        ft_printf("Point is NULL\n");
-        return;
-    }
+	{
+		ft_printf("Point is NULL\n");
+		return ;
+	}
 	point->x = x;
 	point->y = y;
 	point->z = ft_atoi(str);
 }
 
-
 // Allocate memory for a table of points
 t_point	**allocate_point_memory(t_point **src, int size)
 {
 	int		i;
-	
+
 	src = (t_point **)malloc(sizeof(t_point *) * (size + 1));
 	if (!src)
 		error("Error allocating memory");

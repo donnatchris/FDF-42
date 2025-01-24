@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:35:06 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 14:56:03 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/24 10:03:25 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ int	main(int ac, char **av)
 {
 	t_point	**point;
 	t_fdf	*fdf;
-	
+
 	errno = 0;
 	if (ac != 2)
 		error("Wrong number of arguments");
 	point = read_and_extract(av[1]);
 	fdf = malloc_fdf();
 	if (!fdf)
-		return (ft_printf("memory allocation failed"),1);
+		return (ft_printf("memory allocation failed"), 1);
 	init_fdf(fdf, point);
 	project_map(fdf);
 	draw_lines(fdf);
@@ -34,4 +34,3 @@ int	main(int ac, char **av)
 	mlx_loop(fdf->mlx_ptr);
 	return (0);
 }
-
