@@ -6,13 +6,17 @@
 #    By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 16:21:20 by christophed       #+#    #+#              #
-#    Updated: 2025/01/24 10:57:23 by chdonnat         ###   ########.fr        #
+#    Updated: 2025/01/24 14:17:40 by chdonnat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
-# OS detection
-UNAME := $(shell uname)
+# Mac compilation
+# ifeq ($(UNAME), Darwin)
+# 	MLX_DIR = mlx_mac
+# ifeq ($(UNAME), Darwin)
+# 	CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)/includes -I$(MLX_DIR) -I/opt/homebrew/opt/libx11/include -I/opt/homebrew/opt/libxext/include
+# 	LDFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -L/opt/homebrew/opt/libx11/lib -L/opt/homebrew/opt/libxext/lib -lX11 -lXext -lm -framework OpenGL -framework AppKit
+# else ifeq ($(UNAME), Linux)
 
 # Name of the executable for mandatory part
 TARGET = fdf
@@ -34,12 +38,8 @@ BONUS_OBJ_DIR = obj/bonus
 
 # Directories for common part
 LIBFT_DIR = libft
-# minilibx for MacOS or Linux
-ifeq ($(UNAME), Darwin)
-	MLX_DIR = mlx_mac
-else ifeq ($(UNAME), Linux)
-	MLX_DIR = mlx_linux
-endif
+# minilibx for Linux
+MLX_DIR = mlx_linux
 
 # Main file for mandatory part
 MAIN = $(SRC_DIR)/main.c
@@ -48,7 +48,6 @@ MAIN = $(SRC_DIR)/main.c
 BONUS_MAIN = $(BONUS_SRC_DIR)/main.c
 
 # Sources files for mandatory part	$(SRC_DIR)/iso.c
-
 SRC = \
 	$(SRC_DIR)/error_manager.c \
 	$(SRC_DIR)/render.c \
@@ -68,13 +67,20 @@ SRC = \
 
 # Sources files for bonus part
 BONUS_SRC =	\
-	$(BONUS_SRC_DIR)/bonus_error_manager.c \
-	$(BONUS_SRC_DIR)/bonus_limits.c \
-	$(BONUS_SRC_DIR)/bonus_points.c \
-	$(BONUS_SRC_DIR)/bonus_read_and_extract.c \
-	$(BONUS_UTILS_DIR)/bonus_count_function.c \
-	$(BONUS_UTILS_DIR)/bonus_free_functions.c \
-	$(BONUS_UTILS_DIR)/bonus_ft_atoi_long.c \
+	$(BONUS_SRC_DIR)/error_manager.c \
+	$(BONUS_SRC_DIR)/render.c \
+	$(BONUS_SRC_DIR)/menu.c \
+	$(BONUS_SRC_DIR)/iso.c \
+	$(BONUS_SRC_DIR)/perspective.c \
+	$(BONUS_SRC_DIR)/read_and_extract.c \
+	$(BONUS_SRC_DIR)/initialize.c \
+	$(BONUS_SRC_DIR)/draw.c \
+	$(BONUS_SRC_DIR)/color_manager.c \
+	$(BONUS_SRC_DIR)/key_handler.c \
+	$(BONUS_SRC_DIR)/color_animation.c \
+	$(BONUS_UTILS_DIR)/count_function.c \
+	$(BONUS_UTILS_DIR)/free_functions.c \
+	$(BONUS_UTILS_DIR)/utils_functions.c \
 	$(BONUS_MAIN)
 
 # Objects files for mandatory part
@@ -84,14 +90,9 @@ OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 BONUS_OBJ = $(BONUS_SRC:$(BONUS_SRC_DIR)/%.c=$(BONUS_OBJ_DIR)/%.o)
 
 
-# Compilation options for MacOS or Linux
-ifeq ($(UNAME), Darwin)
-	CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)/includes -I$(MLX_DIR) -I/opt/homebrew/opt/libx11/include -I/opt/homebrew/opt/libxext/include
-	LDFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -L/opt/homebrew/opt/libx11/lib -L/opt/homebrew/opt/libxext/lib -lX11 -lXext -lm -framework OpenGL -framework AppKit
-else ifeq ($(UNAME), Linux)
-	CFLAGS = -Wall -Wextra -Werror -g -I$(INC_DIR) -I$(LIBFT_DIR)/includes -I$(MLX_DIR) -I/usr/include/X11 -I/usr/include/X11/extensions
-	LDFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -L/usr/lib/X11 -L/usr/lib/X11/extensions -lX11 -lXext -lm -lGL -lGLU
-endif
+# Compilation options for Linux
+CFLAGS = -Wall -Wextra -Werror -g -I$(INC_DIR) -I$(LIBFT_DIR)/includes -I$(MLX_DIR) -I/usr/include/X11 -I/usr/include/X11/extensions
+LDFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -L/usr/lib/X11 -L/usr/lib/X11/extensions -lX11 -lXext -lm -lGL -lGLU
 
 # Compiler
 CC = cc
