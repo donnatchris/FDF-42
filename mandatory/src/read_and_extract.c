@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 19:21:10 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/24 10:47:35 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/24 11:46:28 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,28 +66,18 @@ void	fill_src(int fd, t_point **src, char *line, t_src_size src_size)
 	n_column = 0;
 	while (tab[n_column])
 	{
-		if (!input_is_valid(tab[n_column]))
-		{
-			free_str_tab(tab);
-			free_close_fd_and_error(fd, src, "Invalid file");
-		}
 		index = src_size.n_line * src_size.column_max + n_column;
 		fill_coordonates(src[index], n_column, src_size.n_line, tab[n_column]);
 		n_column++;
 	}
 	free_str_tab(tab);
-	if (n_column != src_size.column_max)
-		free_close_fd_and_error(fd, src, "Invalid file");
 }
 
 // Fill the coordinates of a point
 void	fill_coordonates(t_point *point, int x, int y, char *str)
 {
 	if (!point)
-	{
-		ft_printf("Point is NULL\n");
 		return ;
-	}
 	point->x = x;
 	point->y = y;
 	point->z = ft_atoi(str);

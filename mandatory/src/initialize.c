@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/24 10:11:28 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/24 11:51:28 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,27 +64,13 @@ void	init_values(t_fdf *fdf)
 	fdf->ox = 0;
 	fdf->oy = 0;
 	fdf->oz = 0;
-	fdf->distance = 30;
+	fdf->distance = 200;
 	fdf->back_color = BLACK;
 	fdf->zero_color = WHITE;
 	fdf->up_color = DARK_GREEN;
 	fdf->low_color = PURPLE;
 	fdf->ghost_color = BLACK;
 	fdf->menu_color = WHITE;
-}
-
-// Apply central decalage on each point
-void	center(t_fdf *fdf)
-{
-	int	i;
-
-	i = 0;
-	while (fdf->point[i])
-	{
-		fdf->point[i]->x = fdf->point[i]->x - fdf->x_mid;
-		fdf->point[i]->y = fdf->point[i]->y - fdf->y_mid;
-		i++;
-	}
 }
 
 // Function to find central points
@@ -108,4 +94,18 @@ void	calculate_center(t_fdf *fdf)
 	fdf->x_mid = fdf->x_mid / n_points;
 	fdf->y_mid = fdf->y_mid / n_points;
 	fdf->z_mid = fdf->z_mid / n_points;
+}
+
+// Apply central decalage on each point
+void	center(t_fdf *fdf)
+{
+	int	i;
+
+	i = 0;
+	while (fdf->point[i])
+	{
+		fdf->point[i]->x = fdf->point[i]->x - fdf->x_mid;
+		fdf->point[i]->y = fdf->point[i]->y - fdf->y_mid;
+		i++;
+	}
 }

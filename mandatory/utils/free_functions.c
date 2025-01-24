@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:12:34 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/24 10:34:33 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/24 11:31:29 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,9 @@ void	free_points_tab(t_point **tab)
 	while (tab[i])
 	{
 		free(tab[i]);
-		tab[i] = NULL;
 		i++;
 	}
 	free(tab);
-	tab = NULL;
 }
 
 // Free the memory allocated for a table of strings
@@ -41,11 +39,9 @@ void	free_str_tab(char **tab)
 	while (tab[i])
 	{
 		free(tab[i]);
-		tab[i] = NULL;
 		i++;
 	}
 	free(tab);
-	tab = NULL;
 }
 
 // Function to free allocated memory before exiting

@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/24 10:48:07 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/24 11:48:36 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,6 @@ void	create_point_tab(t_point **point_tab, char *file, \
 	int column_max, int line_max);
 void	fill_src(int fd, t_point **src, char *line, t_src_size src_size);
 void	fill_coordonates(t_point *point, int x, int y, char *str);
-int		input_is_valid(char *str);
 t_point	**allocate_point_memory(t_point **src, int size);
 void	free_points_tab(t_point **tab);
 void	free_str_tab(char **tab);

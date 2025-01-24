@@ -6,7 +6,7 @@
 #    By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 16:21:20 by christophed       #+#    #+#              #
-#    Updated: 2025/01/24 10:35:06 by chdonnat         ###   ########.fr        #
+#    Updated: 2025/01/24 10:57:23 by chdonnat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,7 +89,7 @@ ifeq ($(UNAME), Darwin)
 	CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)/includes -I$(MLX_DIR) -I/opt/homebrew/opt/libx11/include -I/opt/homebrew/opt/libxext/include
 	LDFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -L/opt/homebrew/opt/libx11/lib -L/opt/homebrew/opt/libxext/lib -lX11 -lXext -lm -framework OpenGL -framework AppKit
 else ifeq ($(UNAME), Linux)
-	CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)/includes -I$(MLX_DIR) -I/usr/include/X11 -I/usr/include/X11/extensions
+	CFLAGS = -Wall -Wextra -Werror -g -I$(INC_DIR) -I$(LIBFT_DIR)/includes -I$(MLX_DIR) -I/usr/include/X11 -I/usr/include/X11/extensions
 	LDFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -L/usr/lib/X11 -L/usr/lib/X11/extensions -lX11 -lXext -lm -lGL -lGLU
 endif
 

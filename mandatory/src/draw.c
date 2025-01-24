@@ -6,11 +6,36 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:25:08 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 17:01:41 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/24 11:48:21 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+
+// Function to draw all the lines
+void	draw_lines(t_fdf *fdf)
+{
+	int	start;
+	int	line;
+	int	column;
+
+	start = 0;
+	line = 0;
+	while (line <= fdf->y_max)
+	{
+		draw_horizontal_line(fdf, start);
+		start += fdf->x_max + 1;
+		line++;
+	}
+	start = 0;
+	column = 0;
+	while (column <= fdf->x_max)
+	{
+		draw_vertical_line(fdf, column);
+		column++;
+	}
+	mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img_ptr, 0, 0);
+}
 
 // Function to draw a vertical line
 void	draw_vertical_line(t_fdf *fdf, int start)
@@ -25,6 +50,8 @@ void	draw_vertical_line(t_fdf *fdf, int start)
 	j = fdf->x_max + 1;
 	while (j <= fdf->x_max * fdf->y_max)
 	{
+		if (!fdf->point[start + i] || !fdf->point[start + j])
+			return ;
 		bres.x0 = (int)fdf->point[start + i]->x_out;
 		bres.y0 = (int)fdf->point[start + i]->y_out;
 		bres.x1 = (int)fdf->point[start + j]->x_out;
@@ -50,6 +77,8 @@ void	draw_horizontal_line(t_fdf *fdf, int start)
 	j = 1;
 	while (j <= fdf->x_max)
 	{
+		if (!fdf->point[start + i] || !fdf->point[start + j])
+			return ;
 		bres.x0 = (int)fdf->point[start + i]->x_out;
 		bres.y0 = (int)fdf->point[start + i]->y_out;
 		bres.x1 = (int)fdf->point[start + j]->x_out;
@@ -62,32 +91,6 @@ void	draw_horizontal_line(t_fdf *fdf, int start)
 	}
 }
 
-// Function to draw all the lines
-void	draw_lines(t_fdf *fdf)
-{
-	int	start;
-	int	line;
-	int	column;
-
-	start = 0;
-	line = 0;
-	while (line <= fdf->y_max)
-	{
-		draw_horizontal_line(fdf, start);
-		start += fdf->x_max + 1;
-		line++;
-	}
-	start = 0;
-	column = 0;
-	while (column <= fdf->x_max)
-	{
-		draw_vertical_line(fdf, column);
-		start += fdf->y_max + 1;
-		column++;
-	}
-	mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img_ptr, 0, 0);
-}
-
 // Function to draw a line between two points
 void	bresenham(t_fdf *fdf, t_bres *bres, int color0, int color1)
 {
@@ -98,9 +101,14 @@ void	bresenham(t_fdf *fdf, t_bres *bres, int color0, int color1)
 	bres->err = bres->dx - bres->dy;
 	bres->total_dist = sqrt((bres->dx * bres->dx) + (bres->dy * bres->dy));
 	bres->current_dist = 0.0;
+	bres->current_dist = 0.0;
+	bres->color = 0;
 	while (bres->x0 != bres->x1 || bres->y0 != bres->y1)
 	{
-		bres->color = interpolate_color(color1, color0, bres->current_dist / bres->total_dist);
+		if (bres->total_dist != 0)
+			bres->color = interpolate_color(color1, color0, bres->current_dist / bres->total_dist);
+		else
+			bres->color = color0;
 		put_pixel_to_image(fdf, bres->x0, bres->y0, bres->color);
 		bres->e2 = 2 * bres->err;
 		if (bres->e2 > -bres->dy)
