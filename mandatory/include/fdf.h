@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/27 11:29:41 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/27 11:55:26 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <math.h>
 # include "colors.h"
 # include "../../libft/includes/libft.h"
-#  include "../../mlx_linux/mlx.h"
+# include "../../mlx_linux/mlx.h"
 
 // Structures
 

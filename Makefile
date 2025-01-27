@@ -6,7 +6,7 @@
 #    By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 16:21:20 by christophed       #+#    #+#              #
-#    Updated: 2025/01/24 14:17:40 by chdonnat         ###   ########.fr        #
+#    Updated: 2025/01/27 11:59:42 by chdonnat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -141,7 +141,7 @@ clean:
 # Rule to clean the objects files and the executables
 fclean: clean
 	$(MAKE) -C $(LIBFT_DIR) fclean
-	rm -f $(TARGET) $(BONUS)
+	rm -rf $(TARGET) $(BONUS)
 
 # Rule to recompile the project
 re: fclean all
