@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:25:08 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/24 14:00:11 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/27 11:26:33 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_vertical_line(t_fdf *fdf, int start)
 
 	i = 0;
 	j = fdf->x_max + 1;
-	while (j <= fdf->x_max * fdf->y_max)
+	while (j < (fdf->x_max + 1) * (fdf->y_max + 1))
 	{
 		if (!fdf->point[start + i] || !fdf->point[start + j])
 			return ;
@@ -34,8 +34,8 @@ void	draw_vertical_line(t_fdf *fdf, int start)
 		color0 = fdf->point[start + i]->color;
 		color1 = fdf->point[start + j]->color;
 		bresenham(fdf, &bres, color0, color1);
-		j = i;
-		i = i + fdf->x_max + 1;
+		i = j;
+		j = j + fdf->x_max + 1;
 	}
 }
 

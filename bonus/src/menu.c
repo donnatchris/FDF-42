@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:27:09 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/24 10:29:34 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/27 11:31:57 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	print_menu(t_fdf *fdf)
 	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 340, fdf->menu_color, \
 		"ROTATE: ... a / s / d / f");
 	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 370, fdf->menu_color, \
+		"DISCO: .. space");
+	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 10, 400, fdf->menu_color, \
 		"EXIT: ..... esc");
 	if (fdf->anim_on)
 		animate_menu(fdf);

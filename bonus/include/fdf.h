@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/24 13:55:36 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/27 11:29:41 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,7 @@
 # include <math.h>
 # include "colors.h"
 # include "../../libft/includes/libft.h"
-# ifdef __APPLE__
-#  include "../../mlx_mac/mlx.h"
-# endif
-# ifdef __linux__
 #  include "../../mlx_linux/mlx.h"
-# endif
 
 // Structures
 
@@ -135,9 +130,11 @@ typedef struct s_fdf
 int		error(char *message);
 void	close_fd_and_error(int fd, char *message);
 void	free_close_fd_and_error(int fd, t_point **tab, char *message);
+void	free_and_error(t_point **tab, char *message);
 t_point	**read_and_extract(char *file);
 void	create_point_tab(t_point **point_tab, char *file, \
 	int column_max, int line_max);
+void	fill_src(int fd, t_point **src, char *line, t_src_size src_size);
 void	fill_src(int fd, t_point **src, char *line, t_src_size src_size);
 void	fill_coordonates(t_point *point, int x, int y, char *str);
 t_point	**allocate_point_memory(t_point **src, int size);

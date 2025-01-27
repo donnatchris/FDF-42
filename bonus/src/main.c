@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:35:06 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/24 11:24:52 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/27 11:17:39 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int ac, char **av)
 	point = read_and_extract(av[1]);
 	fdf = malloc_fdf();
 	if (!fdf)
-		return (ft_printf("memory allocation failed"), 1);
+		free_and_error(point, "memory allocation failed");
 	ft_bzero(fdf, sizeof(t_fdf));
 	init_fdf(fdf, point);
 	project_map(fdf);
