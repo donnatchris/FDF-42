@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:17:03 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/28 09:27:20 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:00:38 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	count_columns(char *file)
 		return (free(line), close_fd_and_error(fd, "Error splitting line"), 1);
 	while (tab[n_columns])
 		n_columns++;
+	free(line);
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -55,7 +56,8 @@ int	count_lines(char *file)
 	line = get_next_line(fd);
 	while (line)
 	{
-		n_lines++;
+		if (line[0] != '\n')
+			n_lines++;
 		free(line);
 		line = get_next_line(fd);
 	}

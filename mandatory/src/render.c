@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:43:07 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/27 13:34:11 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/27 10:47:41 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ void	project_map(t_fdf *fdf)
 // Function to draw all the lines
 void	draw_lines(t_fdf *fdf)
 {
-	int		start;
-	int		line;
-	int		column;
+	int	start;
+	int	line;
+	int	column;
 
 	start = 0;
 	line = 0;
@@ -87,8 +87,5 @@ void	draw_lines(t_fdf *fdf)
 		draw_vertical_line(fdf, column);
 		column++;
 	}
-	start = 0;
-	while (fdf->point[start])
-		start++;
 	mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img_ptr, 0, 0);
 }

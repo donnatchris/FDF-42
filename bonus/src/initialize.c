@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/24 11:51:28 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:00:34 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	init_values(t_fdf *fdf)
 	fdf->ox = 0;
 	fdf->oy = 0;
 	fdf->oz = 0;
-	fdf->distance = 200;
+	fdf->distance = 300;
 	fdf->back_color = BLACK;
 	fdf->zero_color = WHITE;
 	fdf->up_color = DARK_GREEN;
@@ -79,7 +79,7 @@ void	calculate_center(t_fdf *fdf)
 	int	n_points;
 	int	i;
 
-	n_points = fdf->x_max * fdf->y_max;
+	n_points = (fdf->x_max + 1) * (fdf->y_max + 1);
 	fdf->x_mid = 0;
 	fdf->y_mid = 0;
 	fdf->z_mid = 0;
