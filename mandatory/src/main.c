@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:35:06 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/28 12:27:48 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:10:01 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ int	main(int ac, char **av)
 {
 	t_point	**point;
 	t_fdf	*fdf;
+	int		fd;
 
 	errno = 0;
 	if (ac != 2)
 		error("Wrong number of arguments");
+	fd = open(av[1], O_RDONLY, 0);
 	point = read_and_extract(av[1]);
 	fdf = malloc_fdf();
 	if (!fdf)

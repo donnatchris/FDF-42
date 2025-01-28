@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 19:21:10 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/28 11:59:09 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:11:23 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,12 @@ void	fill_src(int fd, t_point **src, char *line, t_src_size src_size)
 	n_column = 0;
 	while (tab[n_column])
 	{
+		if (!is_number(tab[n_column]))
+		{
+			free(line);
+			free_str_tab(tab);
+			free_close_fd_and_error(fd, src, "Invalid file");
+		}
 		index = src_size.n_line * src_size.column_max + n_column;
 		fill_coordonates(src[index], n_column, src_size.n_line, tab[n_column]);
 		n_column++;

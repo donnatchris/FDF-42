@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/27 11:55:26 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:09:45 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,6 @@ t_point	**read_and_extract(char *file);
 void	create_point_tab(t_point **point_tab, char *file, \
 	int column_max, int line_max);
 void	fill_src(int fd, t_point **src, char *line, t_src_size src_size);
-void	fill_src(int fd, t_point **src, char *line, t_src_size src_size);
 void	fill_coordonates(t_point *point, int x, int y, char *str);
 t_point	**allocate_point_memory(t_point **src, int size);
 void	free_points_tab(t_point **tab);
@@ -186,5 +185,6 @@ int		deal_key(int key, t_fdf *fdf);
 void	menu_iso(t_fdf *fdf);
 void	menu_perspective(t_fdf *fdf);
 void	set_bres_values(t_bres *bres);
+int		is_number(char *str);
 
 #endif

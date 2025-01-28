@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:41:11 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/24 10:35:49 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:03:32 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,23 @@ int	compare(float n1, float n2)
 	if (n1 < n2)
 		return (1);
 	return (-1);
+}
+
+// Function to check if the input is a number
+int	is_number(char *str)
+{
+	int	i;
+
+	if (!str)
+		return (0);
+	i = 0;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '\0')
+		return (1);
+	if (str[i] == 43 || str[i] == 45)
+		i++;
+	if (!ft_isdigit(str[i]))
+		return (0);
+	return (1);
 }

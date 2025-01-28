@@ -6,7 +6,7 @@
 #    By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 16:21:20 by christophed       #+#    #+#              #
-#    Updated: 2025/01/27 11:59:42 by chdonnat         ###   ########.fr        #
+#    Updated: 2025/01/28 16:42:16 by chdonnat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,11 +91,11 @@ BONUS_OBJ = $(BONUS_SRC:$(BONUS_SRC_DIR)/%.c=$(BONUS_OBJ_DIR)/%.o)
 
 
 # Compilation options for Linux
-CFLAGS = -Wall -Wextra -Werror -g -I$(INC_DIR) -I$(LIBFT_DIR)/includes -I$(MLX_DIR) -I/usr/include/X11 -I/usr/include/X11/extensions
+CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)/includes -I$(MLX_DIR) -I/usr/include/X11 -I/usr/include/X11/extensions
 LDFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -L/usr/lib/X11 -L/usr/lib/X11/extensions -lX11 -lXext -lm -lGL -lGLU
 
 # Compiler
-CC = cc
+CC = cc -g
 
 # Rule to compile the mandatory part
 all: $(TARGET)
