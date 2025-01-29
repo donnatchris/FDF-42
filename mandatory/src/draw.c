@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: christophedonnat <christophedonnat@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:25:08 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/27 11:26:33 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/29 07:33:15 by christophed      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	bresenham(t_fdf *fdf, t_bres *bres, int color0, int color1)
 		bres->current_dist = sqrt((bres->x0 - bres->x1) * (bres->x0 \
 			- bres->x1) + (bres->y0 - bres->y1) * (bres->y0 - bres->y1));
 	}
+	// put_pixel_to_image(fdf, bres->x1, bres->y1, color1);
 }
 
 // Function to draw a pixel in the image
