@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:41:11 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/29 08:25:11 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/29 08:54:37 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,16 @@ int	check_fdf_extension(const char *filename)
 		return (1);
 	else
 		return (0);
+}
+
+// Function to allocate memory to fdf
+t_fdf	*malloc_fdf(void)
+{
+	t_fdf	*fdf;
+
+	fdf = NULL;
+	fdf = (t_fdf *)malloc(sizeof(t_fdf));
+	if (!fdf)
+		return (NULL);
+	return (fdf);
 }

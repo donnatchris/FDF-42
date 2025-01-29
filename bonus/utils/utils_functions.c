@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:41:11 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/24 10:35:49 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/29 08:54:37 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,54 @@ int	compare(float n1, float n2)
 	if (n1 < n2)
 		return (1);
 	return (-1);
+}
+
+// Function to check if the input is a number
+int	is_number(char *str)
+{
+	int	i;
+
+	if (!str)
+		return (0);
+	i = 0;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '\0')
+		return (1);
+	if (str[i] == 43 || str[i] == 45)
+		i++;
+	if (!ft_isdigit(str[i]))
+		return (0);
+	return (1);
+}
+
+int	check_fdf_extension(const char *filename)
+{
+	const char	*ext;
+	const char	*file_ext;
+	size_t		len_filename;
+	size_t		len_ext;
+
+	ext = ".fdf";
+	len_filename = ft_strlen(filename);
+	len_ext = ft_strlen(ext);
+	if (len_filename < len_ext)
+		return (0);
+	file_ext = filename + len_filename - len_ext;
+	if (ft_strncmp(file_ext, ext, 4) == 0)
+		return (1);
+	else
+		return (0);
+}
+
+// Function to allocate memory to fdf
+t_fdf	*malloc_fdf(void)
+{
+	t_fdf	*fdf;
+
+	fdf = NULL;
+	fdf = (t_fdf *)malloc(sizeof(t_fdf));
+	if (!fdf)
+		return (NULL);
+	return (fdf);
 }

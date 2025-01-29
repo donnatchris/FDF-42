@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:31:09 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/24 10:13:13 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/29 08:43:54 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ void	change_view(int key, t_fdf *fdf)
 void	zoom_and_depth(int key, t_fdf *fdf)
 {
 	if (key == 65451)
-		fdf->zoom += 1;
+	{
+		if (fdf->zoom < 70)
+			fdf->zoom += 1;
+	}
 	if (key == 65453)
 	{
 		if (fdf->zoom > 1)

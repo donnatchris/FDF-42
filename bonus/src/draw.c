@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:25:08 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/27 11:26:33 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/29 09:14:59 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,18 +92,7 @@ void	bresenham(t_fdf *fdf, t_bres *bres, int color0, int color1)
 		bres->current_dist = sqrt((bres->x0 - bres->x1) * (bres->x0 \
 			- bres->x1) + (bres->y0 - bres->y1) * (bres->y0 - bres->y1));
 	}
-}
-
-// Function to draw a pixel in the image
-void	put_pixel_to_image(t_fdf *fdf, int x, int y, int color)
-{
-	char	*dst;
-
-	if (x >= 0 && x < fdf->win_width && y >= 0 && y < fdf->win_height)
-	{
-		dst = fdf->addr + (y * fdf->line_length + x * (fdf->bpp / 8));
-		*(unsigned int *)dst = color;
-	}
+	put_pixel_to_image(fdf, bres->x1, bres->y1, color1);
 }
 
 // Function to set bresheneim values
@@ -118,4 +107,16 @@ void	set_bres_values(t_bres *bres)
 	bres->current_dist = 0.0;
 	bres->current_dist = 0.0;
 	bres->color = 0;
+}
+
+// Function to draw a pixel in the image
+void	put_pixel_to_image(t_fdf *fdf, int x, int y, int color)
+{
+	char	*dst;
+
+	if (x >= 0 && x < fdf->win_width && y >= 0 && y < fdf->win_height)
+	{
+		dst = fdf->addr + (y * fdf->line_length + x * (fdf->bpp / 8));
+		*(unsigned int *)dst = color;
+	}
 }

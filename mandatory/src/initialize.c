@@ -6,24 +6,13 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:47 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/28 13:00:34 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/29 09:18:50 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-// Fonction pour initialiser la fenetre et l'image
-t_fdf	*malloc_fdf(void)
-{
-	t_fdf	*fdf;
-
-	fdf = NULL;
-	fdf = (t_fdf *)malloc(sizeof(t_fdf));
-	if (!fdf)
-		return (NULL);
-	return (fdf);
-}
-
+// Function to initialize fdf
 void	init_fdf(t_fdf *fdf, t_point **point)
 {
 	fdf->mlx_ptr = mlx_init();
@@ -59,7 +48,7 @@ void	init_values(t_fdf *fdf)
 	fdf->z_max = find_z_max(fdf);
 	calculate_center(fdf);
 	center(fdf);
-	fdf->zoom = 30;
+	fdf->zoom = starting_zoom(fdf);
 	fdf->depth = 0.1;
 	fdf->ox = 0;
 	fdf->oy = 0;
@@ -96,7 +85,7 @@ void	calculate_center(t_fdf *fdf)
 	fdf->z_mid = fdf->z_mid / n_points;
 }
 
-// Apply central decalage on each point
+// Function to apply central decalage on each point
 void	center(t_fdf *fdf)
 {
 	int	i;
@@ -108,4 +97,17 @@ void	center(t_fdf *fdf)
 		fdf->point[i]->y = fdf->point[i]->y - fdf->y_mid;
 		i++;
 	}
+}
+
+// Function to calculate the starting value of the zoom variable
+int	starting_zoom(t_fdf *fdf)
+{
+	int	zoom;
+
+	zoom = fdf->originx / fdf->x_max;
+	if (zoom < 1)
+		zoom = 1;
+	else if (zoom > 80)
+		zoom = 80;
+	return (zoom);
 }

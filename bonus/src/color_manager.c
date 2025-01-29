@@ -6,13 +6,13 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 10:14:10 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/23 16:56:19 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/29 08:55:36 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-// Function to setcolors
+// Function to set color values
 void	initialize_colors(t_fdf *fdf)
 {
 	fdf->back_color = BLACK;
