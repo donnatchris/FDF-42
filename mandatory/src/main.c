@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: christophedonnat <christophedonnat@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:35:06 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/28 17:10:01 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/29 06:46:20 by christophed      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	main(int ac, char **av)
 	errno = 0;
 	if (ac != 2)
 		error("Wrong number of arguments");
+	if (!check_fdf_extension(av[1]))
+		error("Invalid file");
 	fd = open(av[1], O_RDONLY, 0);
 	point = read_and_extract(av[1]);
 	fdf = malloc_fdf();
