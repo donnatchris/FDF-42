@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christophedonnat <christophedonnat@stud    +#+  +:+       +#+        */
+/*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:41:11 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/29 06:43:56 by christophed      ###   ########.fr       */
+/*   Updated: 2025/01/29 08:25:11 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,21 @@ int	is_number(char *str)
 	return (1);
 }
 
-int check_fdf_extension(const char *filename)
+int	check_fdf_extension(const char *filename)
 {
-    const char	*ext;
+	const char	*ext;
 	const char	*file_ext;
-    size_t		len_filename;
-    size_t		len_ext;
+	size_t		len_filename;
+	size_t		len_ext;
 
 	ext = ".fdf";
-    len_filename = ft_strlen(filename);
-    len_ext = ft_strlen(ext);
-
-    if (len_filename < len_ext)
-        return (0));
+	len_filename = ft_strlen(filename);
+	len_ext = ft_strlen(ext);
+	if (len_filename < len_ext)
+		return (0);
 	file_ext = filename + len_filename - len_ext;
-    if (ft_strcmp(file_ext, ext) == 0)
-        return (1));
-    else
-        return (0));
+	if (ft_strncmp(file_ext, ext, 4) == 0)
+		return (1);
+	else
+		return (0);
 }

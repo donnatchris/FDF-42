@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/28 17:09:45 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/29 08:25:33 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,5 +186,6 @@ void	menu_iso(t_fdf *fdf);
 void	menu_perspective(t_fdf *fdf);
 void	set_bres_values(t_bres *bres);
 int		is_number(char *str);
+int		check_fdf_extension(const char *filename);
 
 #endif
