@@ -151,7 +151,8 @@ These averages are calculated simply. For example, to compute x_mean, add the x 
 Here is the formula to apply to project 3D coordinates onto a 2D plane in isometric view (without rotation, without zoom),
 where x_proj and y_proj are the coordinates obtained after applying the 2D projection (there is no z_proj value):
 > x_proj = 0.866 * x - 0.866 * y  
-> y_proj = 0.5 * x + 0.5 * y - z  
+> y_proj = 0.5 * x + 0.5 * y - z
+
 In an isometric projection, the 3D axes are tilted so that the angles between the X, Y, and Z axes are equal (120°), creating a view without depth distortion.
 This means that each axis is viewed at a 30° angle from the horizontal plane.
 The values 0.866 and 0.5 come from trigonometric functions associated with this angle.
@@ -253,14 +254,17 @@ So the steps are:
 In a perspective projection, the distance simulates the depth effect by adjusting the size of objects based on their distance from the camera.
 This effect is achieved using a reduction factor:  
 > factor = Distance / (Distance + z_rot)
+
 The farther an object is (large z_rot), the smaller this factor becomes, and thus the smaller its projected coordinates (x_proj, y_proj).
 This creates the visual impression that objects closer to the observer are larger, and distant ones are smaller, reproducing how the human eye perceives depth in the real world.
 The Distance variable directly controls this effect, where a large value reduces perspective distortion (making the view closer to isometric), and a small value amplifies it.  
 
-For a perspective, follow the same steps but introduce two new values: distance and factor.  
+For a perspective, follow the same steps but introduce two new values: distance and factor.
+
 #### distance:
 The distance between the camera and the projection screen (the 2D plane).
-Let’s call this distance Distance. This is the value that can be varied to modify the depth effect.  
+Let’s call this distance Distance. This is the value that can be varied to modify the depth effect.
+
 #### factor:
 The "factor" in perspective projection is a value used to simulate the depth effect, i.e., the appearance of an object being smaller as it moves away from the camera.
 In other words, it corresponds to a reduction factor that makes closer objects larger and farther objects smaller.
@@ -271,31 +275,31 @@ The "factor" is calculated based on the distance value.
 The complete steps for a perspective with rotations, zoom, depth variation, and centering relative to the screen:
 
 #### Step 1: Rotation around the X-axis  
-x_rot = x  
-y_rot = y * cos(ox) - z * sin(ox)  
-z_rot = y * sin(ox) + z * cos(ox)  
+> x_rot = x  
+> y_rot = y * cos(ox) - z * sin(ox)  
+> z_rot = y * sin(ox) + z * cos(ox)  
 
 #### Step 2: Rotation around the Y-axis  
-x_temp = x_rot  
-x_rot = x_temp * cos(oy) + z_rot * sin(oy)  
-z_rot = -x_temp * sin(oy) + z_rot * cos(oy)  
+> x_temp = x_rot  
+> x_rot = x_temp * cos(oy) + z_rot * sin(oy)  
+> z_rot = -x_temp * sin(oy) + z_rot * cos(oy)  
 
 #### Step 3: Rotation around the Z-axis  
-x_temp = x_rot  
-y_temp = y_rot  
-x_rot = x_temp * cos(oz) - y_temp * sin(oz)  
-y_rot = x_temp * sin(oz) + y_temp * cos(oz)  
+> x_temp = x_rot  
+> y_temp = y_rot  
+> x_rot = x_temp * cos(oz) - y_temp * sin(oz)  
+> y_rot = x_temp * sin(oz) + y_temp * cos(oz)  
 
 #### Step 4: 3D to 2D Projection  
-factor = Distance / (Distance + z_rot)  
-x_proj = x_rot * factor  
-y_proj = y_rot * factor  
+> factor = Distance / (Distance + z_rot)  
+> x_proj = x_rot * factor  
+> y_proj = y_rot * factor  
 
 #### Step 5: Applying the zoom  
-x_out = x_proj * Zoom  
-y_out = y_proj * Zoom  
+> x_out = x_proj * Zoom  
+> y_out = y_proj * Zoom  
 
 #### Step 6: After zoom, centering relative to the screen  
-x_out = x_out + Width / 2  
-y_out = y_out + Height / 2
+> x_out = x_out + Width / 2  
+> y_out = y_out + Height / 2
 
