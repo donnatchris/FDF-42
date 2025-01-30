@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/30 09:12:56 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/30 09:47:46 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdio.h>
 # include <errno.h>
 # include <fcntl.h>
-# include <stdarg.h>
 # include <math.h>
 # include "colors.h"
 # include "../../libft/includes/libft.h"
