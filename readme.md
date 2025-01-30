@@ -331,3 +331,35 @@ The algorithm works by iteratively stepping from the starting point to the endpo
 It uses an error term to decide whether to move vertically, horizontally, or diagonally.
 This minimizes distortion and ensures smooth and connected lines, making it an essential tool in computer graphics.
 
+	#include <stdio.h>
+	#include <stdlib.h>
+	
+	void draw_pixel(int x, int y)
+ 	{
+	    // Replace this with actual drawing code
+	}
+	
+	void bresenham_line(int x0, int y0, int x1, int y1)
+ 	{
+	    int dx = abs(x1 - x0);
+	    int dy = abs(y1 - y0);
+	    int sx = (x0 < x1) ? 1 : -1;
+	    int sy = (y0 < y1) ? 1 : -1;
+	    int err = dx - dy;
+
+    while (x0 != x1 || y0 != y1) {
+        draw_pixel(x0, y0);
+        int e2 = 2 * err;
+        if (e2 > -dy) {
+            err -= dy;
+            x0 += sx;
+        }
+        if (e2 < dx) {
+            err += dx;
+            y0 += sy;
+        }
+    }
+    draw_pixel(x1, y1); // Draw the final point
+	}
+
+
