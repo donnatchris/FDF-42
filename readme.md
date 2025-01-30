@@ -331,6 +331,9 @@ The algorithm works by iteratively stepping from the starting point to the endpo
 It uses an error term to decide whether to move vertically, horizontally, or diagonally.
 This minimizes distortion and ensures smooth and connected lines, making it an essential tool in computer graphics.
 
+The Bresenham algorithm draws a line between two points by taking their coordinates (x0, y0) and (x1, y1) as parameters.
+To connect multiple points, simply call the function for each pair of points you want to link.
+
 A simple iteration could be (without handling colors):
 
 	#include <stdio.h>
