@@ -133,9 +133,26 @@ These functions help with a broad range of mathematical tasks, from simple arith
 making math.h an essential tool in any scientific or engineering computation in C.
 
 ---
+
+### The Minilibx
+The MiniLibX is a lightweight graphics library designed for use on Unix-based systems, particularly with the X Window System.
+It is commonly used in educational projects, such as those at 42 School, to help students understand the basics of computer graphics and event-driven programming.
+The library provides simple functions to create a window, draw pixels, lines, and images, and handle keyboard and mouse events.
+To use the MiniLibX, you first need to ensure it is installed on your system and properly linked during compilation.
+Typically, the command to compile a program with MiniLibX is gcc your_program.c -lmlx -lXext -lX11.
+Once your program is compiled, you can create a window with **mlx_new_window()** and start drawing shapes or images using functions like **mlx_pixel_put()**.
+Handling events such as key presses or mouse interactions is done by setting hooks with functions **like mlx_hook()** and starting the event loop with **mlx_loop()**.
+While it is simple in design, MiniLibX is a great way to gain hands-on experience with graphical programming concepts.
+
+**For further explanations on the MiniLibX functions, refer to the man (which can be found at: [man_page_address](https://qst0.github.io/ft_libgfx/man_mlx.html)).**
+
+> Note that the use of the mlx_pixel_put function (which draws directly into the window) is prohibited by the project guidelines.
+> You must instead use functions like mlx_image to draw in an image and then display the image in the window.
+
+---
 ---
 
-## Projection from 3D to 2D: a step-by-step guide
+# Projection from 3D to 2D: a step-by-step guide
 
 x, y, and z are the original coordinates (z represents altitude).  
 Since we want to project from 3D onto a 2D screen, the operation will consist of calculating x_proj and y_proj coordinates to create a 3D effect.
