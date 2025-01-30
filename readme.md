@@ -424,6 +424,8 @@ y_out = y_proj * Zoom
 x_out = x_out + Width / 2
 y_out = y_out + Height / 2
 
+---
 
+### Bresenham algorithm
 
-
+The Bresenham algorithm is used to draw straight lines on a pixel grid using only simple integer operations like additions and comparisons. The goal is to determine which adjacent pixel to activate at each position to achieve a visually accurate approximation of the line. It works by calculating the horizontal and vertical differences between the start and end points of the line, dx and dy. An error variable is used to track the deviation from the ideal path. At each step, the algorithm advances by one pixel in the primary direction, and if the error exceeds a certain threshold, it adjusts the position in the secondary direction and corrects the error. The algorithm is efficient because it avoids floating-point calculations, making it particularly suitable for resource-limited systems. It can also be adapted to draw circles and other geometric shapes.
