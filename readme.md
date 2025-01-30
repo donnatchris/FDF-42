@@ -1,4 +1,4 @@
-#PROJECT FDF FOR 42
+# PROJECT FDF FOR 42
 By chdonnat (Christophe Donnat from 42 Perpignan, France)
 
 ## AIM OF THE PROJECT:
