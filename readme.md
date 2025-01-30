@@ -331,6 +331,8 @@ The algorithm works by iteratively stepping from the starting point to the endpo
 It uses an error term to decide whether to move vertically, horizontally, or diagonally.
 This minimizes distortion and ensures smooth and connected lines, making it an essential tool in computer graphics.
 
+A simple iteration could be (without handling colors):
+
 	#include <stdio.h>
 	#include <stdlib.h>
 	
@@ -347,19 +349,22 @@ This minimizes distortion and ensures smooth and connected lines, making it an e
 	    int sy = (y0 < y1) ? 1 : -1;
 	    int err = dx - dy;
 
-    while (x0 != x1 || y0 != y1) {
-        draw_pixel(x0, y0);
+	while (x0 != x1 || y0 != y1)
+ 	{
+        draw_pixel(x0, y0); // Replace this with your own drawing function
         int e2 = 2 * err;
-        if (e2 > -dy) {
+        if (e2 > -dy)
+	{
             err -= dy;
             x0 += sx;
         }
-        if (e2 < dx) {
+        if (e2 < dx)
+	{
             err += dx;
             y0 += sy;
         }
-    }
-    draw_pixel(x1, y1); // Draw the final point
+	}
+   	 draw_pixel(x1, y1); // Draw the final point
 	}
 
 
