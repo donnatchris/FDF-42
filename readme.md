@@ -51,6 +51,8 @@ execute the program (you must pass a file containing coordonates)
 - Makefile (with rules: make bonus clean fclean re)
 - readme.md for quick explanation and main commands of the project
 
+> Note that in my project, mandatory and bonus are exactly the same (the bonus features are also in the mandatory part).
+
 ## DOCUMENTATION:
 
 ### errno
@@ -59,7 +61,7 @@ Each error code corresponds to a specific failure reason, such as ENOENT for "No
 These codes provide a standardized way to identify errors.
 It’s important to check and use errno immediately after a function fails, as its value can be overwritten by subsequent calls.
 
-### perror
+### perror()
 perror is a C standard library function used to display an error message associated with the current value of errno.
 It outputs a descriptive string that includes a user-provided message (for context) followed by the error description.
 The format is typically:
@@ -67,7 +69,7 @@ The format is typically:
 For example, if fopen fails to open a file and sets errno to ENOENT, calling perror("File open error") will output:
 File open error: No such file or directory
 
-### strerror
+### strerror()
 strerror is a C standard library function that converts an error code (typically stored in errno) into a human-readable error message.
 It returns a pointer to a string describing the error corresponding to the given error code.
 For example, if errno is set to ENOENT, calling strerror(ENOENT) would return "No such file or directory".
