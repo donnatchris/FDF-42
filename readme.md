@@ -33,7 +33,7 @@ compile the program:
 
 execute the program (you must pass a file containing coordonates)
 
-	./fdf <file>
+	./fdf <file.fdf>
 
 ## ARCHITECTURE:
 - mandatory/ directory with files for the mandatory part
