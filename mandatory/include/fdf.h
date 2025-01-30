@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:02:09 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/29 09:18:08 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/30 09:12:56 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,7 +240,7 @@ void	free_fdf(t_fdf *fdf);
 long	ft_atoi_long(const char *nptr);
 t_fdf	*malloc_fdf(void);
 int		compare(float n1, float n2);
-int		is_number(char *str);
 int		check_fdf_extension(const char *filename);
+int		check_other_columns(int fd, int column_max);
 
 #endif

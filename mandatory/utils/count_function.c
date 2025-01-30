@@ -6,12 +6,12 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:17:03 by christophed       #+#    #+#             */
-/*   Updated: 2025/01/28 12:00:38 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/30 09:33:03 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-
+// test
 // Count the number of columns in the first line of a file
 int	count_columns(char *file)
 {
@@ -24,22 +24,22 @@ int	count_columns(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		close_fd_and_error(fd, "Error opening file");
+	line = NULL;
 	line = get_next_line(fd);
 	if (!line)
 		close_fd_and_error(fd, "Error reading file");
+	tab = NULL;
 	tab = ft_split(line, ' ');
+	free(line);
 	if (!tab)
-		return (free(line), close_fd_and_error(fd, "Error splitting line"), 1);
+		return (close_fd_and_error(fd, "Error splitting line"), 1);
 	while (tab[n_columns])
 		n_columns++;
-	free(line);
-	line = get_next_line(fd);
-	while (line)
-	{
-		free(line);
-		line = get_next_line(fd);
-	}
-	return (free_str_tab(tab), free(line), close(fd), n_columns);
+	free_str_tab(tab);
+	if (!check_other_columns(fd, n_columns))
+		n_columns = -1;
+	close(fd);
+	return (n_columns);
 }
 
 // Count the number of lines in a file

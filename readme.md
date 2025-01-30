@@ -1,4 +1,4 @@
-# PROJECT FDF FOR 42
+#PROJECT FDF FOR 42
 By chdonnat (Christophe Donnat from 42 Perpignan, France)
 
 ## AIM OF THE PROJECT:
@@ -33,7 +33,7 @@ compile the program:
 
 execute the program (you must pass a file containing coordonates)
 
-	./fdf <file.fdf>
+	./fdf <file>
 
 ## ARCHITECTURE:
 - mandatory/ directory with files for the mandatory part
@@ -51,8 +51,6 @@ execute the program (you must pass a file containing coordonates)
 - Makefile (with rules: make bonus clean fclean re)
 - readme.md for quick explanation and main commands of the project
 
-NOTE THAT IN MY PROJECT, MANDATORY AND BONUS PARTS ARE THE SAME
-
 ## DOCUMENTATION:
 
 ### errno
@@ -61,7 +59,7 @@ Each error code corresponds to a specific failure reason, such as ENOENT for "No
 These codes provide a standardized way to identify errors.
 It’s important to check and use errno immediately after a function fails, as its value can be overwritten by subsequent calls.
 
-### perror()
+### perror
 perror is a C standard library function used to display an error message associated with the current value of errno.
 It outputs a descriptive string that includes a user-provided message (for context) followed by the error description.
 The format is typically:
@@ -69,7 +67,7 @@ The format is typically:
 For example, if fopen fails to open a file and sets errno to ENOENT, calling perror("File open error") will output:
 File open error: No such file or directory
 
-### strerror()
+### strerror
 strerror is a C standard library function that converts an error code (typically stored in errno) into a human-readable error message.
 It returns a pointer to a string describing the error corresponding to the given error code.
 For example, if errno is set to ENOENT, calling strerror(ENOENT) would return "No such file or directory".
@@ -426,29 +424,6 @@ y_out = y_proj * Zoom
 x_out = x_out + Width / 2
 y_out = y_out + Height / 2
 
----
 
 
-In an isometric projection, the 3D axes are inclined so that the angles between the X, Y, and Z axes are equal (120°), creating a view without depth distortion. This means that each axis is viewed at an angle of 30° relative to the horizontal plane. The values 0.866 and 0.5 come from trigonometric functions associated with this angle. More precisely, 0.866 is an approximation of cos(30°), and 0.5 is sin(30°). These coefficients allow projecting the 3D coordinates (x, y, z) onto a 2D plane while maintaining uniform proportions for the inclined axes, which creates the illusion of depth without perspective.
 
-In a perspective projection, the distance simulates the depth effect by adjusting the size of objects according to their distance from the camera. This effect is achieved using a reduction factor: factor = Distance / (Distance + z_rot). The farther an object is (large z_rot), the smaller this factor becomes, and thus the more its projected coordinates (x_proj, y_proj) are reduced. This creates the visual impression that objects closer to the viewer are larger, and those farther away are smaller, reproducing how the human eye perceives depth in the real world. The Distance variable directly controls this effect, where a large value reduces perspective distortion (making the view closer to isometric), and a small value amplifies it.
-
-Projection from 3D to 2D x, y, and z are the original coordinates (z is the altitude). Since we want to project from 3D onto a 2D screen, the operation will consist of calculating x_proj and y_proj coordinates to give a 3D effect.
-
-Preliminary step: Centering the coordinates (calculation to be done only once) To center the coordinates, we modify the x, y, and z values of each point by subtracting the mean values x_mean, y_mean, and z_mean. These means are calculated simply. For example, to calculate x_mean, we add up the x values of each point on the map, then divide this sum by the number of points. This calculation should be done only once before the first projection. x = x - x_mean y = y - y_mean z = z - z_mean
-
-Basic isometric projection Here is the formula to apply for projecting 3D coordinates onto a 2D plane in isometric view (without rotation, without zoom), where x_proj and y_proj are the coordinates obtained after applying the 2D projection (there is no z_proj value). x_proj = 0.866 * x - 0.866 * y y_proj = 0.5 * x + 0.5 * y - z In an isometric projection, the 3D axes are inclined so that the angles between the X, Y, and Z axes are equal (120°), creating a view without depth distortion. This means that each axis is viewed at an angle of 30° relative to the horizontal plane. The values 0.866 and 0.5 come from trigonometric functions associated with this angle. More precisely, 0.866 is an approximation of cos(30°), and 0.5 is sin(30°). These coefficients allow projecting the 3D coordinates (x, y, z) onto a 2D plane while maintaining uniform proportions for the inclined axes, which creates the illusion of depth without perspective.
-
-Adding the possibility to perform rotations To be able to perform rotations, before projecting 3D to 2D, we calculate intermediate values for x, y, and z (called here x_rot, y_rot, and z_rot) after applying formulas to take into account rotations. These rotations are calculated from the angles ox, oy, and oz expressed in radians. To produce rotations, it is enough to vary the values of ox, oy, or oz. Step 1: Rotation around the X-axis x_rot = x y_rot = y * cos(ox) - z * sin(ox) z_rot = y * sin(ox) + z * cos(ox) Step 2: Rotation around the Y-axis x_temp = x_rot x_rot = x_temp * cos(oy) + z_rot * sin(oy) z_rot = -x_temp * sin(oy) + z_rot * cos(oy) Step 3: Rotation around the Z-axis x_temp = x_rot y_temp = y_rot x_rot = x_temp * cos(oz) - y_temp * sin(oz) y_rot = x_temp * sin(oz) + y_temp * cos(oz) Step 4: 3D to 2D projection x_proj = 0.866 * x_rot - 0.866 * y_rot y_proj = 0.5 * x_rot + 0.5 * y_rot - z_rot
-
-Adding the possibility to zoom and unzoom We follow the same steps and simply multiply the projected coordinates by the zoom value to obtain the final coordinates x_out and y_out. It is enough to modify the value of the zoom variable to zoom in or out. Zoom can be a value lower than 1 for a zoom-out effect, and the value of 1 corresponds to no zoom. The zoom value must be kept strictly greater than zero to avoid a strange inversion effect. Step 1: Rotation around the X-axis x_rot = x y_rot = y * cos(ox) - z * sin(ox) z_rot = y * sin(ox) + z * cos(ox) Step 2: Rotation around the Y-axis x_temp = x_rot x_rot = x_temp * cos(oy) + z_rot * sin(oy) z_rot = -x_temp * sin(oy) + z_rot * cos(oy) Step 3: Rotation around the Z-axis x_temp = x_rot y_temp = y_rot x_rot = x_temp * cos(oz) - y_temp * sin(oz) y_rot = x_temp * sin(oz) + y_temp * cos(oz) Step 4: 3D to 2D projection if ProjectionType == "isometric": x_proj = 0.866 * x_rot - 0.866 * y_rot y_proj = 0.5 * x_rot + 0.5 * y_rot - z_rot Step 5: Zoom application x_out = x_proj * Zoom y_out = y_proj * Zoom
-
-Adding centering relative to the screen To center the projection on the screen, simply add to x_out the screen width divided by 2 and to y_out the screen height divided by 2 Step 1: Rotation around the X-axis x_rot = x y_rot = y * cos(ox) - z * sin(ox) z_rot = y * sin(ox) + z * cos(ox) Step 2: Rotation around the Y-axis x_temp = x_rot x_rot = x_temp * cos(oy) + z_rot * sin(oy) z_rot = -x_temp * sin(oy) + z_rot * cos(oy) Step 3: Rotation around the Z-axis x_temp = x_rot y_temp = y_rot x_rot = x_temp * cos(oz) - y_temp * sin(oz) y_rot = x_temp * sin(oz) + y_temp * cos(oz) Step 4: 3D to 2D projection x_proj = 0.866 * x_rot - 0.866 * y_rot y_proj = 0.5 * x_rot + 0.5 * y_rot - z_rot Step 5: Zoom application x_out = x_proj * Zoom y_out = y_proj * Zoom Step 6: After zoom, center relative to the screen x_out = x_out + Width / 2 y_out = y_out + Height / 2
-
-Perspective projection In a perspective projection, the distance simulates the depth effect by adjusting the size of objects according to their distance from the camera. This effect is achieved using a reduction factor: factor = Distance / (Distance + z_rot). The farther an object is (large z_rot), the smaller this factor becomes, and thus the more its projected coordinates (x_proj, y_proj) are reduced. This creates the visual impression that objects closer to the observer are larger, and those farther away are smaller, reproducing how the human eye perceives depth in the real world. The Distance variable directly controls this effect, where a large value reduces perspective distortion (making the view closer to isometric), and a small value amplifies it. For perspective, we follow the same steps but introduce two new values: distance and factor. distance: This is the distance between the camera and the projection screen (the 2D plane). Let’s call this value Distance. This value can be varied to modify the depth effect. factor: The "factor" in perspective projection is a value used to simulate the depth effect, that is, the appearance of an object being smaller as it moves farther from the camera. In other words, it corresponds to a reduction factor that makes closer objects larger and farther objects smaller. In perspective projection, the object is projected onto the projection plane based on its distance from the camera. The farther an object is, the more it is reduced in the projection. The "factor" is calculated based on the distance value. Finally, the complete formula for perspective with rotations, zoom, depth variation, and centering relative to the screen. Step 1: Rotation around the X-axis x_rot = x y_rot = y * cos(ox) - z * sin(ox) z_rot = y * sin(ox) + z * cos(ox) Step 2: Rotation around the Y-axis x_temp = x_rot x_rot = x_temp * cos(oy) + z_rot * sin(oy) z_rot = -x_temp * sin(oy) + z_rot * cos(oy) Step 3: Rotation around the Z-axis x_temp = x_rot y_temp = y_rot x_rot = x_temp * cos(oz) - y_temp * sin(oz) y_rot = x_temp * sin(oz) + y_temp * cos(oz) Step 4: 3D to 2D projection factor = Distance / (Distance + z_rot) x_proj = x_rot * factor y_proj = y_rot * factor Step 5: Zoom application x_out = x_proj * Zoom y_out = y_proj * Zoom Step 6: After zoom, center relative to the screen x_out = x_out + Width / 2 y_out = y_out + Height / 2
-
----
-
-### Bresenham algorithm
-
-The Bresenham algorithm is used to draw straight lines on a pixel grid using only simple integer operations like additions and comparisons. The goal is to determine which adjacent pixel to activate at each position to achieve a visually accurate approximation of the line. It works by calculating the horizontal and vertical differences between the start and end points of the line, dx and dy. An error variable is used to track the deviation from the ideal path. At each step, the algorithm advances by one pixel in the primary direction, and if the error exceeds a certain threshold, it adjusts the position in the secondary direction and corrects the error. The algorithm is efficient because it avoids floating-point calculations, making it particularly suitable for resource-limited systems. It can also be adapted to draw circles and other geometric shapes.

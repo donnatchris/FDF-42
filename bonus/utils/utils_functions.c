@@ -6,7 +6,7 @@
 /*   By: chdonnat <chdonnat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:41:11 by chdonnat          #+#    #+#             */
-/*   Updated: 2025/01/29 08:54:37 by chdonnat         ###   ########.fr       */
+/*   Updated: 2025/01/30 09:35:59 by chdonnat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,25 +46,7 @@ int	compare(float n1, float n2)
 	return (-1);
 }
 
-// Function to check if the input is a number
-int	is_number(char *str)
-{
-	int	i;
-
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '\0')
-		return (1);
-	if (str[i] == 43 || str[i] == 45)
-		i++;
-	if (!ft_isdigit(str[i]))
-		return (0);
-	return (1);
-}
-
+// Function to check the extension of the file
 int	check_fdf_extension(const char *filename)
 {
 	const char	*ext;
@@ -94,4 +76,34 @@ t_fdf	*malloc_fdf(void)
 	if (!fdf)
 		return (NULL);
 	return (fdf);
+}
+
+// Function to check the columns in other lines
+int	check_other_columns(int fd, int column_max)
+{
+	char	*line;
+	char	**tab;
+	int		other_col;
+
+	line = NULL;
+	line = get_next_line(fd);
+	while (line)
+	{
+		tab = NULL;
+		tab = ft_split(line, ' ');
+		free(line);
+		line = NULL;
+		if (!tab)
+			return (close_fd_and_error(fd, "Error splitting line"), 1);
+		other_col = 0;
+		while (tab[other_col])
+			other_col++;
+		free_str_tab(tab);
+		if (other_col != column_max)
+			return (free(line), 0);
+		line = get_next_line(fd);
+	}
+	if (line)
+		free(line);
+	return (1);
 }
