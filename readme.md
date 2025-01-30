@@ -150,7 +150,6 @@ While it is simple in design, MiniLibX is a great way to gain hands-on experienc
 > You must instead use functions like mlx_image to draw in an image and then display the image in the window.
 
 ---
----
 
 # Projection from 3D to 2D: a step-by-step guide
 
