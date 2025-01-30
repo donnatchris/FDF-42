@@ -319,3 +319,15 @@ The complete steps for a perspective with rotations, zoom, depth variation, and 
 > x_out = x_out + Width / 2  
 > y_out = y_out + Height / 2
 
+---
+
+### The Bresenham line algorithm 
+Now that we have the 2D coordinates, we need to draw lines between those points.
+The Bresenham line algorithm is an efficient way to do this by determining which pixels to color to form a straight line between two points.
+Instead of using floating-point operations, it relies on integer calculations, making it fast and suitable for graphics rendering.
+
+
+The algorithm works by iteratively stepping from the starting point to the endpoint, choosing the pixel closest to the theoretical line at each step.
+It uses an error term to decide whether to move vertically, horizontally, or diagonally.
+This minimizes distortion and ensures smooth and connected lines, making it an essential tool in computer graphics.
+
