@@ -51,6 +51,8 @@ execute the program (you must pass a file containing coordonates)
 - Makefile (with rules: make bonus clean fclean re)
 - readme.md for quick explanation and main commands of the project
 
+NOTE THAT IN MY PROJECT, MANDATORY AND BONUS PARTS ARE THE SAME
+
 ## DOCUMENTATION:
 
 ### errno
