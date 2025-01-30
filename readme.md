@@ -31,9 +31,9 @@ compile the program:
 
 	make
 
-execute the program (you must pass a file containing coordonates)
+execute the program (you must pass a file.fdf containing coordonates)
 
-	./fdf <file>
+	./fdf <file.fdf>
 
 ## ARCHITECTURE:
 - mandatory/ directory with files for the mandatory part
