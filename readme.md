@@ -39,6 +39,10 @@ execute the program (you must pass a file.fdf containing coordonates)
 
 	./fdf <file.fdf>
 
+  .fdf files are in the directory `test/tests_maps`, so for exemple :
+
+	./fdf tests/tests_map/42.fdf
+
 ## ARCHITECTURE:
 - mandatory/ directory with files for the mandatory part
 	- src/ directory for main files of the project
