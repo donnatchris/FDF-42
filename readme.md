@@ -1,6 +1,8 @@
 # PROJECT FDF FOR 42
 By chdonnat (Christophe Donnat from 42 Perpignan, France)
 
+[🇫🇷 Voir la version française](README.fr.md)
+
 ![fdf gif](gif/fdf_gif.gif)
 
 ## AIM OF THE PROJECT:
