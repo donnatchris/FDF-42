@@ -1,6 +1,8 @@
 # PROJECT FDF FOR 42
 By chdonnat (Christophe Donnat from 42 Perpignan, France)
 
+![fdf gif](gif/fdf_gif.gif)
+
 ## AIM OF THE PROJECT:
 This project involves graphically creating the schematic representation of a terrain in relief
 by connecting different points (x, y, z) with segments.
