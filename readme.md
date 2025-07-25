@@ -1,7 +1,7 @@
+##### [🇫🇷 Version française](README.fr.md) / [🇬🇧 English version](README.md)
+
 # PROJECT FDF FOR 42
 By chdonnat (Christophe Donnat from 42 Perpignan, France)
-
-[🇫🇷 Voir la version française](README.fr.md)
 
 ![fdf gif](gif/fdf_gif.gif)
 
