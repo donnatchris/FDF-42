@@ -39,6 +39,10 @@ exécuter le programme (vous devez passer un fichier .fdf contenant des coordonn
 
 	./fdf <fichier.fdf>
 
+ les fichiers .fdf se trouvent dans le répertoire `test/tests_maps`, donc par exemple :
+
+	./fdf tests/tests_map/42.fdf
+
 ## ARCHITECTURE :
 - Répertoire mandatory/ avec les fichiers pour la partie obligatoire
 	- Répertoire src/ pour les fichiers principaux du projet
